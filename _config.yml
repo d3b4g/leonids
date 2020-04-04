@@ -3,10 +3,10 @@
 # Site wide configuration
 ####################################
 #
-title: Leonids
+title: ptrace.net
 email:
-description: A simple and awesome blog theme powered by jekyll.
-url: https://renyuanz.github.io/leonids
+description: Random rambles
+url: https://d3b4g.github.io/blogs/
 keywords: ["blog", "jekyll"]
 
 #
@@ -33,10 +33,10 @@ kramdown:
 ####################################
 #
 owner:
-  name: Leonids
+  name: shabnoon
   avatar: leonids-logo.png
-  job: "A jekyll theme"
-  bio: "A simple and awesome blog theme powered by jekyll."
+  job: "Infosec "
+  bio: "A simple infosec blog."
   email:
   disqus-shortname:
   twitter: #username
