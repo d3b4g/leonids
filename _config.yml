@@ -4,8 +4,8 @@
 ####################################
 #
 title: ptrace.net
-email:
-description: Random rambles
+email: shabnoon@ptrace.net
+description: Random rambles of a infosec 
 url: https://d3b4g.github.io/blogs
 keywords: ["blog", "jekyll"]
 
@@ -33,9 +33,9 @@ kramdown:
 ####################################
 #
 owner:
-  name: d3b4g
+  name: Shabnoon Khalid
   avatar: leonids-logo.png
-  job: "Infosec "
+  job: "CyberSecurity Sepcialist"
   bio: "A simple infosec blog."
   email:
   disqus-shortname:
