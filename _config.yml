@@ -69,7 +69,7 @@ owner:
   codepen: #username
   reddit: #username
   telegram: #username
-
+&lt;script src=&quot;https://www.hackthebox.eu/badge/82792&quot;&gt;&lt;/script&gt;
 webrick:
   headers:
     Access-Control-Allow-Origin: "*"
