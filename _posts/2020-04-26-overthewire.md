@@ -11,6 +11,8 @@ This blogpost contains the solutions for Narnia series of challenges from overth
 First step is ssh into overthewire.org with the provided credentials for narnia challenges.All Narnia binaries and source files are located in /narnia/. 
 
 Let's take a look at the code of this program.The below C code is the source code for the first challenge in the Narnia series of challenges from Overthewire.
+
+## Narnia 0
 ```c++
 
 #include <stdio.h>
@@ -78,7 +80,7 @@ cat /etc/narnia_pass/narnia1
 efeidiedae
 ```
 ### Conclusion 
-Running the above command give us a shell as narnia1, now we can cat the flag. This is a very simple buffer overflow example.
+Running the above command give us a shell as narnia1, now we can cat the flag. This is a very simple buffer overflow example, i will doing next challenge Narnia1 soon.
 
 
 
