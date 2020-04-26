@@ -5,7 +5,7 @@ date:   2020-04-26 15:07:19
 categories: [Binary Exploitation]
 comments: true
 ---
-## Overthewire.org - Narnia 0-4
+
 This blogpost contains the solutions Narnia series of challenges from overthewire, this category of challenges are aimed at beginners to binary exploitation.
 
 First step is ssh into overthewire.org with the provided credentials for narnia challenges.All Narnia binaries and source files are located in /narnia/. 
