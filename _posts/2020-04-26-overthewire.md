@@ -61,7 +61,8 @@ val: 0x43434343
 WAY OFF!!!!
 narnia0@narnia:/narnia$ 
 ```
-Great we have overwritten the val variable with 0x43434343 which is our 4 "C". Now we know we can overite the val variable . We just need to replace "C" with 0xdeadbeef which is the correct value the program accept. Before that we need to convert 0xdeadbeef to little endian format which is "\xef\xbe\xad\xde".
+Great we have overwritten the val variable with 0x43434343 which is our 4 "C". Now we know we can overite the val variable . We just need to replace "C" with 0xdeadbeef which is the correct value the program accept. Before that we need to convert 0xdeadbeef to little endian format as we are on little endian machine.
+> 0xdeadbeef to little endian "\xef\xbe\xad\xde".
 
 ### Grabbing the flag:
 
