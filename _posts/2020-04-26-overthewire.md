@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Overthewire.org - Narnia 0-4"
+title:  "Overthewire - Narnia 0-4"
 date:   2020-04-26 15:07:19
 categories: [Binary Exploitation]
 comments: true
