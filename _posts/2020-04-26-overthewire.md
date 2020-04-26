@@ -40,7 +40,7 @@ int main(){
 }
 ```
 From the code it's clear we need to give val the value of 0xdeadbeef to get a shell as narnia1 user.
-By observing the code we can spot the issue from scanf() function. The scanf() is used to get the input for buffer buff. and this function have no bound checkings on input,hence we can overwrite the variable “val” with any value we like.
+By observing the code we can spot the issue from scanf() function. The scanf() is used to get the input for buffer buff. and this function have no bound checkings on input,buf variable is 20 bytes long but the scanf reads in 24 bytes hence we can overwrite the variable “val” with any value we like.
 ```
 
 ```bash
