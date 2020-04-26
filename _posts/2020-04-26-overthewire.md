@@ -6,12 +6,12 @@ categories: [Binary Exploitation]
 comments: true
 ---
 
-This blogpost contains the solutions Narnia series of challenges from overthewire, this category of challenges are aimed at beginners to binary exploitation.
+This blogpost contains the solutions for Narnia series of challenges from overthewire, this category of challenges are aimed at beginners to binary exploitation.
 
 First step is ssh into overthewire.org with the provided credentials for narnia challenges.All Narnia binaries and source files are located in /narnia/. 
 
 Let's take a look at the code of this program.The below C code is the source code for the first challenge in the Narnia series of challenges from Overthewire.
-```c++
+```c+
 
 #include <stdio.h>
 #include <stdlib.h>
