@@ -98,7 +98,7 @@ sh.recvline(sh)
 ```
 
 ### Conclusion 
-Running the above command give us a shell as narnia1, now we can cat the flag.Next challenge is Narnia1.
+Pwned! Nice and simple bufferoverflow challenge .Next challenge is Narnia1.
 
 
 
