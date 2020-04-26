@@ -47,7 +47,9 @@ By observing the code we can spot the issue from scanf() function. The scanf() i
 file narnia0
 narnia0: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=0840ec7ce39e76ebcecabacb3dffb455cfa401e9, not stripped
 ```
-Our target binary here is narnia0 and it is a ELF 32-bit binary.ELF is Executable Linkable Format which consists of a symbol look-ups and relocatable table, that is, it can be loaded at any memory address by the kernel.
+Our target binary is an ELF 32-bit binary.ELF is Executable Linkable Format which consists of a symbol look-ups and relocatable table, that is, it can be loaded at any memory address by the kernel.
+
+## Exploitation
 
 Let's send some crafted inpu to the program and observe 
 
@@ -75,7 +77,7 @@ narnia1
 cat /etc/narnia_pass/narnia1
 efeidiedae
 ```
-
+## Conclusion 
 Running the above command give us a shell as narnia1, now we can cat the flag. This is a very simple buffer overflow example.
 
 
