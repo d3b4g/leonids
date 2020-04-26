@@ -40,7 +40,7 @@ int main(){
 }
 ```
 From the code it's clear we need to give val the value of 0xdeadbeef to get a shell as narnia1 user.
-By observing the code we can spot the issue from scanf() function. The scanf() is used to get the input for buffer buff. and this function have no bound checkings on input,buf variable is 20 bytes long but the scanf reads in 24 bytes hence we can overwrite the variable “val” with any value we like.
+By observing the code we can spot the issue from scanf() function. The scanf() is used to get the input for buffer buff. and this function have no bound checkings on input, buf variable is 20 bytes long but the scanf() reads in 24 bytes hence we can overwrite the variable “val” with any value we like.
 ```
 
 ```bash
@@ -51,7 +51,7 @@ Our target binary is an ELF 32-bit binary.ELF is Executable Linkable Format whic
 
 ### Exploitation
 
-Let's send some crafted inpu to the program and observe 
+Let's send some crafted input to the program and monitor
 
 ```python
 narnia0@narnia:/narnia$ python -c 'print 20 * "A" + "CCCC"' | ./narnia0
@@ -98,7 +98,7 @@ sh.recvline(sh)
 ```
 
 ### Conclusion 
-Running the above command give us a shell as narnia1, now we can cat the flag. This is a very simple buffer overflow example, i will doing next challenge Narnia1 soon.
+Running the above command give us a shell as narnia1, now we can cat the flag.Next challenge is Narnia1.
 
 
 
