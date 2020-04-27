@@ -10,7 +10,7 @@ This blogpost contains the solutions for Narnia series of challenges from overth
 
 Let's take a look at the code of this program.The below C code is the source code for the first challenge in the Narnia series of challenges from Overthewire.
 
-## Narnia 0
+## Narnia 0-1
 ```c++
 
 #include <stdio.h>
