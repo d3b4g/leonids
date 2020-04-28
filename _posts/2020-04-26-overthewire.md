@@ -12,37 +12,10 @@ comments: true
 This blogpost contains the solutions for Narnia series of challenges from overthewire, this category of challenges are aimed at beginners to binary exploitation.
 
 Let's take a look at the code of this program.The below C code is the source code for the first challenge in the Narnia series of challenges from Overthewire.
+## Narnia 0-1
 ![source](/img/source.png){: .align-left}
 
-## Narnia 0-1
-```c++
 
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(){
-    long val=0x41414141;
-    char buf[20];
-
-    printf("Correct val's value from 0x41414141 -> 0xdeadbeef!\n");
-    printf("Here is your chance: ");
-    scanf("%24s",&buf);
-
-    printf("buf: %s\n",buf);
-    printf("val: 0x%08x\n",val);
-
-    if(val==0xdeadbeef){
-        setreuid(geteuid(),geteuid());
-        system("/bin/sh");
-    }
-    else {
-        printf("WAY OFF!!!!\n");
-        exit(1);
-    }
-
-    return 0;
-}
-```
 From the code it's clear we need to give val the value of 0xdeadbeef to get a shell as narnia1 user.
 By observing the code we can spot the issue from scanf() function. The scanf() is used to get the input for buffer buff. and this function have no bound checkings on input, buf variable is 20 bytes long but the scanf() reads in 24 bytes hence we can overwrite the variable “val” with any value we like.
 ```
