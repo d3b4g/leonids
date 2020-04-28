@@ -3,6 +3,9 @@ layout: post
 title:  "Overthewire - Narnia 0-4"
 date:   2020-04-26 15:07:19
 categories: [Binary Exploitation]
+excerpt: "This blogpost contains the solutions for Narnia series of challenges from overthewire, this category of challenges are aimed at beginners to binary exploitation.
+
+Let's take a look at the code of this program.The below C code is the source code for the first challenge in the Narnia series of challenges from Overthewire."
 comments: true
 ---
 
