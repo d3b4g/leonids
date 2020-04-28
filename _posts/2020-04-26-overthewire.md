@@ -20,9 +20,6 @@ From the code it's clear we need to give val the value of 0xdeadbeef to get a sh
 By observing the code we can spot the issue from scanf() function. The scanf() is used to get the input for buffer buff. and this function have no bound checkings on input, buf variable is 20 bytes long but the scanf() reads in 24 bytes hence we can overwrite the variable “val” with any value we like.
 ```
 ![source](/img/terminal.png){: .align-left}
-```bash
-file narnia0
-narnia0: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=0840ec7ce39e76ebcecabacb3dffb455cfa401e9, not stripped
 ```
 Our target binary is an ELF 32-bit binary.ELF is Executable Linkable Format which consists of a symbol look-ups and relocatable table, that is, it can be loaded at any memory address by the kernel.
 
