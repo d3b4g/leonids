@@ -28,6 +28,7 @@ Our target binary is an ELF 32-bit binary.ELF is Executable Linkable Format whic
 ### Exploitation
 
 Let's send some crafted input to the program and monitor
+
 ![source-02](/img/f1.png){: .align-left}
 
 
@@ -36,7 +37,9 @@ Great we have overwritten the val variable with 0x43434343 which is our 4 "C". N
 
 ### Grabbing the flag:
 
+
 ![source-02](/img/f2.png){: .align-left}
+
 
 > Full exploit
 
