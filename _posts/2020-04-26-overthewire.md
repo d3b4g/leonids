@@ -38,7 +38,7 @@ Great we have overwritten the val variable with 0x43434343 which is our 4 "C". N
 ### Grabbing the flag:
 
 
-![source-02](/img/f2.png){: .align-left}
+![source-02](/img/f3.png){: .align-left}
 
 
 > Full exploit
