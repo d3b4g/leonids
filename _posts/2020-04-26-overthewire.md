@@ -13,7 +13,9 @@ This blogpost contains the solutions for Narnia series of challenges from overth
 
 Let's take a look at the code of this program.The below C code is the source code for the first challenge in the Narnia series of challenges from Overthewire.
 ## Narnia 0-1
-![source](/img/source.png){: .align-left}
+
+<img src="/img/source.png" class="align-left" alt="">
+
 
 
 From the code it's clear we need to give val the value of 0xdeadbeef to get a shell as narnia1 user.
