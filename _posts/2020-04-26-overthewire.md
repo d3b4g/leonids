@@ -12,6 +12,7 @@ comments: true
 This blogpost contains the solutions for Narnia series of challenges from overthewire, this category of challenges are aimed at beginners to binary exploitation.
 
 Let's take a look at the code of this program.The below C code is the source code for the first challenge in the Narnia series of challenges from Overthewire.
+![useful image]({{ site.url }}/img/source.png)
 
 ## Narnia 0-1
 ```c++
