@@ -20,21 +20,15 @@ From the code it's clear we need to give val the value of 0xdeadbeef to get a sh
 By observing the code we can spot the issue from scanf() function. The scanf() is used to get the input for buffer buff. and this function have no bound checkings on input, buf variable is 20 bytes long but the scanf() reads in 24 bytes hence we can overwrite the variable “val” with any value we like.
 
 ![source-01](/img/terminal.png){: .align-left}
-```
+
 Our target binary is an ELF 32-bit binary.ELF is Executable Linkable Format which consists of a symbol look-ups and relocatable table, that is, it can be loaded at any memory address by the kernel.
 
 ### Exploitation
 
 Let's send some crafted input to the program and monitor
+![source-02](/img/f1.png){: .align-left}
 
-```python
-narnia0@narnia:/narnia$ python -c 'print 20 * "A" + "CCCC"' | ./narnia0
-Correct val's value from 0x41414141 -> 0xdeadbeef!
-Here is your chance: buf: AAAAAAAAAAAAAAAAAAAACCCC
-val: 0x43434343
-WAY OFF!!!!
-narnia0@narnia:/narnia$ 
-```
+
 Great we have overwritten the val variable with 0x43434343 which is our 4 "C". Now we know we can overite the val variable . We just need to replace "C" with 0xdeadbeef which is the correct value the program accept. Before that we need to convert 0xdeadbeef to little endian format as we are on little endian machine.
 > 0xdeadbeef to little endian "\xef\xbe\xad\xde".
 
