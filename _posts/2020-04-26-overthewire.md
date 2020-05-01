@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Overthewire - Narnia 0-4"
+title:  "Overthewire - Narnia 0-1"
 date:   2020-04-26 15:07:19
 categories: [Binary Exploitation]
 excerpt: "This blogpost contains the solutions for Narnia series of challenges from overthewire, this category of challenges are aimed at beginners to binary exploitation.
