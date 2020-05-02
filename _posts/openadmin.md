@@ -38,7 +38,8 @@ A quick searchsploit shows this version of OpenNetAdmin is vulnerable and there 
 ![source-01](/img/Screenshot_2020-05-02_10-04-24.png){: .align-left}  
 
 I didnt want use metasploit module for this, so i quickly grabbed the exploit available from exploit database.
-Had weird issues running the code, due to spacing i belive, so i quickly converted the script using dostounix tool.
+Had weird issues running the code, due to spacing i belive (DOS-style CRLF line endings), so i quickly converted the script using dostounix tool.
+The exploit is a very simple command injection through a ping functionnality within the application.
 
 ![source-01](/img/Screenshot_2020-05-02_10-29-57.png){: .align-left}  
 
@@ -50,5 +51,35 @@ After some browsing around, I got to the database settings file which contained 
 
 ![source-01](/img/Screenshot_2020-05-02_10-42-54.png){: .align-left}  
 	
+Now lets quickly grab users from the system, we might be able to use the found credentials with the users
+
+$ cat /etc/passwd | awk -F : '{print $1}'
+root
+jimmy
+mysql
+joanna
+
+After trying this password on jimmy’s account, I was able to login to the box as Jimmy, classic case of password reuse!
+
+![source-01](/img/Screenshot_2020-05-02_14-13-04.png){: .align-left}  
+
+And now we have a shell a jimmy user. I was excepting to get user.txt flag from here, but no we need to enumerate further more to get anywhere.
+
+jimmy@openadmin:/var/www$ ls -la
+total 16
+drwxr-xr-x  4 root     root     4096 Nov 22 18:15 .
+drwxr-xr-x 14 root     root     4096 Nov 21 14:08 ..
+drwxr-xr-x  6 www-data www-data 4096 Nov 22 15:59 html
+drwxrwx---  2 jimmy    internal 4096 Nov 23 17:43 internal
+lrwxrwxrwx  1 www-data www-data   12 Nov 21 16:07 ona -> /opt/ona/www
+
+Found, interesting directory under /var/wwww which belongs to jimmy user.And an interesting php file which reads joana's SSH privatekeys.
+
+![source-01](/img/Screenshot_2020-05-02_14-25-02.png){: .align-left}  
+
+Time to do a curl request to that file and see if I can obtain the key file.
+
+
+
 
 
