@@ -80,6 +80,13 @@ Found, interesting directory under /var/wwww which belongs to jimmy user.And an 
 Time to do a curl request to that file and see if I can obtain the key file.
 
 
+Lets chek listening ports
 
+![source-01](/img/Screenshot_2020-05-02_14-35-51.png){: .align-left}  
+
+i used curl to download the content of main.php
+
+![source-01](/img/Screenshot_2020-05-02_14-47-04.png){: .align-left}  
+And here we got an encrypted RSA private key, to make this usefull we need to crack the key.
 
 
