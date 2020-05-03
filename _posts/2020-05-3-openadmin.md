@@ -56,7 +56,7 @@ Gobuster found music directory,which display a new webpage,
 ![source-01](/img/Screenshot_2020-05-02_09-38-13.png){: .align-left}  
 
 Click on login button in /music redirect to /ona
-![source-01](/img/Screenshot_2020-05-02_09-40-35.png){: .align-left}  
+![source-01](/img/Screenshot_2020-05-02_09-38-13.png){: .align-left}  
 
 Which is running OpenNetAdmin - v18.1.1
 
