@@ -9,6 +9,7 @@ This box required us to perform the following tasks:
 - Enumerate a web server to find vulnerable web application
 - Exploit Web app to get initial foothold
 - Download 2nd user ssh private keys and crack it
+- GTFOBins for root
 
 
 ## Initial reconnaissance
@@ -105,14 +106,9 @@ We get the user.txt
 Standard enumeration was enough for this machine,sudo -l command shows that user Joanna can run /bin/nano /opt/priv as the root user without entering a password.
 ![source-01](/img/Screenshot_2020-05-03_06-55-35.png){: .align-left} 
 
-Reading root.txt is pretty straight forward, this technique is already well document in GTFBIN
+Reading root.txt is pretty straight forward, this technique is already well document in GTFOBins
 
-> t can be used to break out from restricted environments by spawning an interactive system shell.
->nano
->^R^X
->reset; sh 1>&0 2>&0
-
-sudo /bin/nano /opt/priv. Then we type <CTRL>+R /root/root.txt in order to read a file.
+sudo /bin/nano /opt/priv. Then we type <CTRL>+R /root/root.txt in order to read root.txt file.
 
 OpenAdmin is rooted!
 
