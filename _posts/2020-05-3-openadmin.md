@@ -1,3 +1,22 @@
+---
+layout: post
+title:  "Hackthebox - OpenAdmin"
+date:   2020-05-3 14:07:19
+categories: [Hackthebox]
+excerpt: "OpenAdmin is rated as a Easy Linux box. It was released on 04 Jan 2020 and has been created by @dmw0ng
+
+This box required us to perform the following tasks:
+
+
+- Enumerate a web server to find vulnerable web application
+- Exploit Web app to get initial foothold
+- Download 2nd user ssh private keys and crack it
+- GTFOBins for root"
+
+comments: true
+---
+
+
 ## Introduction
 ![source-01](/img/openadmin1.png){: .align-left}
 
