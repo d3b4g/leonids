@@ -129,7 +129,8 @@ That was fast, the password for the key is bloodninjas. Now Let’s ssh into use
 We get the user.txt
 
 ## Privillege Escalation 
-Standard enumeration was enough for this machine,sudo -l command shows that user Joanna can run /bin/nano /opt/priv as the root user without entering a password.
+Standard enumeration was enough to find the way to root. 
+sudo -l command shows that user Joanna can run /bin/nano /opt/priv as the root user without entering a password.
 ![source-01](/img/Screenshot_2020-05-03_06-55-35.png){: .align-left} 
 
 Reading root.txt is pretty straight forward, this technique is already well document in GTFOBins
