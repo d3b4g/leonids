@@ -91,4 +91,21 @@ i used curl to download the content of main.php
 ![source-01](/img/Screenshot_2020-05-02_14-47-04.png){: .align-left}  
 And here we got an encrypted RSA private key, to make this usefull we need to crack the key.
 
+Cracking RSA key with John
+
+![source-01](/img/Screenshot_2020-05-03_06-39-07.png){: .align-left} 
+
+That was fast, the password for the key is bloodninjas. Now Let’s ssh into user joanna,before that remember to change permissions of the rsa key.
+
+![source-01](/img/Screenshot_2020-05-03_06-50-07.png){: .align-left} 
+
+We get the user.txt
+
+## Privillege Escalation 
+
+
+
+
+
+
 
