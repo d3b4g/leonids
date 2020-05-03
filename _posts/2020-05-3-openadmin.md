@@ -12,7 +12,7 @@ This box required us to perform the following tasks:
 - Exploit Web app to get initial foothold
 - Credential reuse attack
 - Download users SSH private key and crack
-- GTFOBins for root"
+- Exploit nano installed with passwordless sudo permission on a file"
 
 comments: true
 ---
@@ -31,7 +31,7 @@ This box required us to perform the following tasks:
 - Exploit Web app to get initial foothold
 - Credential reuse attack
 - Download users SSH private key and crack
-- GTFOBins for root
+- Exploit nano installed with passwordless sudo permission on a file
 
 
 ## Initial reconnaissance
@@ -106,7 +106,7 @@ After further enumeration, found an interesting directory under /var/wwww which 
 
 ![source-01](/img/Screenshot_2020-05-02_14-25-02.png){: .align-left}  
 
-Lets chek listening ports
+Now we know we can get the private_key of joanna,but Port 80 doesn’t serve this file.Lets check other local listening ports
 
 ![source-01](/img/Screenshot_2020-05-02_14-35-51.png){: .align-left}  
 
@@ -123,7 +123,7 @@ That was fast, the password for the key is bloodninjas. Now Let’s ssh into use
 
 ![source-01](/img/Screenshot_2020-05-03_06-50-07.png){: .align-left} 
 
-We get the user.txt
+We have got the user.txt
 
 ## Privillege Escalation 
 Standard enumeration was enough to find the way to root. 
