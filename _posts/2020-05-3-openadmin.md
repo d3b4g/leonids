@@ -12,7 +12,7 @@ This box required us to perform the following tasks:
 - Exploit Web app to get initial foothold
 - Credential reuse attack
 - Download users SSH private key and crack
-- Exploit nano installed with passwordless sudo permission on a file"
+- Exploit misconfigured nano permission"
 
 comments: true
 ---
@@ -31,7 +31,7 @@ This box required us to perform the following tasks:
 - Exploit Web app to get initial foothold
 - Credential reuse attack
 - Download users SSH private key and crack
-- Exploit nano installed with passwordless sudo permission on a file
+- Exploit misconfigured nano permission 
 
 
 ## Initial reconnaissance
@@ -80,7 +80,7 @@ After some browsing around, I got the database settings file which contained a p
 
 ## Credential reuse  
 	
-Now lets grab the users from the system, we might be able to use the found credentials with the users
+Now lets grab the users from the system, we might be able to use the found credentials with other users
 ```
 $ cat /etc/passwd | awk -F : '{print $1}'
 root
@@ -102,11 +102,18 @@ drwxr-xr-x  6 www-data www-data 4096 Nov 22 15:59 html
 drwxrwx---  2 jimmy    internal 4096 Nov 23 17:43 internal
 lrwxrwxrwx  1 www-data www-data   12 Nov 21 16:07 ona -> /opt/ona/www
 ```
-After further enumeration, found an interesting directory under /var/wwww which belongs to jimmy user.And a php file which reads joana's SSH privatekeys.
+After further enumeration, found an interesting directory under /var/wwww which belongs to jimmy user.And a php file which reads joana's RSA private keys.
 
 ![source-01](/img/Screenshot_2020-05-02_14-25-02.png){: .align-left}  
 
-Now we know we can get the private_key of joanna,but Port 80 doesn’t serve this file.Lets check other local listening ports
+We can see that if we executed main.php it will read joanna private key.Since port 80 is serving other files, their must be virtualhost configured for this.
+
+![source-01](/img/Screenshot_2020-05-03_08-48-47.png){: .align-left}  
+
+From the configuration we know port is not accessible from outside , we need to run it within the local server, to grab joanna's RSA Private keys. 
+
+
+Lets check other local listening ports
 
 ![source-01](/img/Screenshot_2020-05-02_14-35-51.png){: .align-left}  
 
