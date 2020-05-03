@@ -61,6 +61,7 @@ Which is running OpenNetAdmin - v18.1.1
 A quick searchsploit shows this version of OpenNetAdmin is vulnerable and there are public exploits available.
 
 ![source-01](/img/Screenshot_2020-05-02_10-04-24.png){: .align-left}  
+## Initial foothold
 
 I quickly grabbed the exploit available from exploit database.
 Had weird issues running the code, due to spacing i belive (DOS-style CRLF line endings), so i converted the script using dostounix tool.
@@ -119,6 +120,7 @@ We can see a service running on port 52846, so i used curl to download the conte
 
 ![source-01](/img/Screenshot_2020-05-02_14-47-04.png){: .align-left}  
 And here we got an encrypted RSA private key, to make this usefull we need to crack the key.
+## Cracking SSH Keys
 
 Cracking RSA key with John
 
