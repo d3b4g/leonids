@@ -64,7 +64,7 @@ A quick searchsploit shows this version of OpenNetAdmin is vulnerable and there 
 
 I quickly grabbed the exploit available from exploit database.
 Had weird issues running the code, due to spacing i belive (DOS-style CRLF line endings), so i converted the script using dostounix tool.
-The exploit is a very simple command injection through a ping functionnality within the application.
+The exploit is a very simple command injection vulnerability.
 
 ![source-01](/img/Screenshot_2020-05-02_10-29-57.png){: .align-left}  
 
