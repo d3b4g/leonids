@@ -10,7 +10,8 @@ This box required us to perform the following tasks:
 
 - Enumerate a web server to find vulnerable web application
 - Exploit Web app to get initial foothold
-- Download 2nd user ssh private keys and crack it
+- Credential reuse attack
+- Download users SSH private key and crack
 - GTFOBins for root"
 
 comments: true
@@ -25,9 +26,11 @@ OpenAdmin is rated as a Easy Linux box. It was released on 04 Jan 2020 and has b
 This box required us to perform the following tasks:
 
 
+
 - Enumerate a web server to find vulnerable web application
 - Exploit Web app to get initial foothold
-- Download 2nd user ssh private keys and crack it
+- Credential reuse attack
+- Download users SSH private key and crack
 - GTFOBins for root
 
 
@@ -37,20 +40,22 @@ Let’s do first a full nmap port scan using the following command:
 
 ![source-01](/img/Screenshot_2020-05-02_09-01-51.png){: .align-left}
 
-We have SSH on 22, and an Apache 2.4.29 HTTP server running on 80
+Two ports are open:
+- SSH on 22
+- Apache 2.4.29 on 80
 
-Lets see what is running on port 80
+Browsing to openadmin.htb
 
 ![source-01](/img/Screenshot_2020-05-02_09-20-39.png){: .align-left}
 
-It just shows default apache landing page, lets enumerate this port further with gobuster.
+It just shows default apache landing page, lets enumerate this port further with gobuster to find addtional directories and files.
 
 ![source-01](/img/Screenshot_2020-05-02_09-33-18.png){: .align-left} 
 
 Gobuster found music directory,which display a new webpage, 
 ![source-01](/img/Screenshot_2020-05-02_09-38-13.png){: .align-left}  
 
-Click on login redirect to /ona
+Click on login button in /music redirect to /ona
 ![source-01](/img/Screenshot_2020-05-02_09-40-35.png){: .align-left}  
 
 Which is running OpenNetAdmin - v18.1.1
@@ -59,7 +64,7 @@ A quick searchsploit shows this version of OpenNetAdmin is vulnerable and there 
 
 ![source-01](/img/Screenshot_2020-05-02_10-04-24.png){: .align-left}  
 
-I didnt want use metasploit module for this, so i quickly grabbed the exploit available from exploit database.
+I quickly grabbed the exploit available from exploit database.
 Had weird issues running the code, due to spacing i belive (DOS-style CRLF line endings), so i converted the script using dostounix tool.
 The exploit is a very simple command injection through a ping functionnality within the application.
 
@@ -69,24 +74,26 @@ Running the exploit give us a shell as www-data
 
 ![source-01](/img/Screenshot_2020-05-02_10-34-54.png){: .align-left}  
 
-After some browsing around, I got to the database settings file which contained a password.
+After some browsing around, I got the database settings file which contained a password.
 
 ![source-01](/img/Screenshot_2020-05-02_10-42-54.png){: .align-left}  
-	
-Now lets grab users from the system, we might be able to use the found credentials with the users
 
+## Credential reuse  
+	
+Now lets grab the users from the system, we might be able to use the found credentials with the users
+```
 $ cat /etc/passwd | awk -F : '{print $1}'
 root
 jimmy
 mysql
 joanna
-
-After trying this password on jimmy’s account, I was able to login to the box as Jimmy, classic case of password reuse!
+```
+After trying the password on jimmy’s account, I was able to login to the box as Jimmy, this is a classic case of password reuse!
 
 ![source-01](/img/Screenshot_2020-05-02_14-13-04.png){: .align-left}  
 
 And now we have a shell a jimmy user. I was excepting to get user.txt flag from here, but no we need to enumerate further more to get anywhere.
-
+```
 jimmy@openadmin:/var/www$ ls -la
 total 16
 drwxr-xr-x  4 root     root     4096 Nov 22 18:15 .
@@ -94,8 +101,8 @@ drwxr-xr-x 14 root     root     4096 Nov 21 14:08 ..
 drwxr-xr-x  6 www-data www-data 4096 Nov 22 15:59 html
 drwxrwx---  2 jimmy    internal 4096 Nov 23 17:43 internal
 lrwxrwxrwx  1 www-data www-data   12 Nov 21 16:07 ona -> /opt/ona/www
-
-Found, interesting directory under /var/wwww which belongs to jimmy user.And an interesting php file which reads joana's SSH privatekeys.
+```
+After further enumeration, found an interesting directory under /var/wwww which belongs to jimmy user.And a php file which reads joana's SSH privatekeys.
 
 ![source-01](/img/Screenshot_2020-05-02_14-25-02.png){: .align-left}  
 
