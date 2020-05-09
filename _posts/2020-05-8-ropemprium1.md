@@ -3,14 +3,14 @@ layout: post
 title:  "ROPEmorium - Ret2win"
 date:   2020-05-8 14:07:19
 categories: [ROP]
-excerpt: "Doing these challenges to improve my binary exploitation and teach my self Return oriented programming(ROP).im starting with ROP Emporium challenges. These challenges use the usual CTF objective of retrieving the contents of a file named flag.txt from a remote machine by exploiting a given binary"
+excerpt: "Doing these challenges to improve my binary exploitation skills and teach my self Return oriented programming (ROP) These challenges use the usual CTF objective of retrieving the contents of a file named flag.txt from a remote machine by exploiting a given binary"
 
 comments: true
 ---
 
 
 ## Introduction
-Doing these challenges to improve my binary exploitation and teach my self Return oriented programming(ROP).im starting with ROP Emporium challenges. These challenges use the usual CTF objective of retrieving the contents of a file named "flag.txt" from a remote machine by exploiting a given binary.ROP theory is out of scope of this article, If you want ROP theory there are lot of good resources out there.
+Doing these challenges to improve my binary exploitation skills and teach my self Return oriented programming (ROP).These challenges use the usual CTF objective of retrieving the contents of a file named "flag.txt" from a remote machine by exploiting a given binary.ROP theory is out of scope of this article, If you want ROP theory there are lot of good resources out there.
 
 ## Description 
 Locate a method within the binary that you want to call and do so by overwriting a saved return address on the stack.
@@ -22,7 +22,7 @@ Our binary is usual ELF executable in 64-bit architecture.
 ![source-01](/img/Screenshot_2020-05-09_11-12-06.png){: .align-left}
 
 
-PIE isn't enabled so the binary will be loaded at a fixed location into memory (0x400000) everytime.With nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
+PIE isn't enabled so the binary will be loaded at a fixed location into memory (0x400000) everytime. With nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
 
 ## Analyzing the 64bit ELF binary
 Lets load the binary with GDB and dump the functions.
@@ -59,7 +59,7 @@ Here we can see interesting functions:
 
 So lets see what this fucntions does!
 
-main():
+**main():
 
 
 ![source-01](/img/Screenshot_2020-05-09_11-15-15.png){: .align-left}
@@ -68,7 +68,7 @@ main():
 So The main function  uses puts() to output a some texts, then calls the pwnme(), the texts we get when we run the program first time.
 
 
-pwnme():
+**pwnme():
 
 
 ![source-01](/img/Screenshot_2020-05-09_11-16-18.png){: .align-left}
@@ -78,7 +78,7 @@ We see that the pwnme function allocates a 32 byte (0x20 hex) area of memory.fge
 This function takes user input using fgets(), and stores it in a  buffer of size 32. There is no bound check on the buffer, it is pretty clear that there is a is a stack bufferoverlow.
 
 
-ret2win()
+**ret2win()
 
 
 ![source-01](/img/Screenshot_2020-05-09_11-17-39.png){: .align-left}
@@ -132,23 +132,24 @@ We have 40 bytes to fill the stack and then we need to put the address of the re
 
 The exploit then will look as follows:
 
-Payload:
+**Payload: 
 
 The payload will be very simple:
 
 [40 chars of junk] + [address of ret2win]
 "A"*40             + "\x11\x08\x40"
 
-Here is my final exploit: python -c 'print "\x90"*40 + "\x11\x08\x40\x00\x00\x00\x00\x00"' | ./ret2win
+**Here is my final exploit:
+
+> python -c 'print "\x90"*40 + "\x11\x08\x40\x00\x00\x00\x00\x00"' | ./ret2win
 
 
 ![source-01](/img/Screenshot_2020-05-09_15-53-55.png){: .align-left}
 
 
 
-Putting it all together, we have the following exploit, used pwntools to learn the tool.
+Putting it all together,and i developed the exploit with pwntools
 
-Screenshot_2020-05-09_16-20-05.png	
 
 ![source-01](/img/Screenshot_2020-05-09_16-20-05.png){: .align-left}
 
