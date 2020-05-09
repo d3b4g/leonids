@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "ROPEmorium - Ret2win"
+title:  "ROP Emporium - Ret2win"
 date:   2020-05-8 14:07:19
 categories: [ROP]
 excerpt: "Doing these challenges to improve my binary exploitation skills and teach my self Return oriented programming (ROP) These challenges use the usual CTF objective of retrieving the contents of a file named flag.txt from a remote machine by exploiting a given binary"
