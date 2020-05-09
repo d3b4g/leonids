@@ -1,12 +1,22 @@
 ---
 layout: post
-title:  "ROP Emporium - ret2win"
+title:  "ROPEmorium - Ret2win"
 date:   2020-05-8 14:07:19
-categories: [ROP-Emporium]
-excerpt: "Doing these challenges to improve my binary exploitation and teach my self Return oriented programming(ROP).im starting with ROP Emporium challenges. These challenges use the usual CTF objective of retrieving the contents of a file named "flag.txt" from a remote machine by exploiting a given binary.ROP theory is out of scope of this article, If you want ROP theory there are lot of good resources out there."
+categories: [ROP]
+excerpt: "OpenAdmin is rated as a Easy Linux box. It was released on 04 Jan 2020 and has been created by @dmw0ng
+
+This box required us to perform the following tasks:
+
+
+- Enumerate a web server to find vulnerable web application
+- Exploit Web app to get initial foothold
+- Credential reuse attack
+- Download users SSH private key and crack
+- Exploit misconfigured nano permission"
 
 comments: true
 ---
+
 
 ## Introduction
 Doing these challenges to improve my binary exploitation and teach my self Return oriented programming(ROP).im starting with ROP Emporium challenges. These challenges use the usual CTF objective of retrieving the contents of a file named "flag.txt" from a remote machine by exploiting a given binary.ROP theory is out of scope of this article, If you want ROP theory there are lot of good resources out there.
