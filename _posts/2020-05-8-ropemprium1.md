@@ -88,10 +88,7 @@ This function call system with /bin/cat flag.txt, so we need to return to this f
 
 
 ## Fuzzing:
-So now the binary analysis is out of the way Lets start the fun part.
-Run the binary and enter some input
-
-I enter 'welcome' and the program just exits, as expected. Lets start fuzzing the binary.
+So now the binary analysis is out of the way. Lets start fuzzing the binary.
 Run the program and send more than 40 bytes
 ```
 
@@ -102,12 +99,12 @@ ret2win by ROP Emporium
 [5]    74490 segmentation fault  ./ret2win
 
 ```
-As expected the program segfaulted(crashed),we have a valid crash scenario here,but we are not sure if we overwritten any registers.So lets attach the binary to gdb and work on exploit.
+As expected the program segfaulted (crashed),we have a valid crash scenario here,but we are not sure if we have overwritten any registers.So lets attach the binary to gdb and analyze the crash.
 
 Attach the binary to GDB using gdb -q return2win
 
 ## Calculating offset
-Generate cylic pattern using gef and send to the program
+Generate cylic pattern and send to the program
 ```
 gef➤  pattern create 100
 [+] Generating a pattern of 100 bytes
@@ -134,7 +131,7 @@ The exploit then will look as follows:
 
 **Payload: 
 
-The payload will be very simple:
+The payload will be very simple, just our junk and return address, when writting return address keep an eye for endianess.
 
 [40 chars of junk] + [address of ret2win]
 "A"*40             + "\x11\x08\x40"
@@ -148,7 +145,7 @@ The payload will be very simple:
 
 
 
-Putting it all together,and i developed the exploit with pwntools
+Putting it all together,and i developed the exploit with pwntools just for fun and learning.
 
 
 ![source-01](/img/Screenshot_2020-05-09_16-20-05.png){: .align-left}
@@ -158,7 +155,8 @@ w00t we got the flag!
 
 ### ~ End ~
 Thats the end of ret2win challenge, as i progress through the challenges the exploits will become more complex and fun.Remember never stop learning, Cheers!.
-> Exploit code for this challenge is on my github 
+
+> Exploit code for this challenge is on my github https://github.com/d3b4g/ROP-Emporium
 
 
 
