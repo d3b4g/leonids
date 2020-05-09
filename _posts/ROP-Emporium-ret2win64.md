@@ -59,22 +59,32 @@ Here we can see interesting functions:
 So lets see what this fucntions does!
 
 main():
+
+
 ![source-01](/img/Screenshot_2020-05-09_11-15-15.png){: .align-left}
+
 
 So The main function  uses puts() to output a some texts, then calls the pwnme(), the texts we get when we run the program first time.
 
+
 pwnme():
 
+
 ![source-01](/img/Screenshot_2020-05-09_11-16-18.png){: .align-left}
+
 
 We see that the pwnme function allocates a 32 byte (0x20 hex) area of memory.fgets function that will get 50 bytes from standard input into the buffer.
 This function takes user input using fgets(), and stores it in a  buffer of size 32. There is no bound check on the buffer, it is pretty clear that there is a is a stack bufferoverlow.
 
+
 ret2win()
+
 
 ![source-01](/img/Screenshot_2020-05-09_11-17-39.png){: .align-left}
 
+
 This function call system with /bin/cat flag.txt, so we need to return to this function to exploit the binary successfuly. 
+
 
 ## Fuzzing:
 So now the binary analysis is out of the way Lets start the fun part.
@@ -105,10 +115,15 @@ aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaa
 ```
 Copy past the generated pattern to the program
 
+
 ![source-01](/img/Screenshot_2020-05-09_11-20-57.png){: .align-left}
 
+
 The program has crashed and we have overwritten the rsp,to find the extact offset copy the hex at rsp to the clipboard, then type pattern offset.
+
+
 ![source-01](/img/Screenshot_2020-05-09_11-23-21.png){: .align-left}
+
 
 # Exploiting:
 
