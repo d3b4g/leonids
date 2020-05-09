@@ -25,4 +25,19 @@ PIE isn't enabled so the binary will be loaded at a fixed location into memory (
 
 ## Analyzing the 64bit ELF binary
 Lets load the binary with GDB and dump the functions.
+![source-01](/img/Screenshot_2020-05-09_11-13-31.png){: .align-left}
+
+Here we can see interesting functions:
+- main()
+- pwnme()
+- ret2win()
+
+So lets see what this fucntions does!
+
+main():
+![source-01](/img/Screenshot_2020-05-09_11-15-15.png){: .align-left}
+
+
+
+
 
