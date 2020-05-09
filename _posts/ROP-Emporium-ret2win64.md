@@ -5,6 +5,7 @@ title:  "ROP-Emporium-ret2win"
 date:  
 categories: [Return-oriented programming]
 excerpt: "Recently while i was doing a Hackthebox machine which involves binary exploitation and ROP, i was really struggling to make things works."
+---
 
 ## Introduction
 Recently while i was doing a Hackthebox machine which involves binary exploitation and ROP, i was really struggling to make things works. so to improve my pwn and ROP skills i decide to do various ROP challenges, im starting with ROP Emporium challenges. These challenges use the usual CTF objective of retrieving the contents of a file named "flag.txt" from a remote machine by exploiting a given binary.
@@ -16,7 +17,8 @@ Click below to download the binary.
 
 ### About the Binary:
 Our binary is usual ELF executable in 64-bit architecture. 
-![source-01](/img/Screenshot_2020-05-09_11-12-06.png{: .align-left}
+
+![source-01](/img/Screenshot_2020-05-09_11-12-06.png){: .align-left}
 
 
 PIE isn't enabled so the binary will be loaded at a fixed location into memory (0x400000) everytime.With nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
