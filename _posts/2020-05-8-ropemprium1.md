@@ -3,16 +3,16 @@ layout: post
 title:  "ROP Emporium - Ret2win"
 date:   2020-05-8 14:07:19
 categories: [ROP]
-excerpt: "Doing these challenges to improve my binary exploitation skills and teach my self Return oriented programming (ROP) These challenges use the usual CTF objective of retrieving the contents of a file named flag.txt from a remote machine by exploiting a given binary"
+excerpt: "Doing these challenges to improve my binary exploitation skills and teach my self Return oriented programming (ROP). These challenges use the usual CTF objective of retrieving the contents of a file named flag.txt from a remote machine by exploiting a given binary"
 
 comments: true
 ---
 
 
 ## Introduction
-Doing these challenges to improve my binary exploitation skills and teach my self Return oriented programming (ROP).These challenges use the usual CTF objective of retrieving the contents of a file named "flag.txt" from a remote machine by exploiting a given binary.ROP theory is out of scope of this article, If you want ROP theory there are lot of good resources out there.
+Doing these challenges to improve my binary exploitation skills and teach my self Return oriented programming (ROP).These challenges use the usual CTF objective of retrieving the contents of a file named "flag.txt" from a remote machine by exploiting a given binary. ROP theory is out of scope of this article, If you want ROP theory there are lot of good resources out there.
 
-## Description 
+###### Description 
 Locate a method within the binary that you want to call and do so by overwriting a saved return address on the stack.
 Click below to download the binary. 
 
@@ -24,7 +24,7 @@ Our binary is usual ELF executable in 64-bit architecture.
 
 PIE isn't enabled so the binary will be loaded at a fixed location into memory (0x400000) everytime. With nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
 
-## Analyzing the 64bit ELF binary
+###### Analyzing the 64bit ELF binary
 Lets load the binary with GDB and dump the functions.
 ```
 gef➤  info functions
@@ -59,7 +59,7 @@ Here we can see interesting functions:
 
 So lets see what this fucntions does!
 
-**main():
+###### main():
 
 
 ![source-01](/img/Screenshot_2020-05-09_11-15-15.png){: .align-left}
@@ -68,17 +68,16 @@ So lets see what this fucntions does!
 So The main function  uses puts() to output a some texts, then calls the pwnme(), the texts we get when we run the program first time.
 
 
-**pwnme():
+###### pwnme():
 
 
 ![source-01](/img/Screenshot_2020-05-09_11-16-18.png){: .align-left}
 
 
-We see that the pwnme function allocates a 32 byte (0x20 hex) area of memory.fgets function that will get 50 bytes from standard input into the buffer.
-This function takes user input using fgets(), and stores it in a  buffer of size 32. There is no bound check on the buffer, it is pretty clear that there is a is a stack bufferoverlow.
+We see that the pwnme function allocates a 32 byte (0x20 hex) area of memory.This function takes user input using fgets(), and stores it in a  buffer of size 32. There is no bound check on the buffer, it is pretty clear that there is a is a stack bufferoverlow here.
 
 
-**ret2win()
+###### ret2win()
 
 
 ![source-01](/img/Screenshot_2020-05-09_11-17-39.png){: .align-left}
@@ -87,7 +86,7 @@ This function takes user input using fgets(), and stores it in a  buffer of size
 This function call system with /bin/cat flag.txt, so we need to return to this function to exploit the binary successfuly. 
 
 
-## Fuzzing:
+###### Fuzzing:
 So now the binary analysis is out of the way. Lets start fuzzing the binary.
 Run the program and send more than 40 bytes
 ```
@@ -103,7 +102,7 @@ As expected the program segfaulted (crashed),we have a valid crash scenario here
 
 Attach the binary to GDB using gdb -q return2win
 
-## Calculating offset
+###### Calculating offset
 Generate cylic pattern and send to the program
 ```
 gef➤  pattern create 100
@@ -123,7 +122,7 @@ The program has crashed and we have overwritten the rsp,to find the extact offse
 ![source-01](/img/Screenshot_2020-05-09_11-23-21.png){: .align-left}
 
 
-# Exploiting:
+###### Exploiting:
 
 We have 40 bytes to fill the stack and then we need to put the address of the ret2win function.So that the saved return address will contain the address of the ret2win function (0x400811), and the program  execute the function.
 
