@@ -16,7 +16,7 @@ Doing these challenges to improve my binary exploitation skills and teach my sel
 Locate a method within the binary that you want to call and do so by overwriting a saved return address on the stack.
 Click below to download the binary. 
 
-### About the Binary:
+###### About the Binary:
 Our binary is usual ELF executable in 64-bit architecture. 
 
 ![source-01](/img/Screenshot_2020-05-09_11-12-06.png){: .align-left}
@@ -24,7 +24,7 @@ Our binary is usual ELF executable in 64-bit architecture.
 
 PIE isn't enabled so the binary will be loaded at a fixed location into memory (0x400000) everytime. With nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
 
-###### Analyzing the 64bit ELF binary
+## Analyzing the 64bit ELF binary
 Lets load the binary with GDB and dump the functions.
 ```
 gef➤  info functions
@@ -86,7 +86,7 @@ We see that the pwnme function allocates a 32 byte (0x20 hex) area of memory.Thi
 This function call system with /bin/cat flag.txt, so we need to return to this function to exploit the binary successfuly. 
 
 
-###### Fuzzing:
+## Fuzzing:
 So now the binary analysis is out of the way. Lets start fuzzing the binary.
 Run the program and send more than 40 bytes
 ```
@@ -122,7 +122,7 @@ The program has crashed and we have overwritten the rsp,to find the extact offse
 ![source-01](/img/Screenshot_2020-05-09_11-23-21.png){: .align-left}
 
 
-###### Exploiting:
+## Exploiting:
 
 We have 40 bytes to fill the stack and then we need to put the address of the ret2win function.So that the saved return address will contain the address of the ret2win function (0x400811), and the program  execute the function.
 
@@ -144,7 +144,8 @@ The payload will be very simple, just our junk and return address, when writting
 
 
 
-Putting it all together,and i developed the exploit with pwntools just for fun and learning.
+Putting it all together,and i developed a exploit with pwntools (python library) just for fun and learning.
+
 ```python
 
 #!/usr/bin/python                                                              
@@ -169,8 +170,9 @@ Putting it all together,and i developed the exploit with pwntools just for fun a
 
 w00t we got the flag!
 
-### ~ End ~
-Thats the end of ret2win challenge, as i progress through the challenges the exploits will become more complex and fun.Remember never stop learning, Cheers!.
+###### End 
+
+Thats the end of ret2win challenge,it is a very simple one but as i progress through the challenges the exploits will become more complex and fun. Remember never stop learning, Cheers!.
 
 > Exploit code for this challenge is on my github https://github.com/d3b4g/ROP-Emporium
 
