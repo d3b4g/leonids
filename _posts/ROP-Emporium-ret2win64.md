@@ -140,6 +140,9 @@ The payload will be very simple:
 
 I know pwntool is a bit of over kill for a simple exploit like this, since im trying to learn more about the tool while improving my python skills. Here is the full exploit in python using pwn tools.
 
+----
+### ~ End ~
+Thats the end of ret2win challenge,looking forward to do other challenges and learn new stuf.Remember never stop having fun, and never stop learning, Cheers! 
 
 
 
