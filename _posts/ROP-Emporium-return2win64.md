@@ -14,5 +14,13 @@ ROP theory is out of scope of this article, If you want ROP theory there are lot
 Locate a method within the binary that you want to call and do so by overwriting a saved return address on the stack.
 Click below to download the binary. 
 
-About the Binary:
+### About the Binary:
 Our binary is usual ELF executable in 64-bit architecture. 
+![source-01](/img/Screenshot_2020-05-09_11-12-06.png{: .align-left}
+
+
+PIE isn't enabled so the binary will be loaded at a fixed location into memory (0x400000) everytime.With nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
+
+## Analyzing the 64bit ELF binary
+Lets load the binary with GDB and dump the functions.
+
