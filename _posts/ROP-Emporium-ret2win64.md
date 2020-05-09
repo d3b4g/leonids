@@ -138,11 +138,13 @@ The payload will be very simple:
 [40 chars of junk] + [address of ret2win]
 "A"*40             + "\x11\x08\x40"
 
-I know pwntool is a bit of over kill for a simple exploit like this, since im trying to learn more about the tool while improving my python skills. Here is the full exploit in python using pwn tools.
+
+Here is the full exploit using pwntools.
+
 
 ----
 ### ~ End ~
-Thats the end of ret2win challenge,looking forward to do other challenges and learn new stuf.Remember never stop having fun, and never stop learning, Cheers! 
+Thats the end of ret2win challenge,looking forward to do other challenges and learn new stuf.Remember never stop learning, Cheers!.Exploit code for this challenge is on my github 
 
 
 
