@@ -174,7 +174,7 @@ w00t we got the flag!
 
 Thats the end of ret2win challenge,it is a very simple one but as i progress through the challenges the exploits will become more complex and fun. Remember never stop learning, Cheers!.
 
-> Exploit code for this challenge is on my github https://github.com/d3b4g/ROP-Emporium
+> Code for this challenge  github https://github.com/d3b4g/ROP-Emporium
 
 
 
