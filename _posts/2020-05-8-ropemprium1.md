@@ -65,7 +65,7 @@ So lets see what this fucntions does!
 ![source-01](/img/Screenshot_2020-05-09_11-15-15.png){: .align-left}
 
 
-So The main function  uses puts() to output a some texts, then calls the pwnme(), the texts we get when we run the program first time.
+So The main function  uses puts() to output some texts, then calls the pwnme(), the texts we get when we run the program first time.
 
 
 ###### pwnme():
