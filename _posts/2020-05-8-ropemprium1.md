@@ -132,8 +132,7 @@ The exploit then will look as follows:
 
 The payload will be very simple, just our junk and return address, when writting return address keep an eye for endianess.
 
-[40 chars of junk] + [address of ret2win]
-"A"*40             + "\x11\x08\x40"
+[40 chars of junk] + [address of ret2win]  "A"*40             + "\x11\x08\x40"
 
 **Here is my final exploit:
 
@@ -144,7 +143,7 @@ The payload will be very simple, just our junk and return address, when writting
 
 
 
-Putting it all together,and i developed a exploit with pwntools (python library) just for fun and learning.
+Putting it all together,and i developed the final exploit with pwntools (python library) just for fun and learning.
 
 ```python
 
@@ -174,7 +173,7 @@ w00t we got the flag!
 
 Thats the end of ret2win challenge,it is a very simple one but as i progress through the challenges the exploits will become more complex and fun. Remember never stop learning, Cheers!.
 
-> Code for this challenge  github https://github.com/d3b4g/ROP-Emporium
+> Code for this challenge  https://github.com/d3b4g/ROP-Emporium
 
 
 
