@@ -25,22 +25,48 @@ PIE isn't enabled so the binary will be loaded at a fixed location into memory (
 
 ## Analyzing the 64bit ELF binary
 Lets load the binary with GDB and dump the functions.
+```
+gef➤  info function
+All defined functions:
+
+Non-debugging symbols:
+0x00000000004005a0  _init
+0x00000000004005d0  puts@plt
+0x00000000004005e0  system@plt
+0x00000000004005f0  printf@plt
+0x0000000000400600  memset@plt
+0x0000000000400610  __libc_start_main@plt
+0x0000000000400620  fgets@plt
+0x0000000000400630  setvbuf@plt
+0x0000000000400640  __gmon_start__@plt
+0x0000000000400650  _start
+0x0000000000400680  deregister_tm_clones
+0x00000000004006c0  register_tm_clones
+0x0000000000400700  __do_global_dtors_aux
+0x0000000000400720  frame_dummy
+0x0000000000400746  main
+0x00000000004007b5  pwnme
+0x0000000000400807  usefulFunction
+0x0000000000400820  __libc_csu_init
+0x0000000000400890  __libc_csu_fini
+0x0000000000400894  _fini
+gef➤  
+```
 
 Here we can see interesting functions:
 - main()
 - pwnme()
-- ret2win()
+- usefulFunction()
 
-So lets see what this fucntions does!
+So lets see what these fucntions does!
 
 ###### main():
 
 
-![source-01](/img/Screenshot_2020-05-09_11-15-15.png){: .align-left}
+![source-01](/img/Screenshot_2020-05-11_09-01-32.png){: .align-left}
 
 
-So The main function  uses puts() to output some texts, then calls the pwnme(), the texts we get when we run the program first time.
-
+The only interesting thing here for us is, its calling a function name pwnme()other than that it is reading some user input using fget()
 
 ###### pwnme():
 
@@ -48,7 +74,7 @@ So The main function  uses puts() to output some texts, then calls the pwnme(), 
 ![source-01](/img/Screenshot_2020-05-09_11-16-18.png){: .align-left}
 
 
-We see that the pwnme function allocates a 32 byte (0x20 hex) area of memory.This function takes user input using fgets(), and stores it in a  buffer of size 32. There is no bound check on the buffer, it is pretty clear that there is a is a stack bufferoverlow here.
+Just like in retwin challenge, we have a 32 byte buffer that can be overflowed with fgets that takes 96 characters from the user.
 
 
 ###### ret2win()
