@@ -77,7 +77,7 @@ The only interesting thing here for us is, its calling a function name pwnme()ot
 Just like in retwin challenge, we have a 32 byte buffer that can be overflowed with fgets that takes 96 characters from the user.
 
 
-###### ret2win()
+###### usefulFunction()
 
 
 ![source-01](/img/Screenshot_2020-05-09_11-17-39.png){: .align-left}
