@@ -10,11 +10,10 @@ comments: true
 
 
 ## Introduction
-Doing these challenges to improve my binary exploitation skills and teach my self Return oriented programming (ROP).These challenges use the usual CTF objective of retrieving the contents of a file named "flag.txt" from a remote machine by exploiting a given binary. ROP theory is out of scope of this article, If you want ROP theory there are lot of good resources out there.
+Second challenge from ROP Emporium, in this we are going to write a small ROP chain.
 
-###### Description 
-Locate a method within the binary that you want to call and do so by overwriting a saved return address on the stack.
-Click below to download the binary. 
+###### Challenge Description 
+Combine elements from the ret2win challenge that have been split apart to beat this challenge. Learn how to use another tool whilst crafting a short ROP chain. 
 
 ###### About the Binary:
 Our binary is usual ELF executable in 64-bit architecture. 
