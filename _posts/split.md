@@ -10,21 +10,21 @@ comments: true
 
 
 ## Introduction
-Second challenge from ROP Emporium, in this we are going to write a small ROP chain.In previous challenge i only used GDB, in this im going to use radare2, an RE tool.
+Second challenge from ROP Emporium, in this iam, going to write a small ROP chain.In this challenge im  going to use radare2 just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries
 
 ###### Challenge Description 
 Combine elements from the ret2win challenge that have been split apart to beat this challenge. Learn how to use another tool whilst crafting a short ROP chain. 
 
 ###### About the Binary:
-Our binary is usual ELF executable in 64-bit architecture.Lets analyze the binary to check the protection using rabin2, which comes with radare2 framework.
+Our binary is usual ELF executable in 64-bit architecture.Lets check what protection are on this binary, using rabin2, which comes with radare2 framework.
 
 ![source-01](/img/Screenshot_2020-05-13_12-32-28.png){: .align-left}
 
 
-PIE isn't enabled so the binary will be loaded at a fixed location into memory (0x400000) everytime. With nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
+PIE isn't enabled and nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
 
 ## Analyzing the 64bit ELF binary
-Lets load the binary with radare2 and dump the functions.I switched to radare2 from GDB, just the sacke of learning the tool. Radare2 is a free RE tool.
+Lets load the binary with radare2 and dump the functions.The afl command in radare2 list the functions. We can also output it as JSON using this command aflj~{}
 
 ![source-01](/img/Screenshot_2020-05-13_08-41-16.png){: .align-left}
 
