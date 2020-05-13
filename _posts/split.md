@@ -24,34 +24,10 @@ Our binary is usual ELF executable in 64-bit architecture.
 PIE isn't enabled so the binary will be loaded at a fixed location into memory (0x400000) everytime. With nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
 
 ## Analyzing the 64bit ELF binary
-Lets load the binary with GDB and dump the functions.
-```
-gef➤  info function
-All defined functions:
+Lets load the binary with radare2 and dump the functions.I switched to radare2 from GDB, just the sacke of learning the tool. Radare2 is a free RE tool.
 
-Non-debugging symbols:
-0x00000000004005a0  _init
-0x00000000004005d0  puts@plt
-0x00000000004005e0  system@plt
-0x00000000004005f0  printf@plt
-0x0000000000400600  memset@plt
-0x0000000000400610  __libc_start_main@plt
-0x0000000000400620  fgets@plt
-0x0000000000400630  setvbuf@plt
-0x0000000000400640  __gmon_start__@plt
-0x0000000000400650  _start
-0x0000000000400680  deregister_tm_clones
-0x00000000004006c0  register_tm_clones
-0x0000000000400700  __do_global_dtors_aux
-0x0000000000400720  frame_dummy
-0x0000000000400746  main
-0x00000000004007b5  pwnme
-0x0000000000400807  usefulFunction
-0x0000000000400820  __libc_csu_init
-0x0000000000400890  __libc_csu_fini
-0x0000000000400894  _fini
-gef➤  
-```
+![source-01](/img/Screenshot_2020-05-13_08-41-16.png){: .align-left}
+
 
 Here we can see interesting functions:
 - main()
@@ -80,7 +56,7 @@ Just like in retwin challenge, we have a 32 byte buffer that can be overflowed w
 ###### usefulFunction()
 
 
-![source-01](/img/Screenshot_2020-05-09_11-17-39.png){: .align-left}
+![source-01](/img/Screenshot_2020-05-13_08-34-01.png){: .align-left}
 
 
 This function call system with /bin/cat flag.txt, so we need to return to this function to exploit the binary successfuly. 
