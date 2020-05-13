@@ -10,7 +10,7 @@ comments: true
 
 
 ## Introduction
-Second challenge from ROP Emporium, in this i am, going to write a small ROP chain.Going to use radare2 just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries
+Second challenge from ROP Emporium, in this i am, going to write a small ROP chain to complete this challenge.Going to use radare2 just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries
 
 ###### Challenge Description 
 Combine elements from the ret2win challenge that have been split apart to beat this challenge. Learn how to use another tool whilst crafting a short ROP chain. 
@@ -24,7 +24,7 @@ Our binary is usual ELF executable in 64-bit architecture.Lets check what protec
 PIE isn't enabled and nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
 
 ## Analyzing the 64bit ELF binary
-Lets load the binary with radare2 and dump the functions.The afl command in radare2 list the functions. We can also output it as JSON using this command aflj~{}
+Lets load the binary with radare2 and dump the functions.The afl command list the functions. We can also output it as JSON using this command aflj~{}
 
 ![source-01](/img/Screenshot_2020-05-13_08-41-16.png){: .align-left}
 
@@ -34,7 +34,7 @@ Here we can see interesting functions:
 - pwnme()
 - usefulFunction()
 
-So lets see what these fucntions does!
+So lets disassemble and see what these fucntions does!
 
 ###### main():
 
@@ -42,7 +42,7 @@ So lets see what these fucntions does!
 ![source-01](/img/Screenshot_2020-05-13_08-44-57.png){: .align-left}
 
 
-The only interesting thing here for us is, its calling a function name pwnme()other than that it is reading some user input using fget()
+The only interesting thing here for us is, its calling the function name pwnme() which have overflow vulnerability.
 
 ###### pwnme():
 
