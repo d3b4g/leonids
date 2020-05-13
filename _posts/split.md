@@ -10,15 +10,15 @@ comments: true
 
 
 ## Introduction
-Second challenge from ROP Emporium, in this we are going to write a small ROP chain.
+Second challenge from ROP Emporium, in this we are going to write a small ROP chain.In previous challenge i only used GDB, in this im going to use radare2, an RE tool.
 
 ###### Challenge Description 
 Combine elements from the ret2win challenge that have been split apart to beat this challenge. Learn how to use another tool whilst crafting a short ROP chain. 
 
 ###### About the Binary:
-Our binary is usual ELF executable in 64-bit architecture. 
+Our binary is usual ELF executable in 64-bit architecture.Lets analyze the binary to check the protection using rabin2, which comes with radare2 framework.
 
-![source-01](/img/Screenshot_2020-05-09_11-12-06.png){: .align-left}
+![source-01](/img/Screenshot_2020-05-13_12-32-28.png){: .align-left}
 
 
 PIE isn't enabled so the binary will be loaded at a fixed location into memory (0x400000) everytime. With nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
