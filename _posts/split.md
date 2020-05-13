@@ -10,7 +10,7 @@ comments: true
 
 
 ## Introduction
-Second challenge from ROP Emporium, in this iam, going to write a small ROP chain.In this challenge im  going to use radare2 just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries
+Second challenge from ROP Emporium, in this i am, going to write a small ROP chain.Going to use radare2 just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries
 
 ###### Challenge Description 
 Combine elements from the ret2win challenge that have been split apart to beat this challenge. Learn how to use another tool whilst crafting a short ROP chain. 
