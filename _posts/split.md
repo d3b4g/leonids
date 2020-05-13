@@ -39,7 +39,7 @@ So lets see what these fucntions does!
 ###### main():
 
 
-![source-01](/img/Screenshot_2020-05-11_09-01-32.png){: .align-left}
+![source-01](/img/Screenshot_2020-05-13_08-44-57.png){: .align-left}
 
 
 The only interesting thing here for us is, its calling a function name pwnme()other than that it is reading some user input using fget()
@@ -47,7 +47,7 @@ The only interesting thing here for us is, its calling a function name pwnme()ot
 ###### pwnme():
 
 
-![source-01](/img/Screenshot_2020-05-09_11-16-18.png){: .align-left}
+![source-01](/img/Screenshot_2020-05-13_08-48-45.png){: .align-left}
 
 
 Just like in retwin challenge, we have a 32 byte buffer that can be overflowed with fgets that takes 96 characters from the user.
