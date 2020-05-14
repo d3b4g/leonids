@@ -110,6 +110,13 @@ Lets find the pieces we need to build a ROP chain.
 - Address of system
 - pop rdi; ret
 
+#### POP RDI RET
+
+Lets find the address of pop rdi ret
+
+![source-01](/img/Screenshot_2020-05-14_08-23-29.png	){: .align-left}
+
+
 
 --------
 Since this challenge only needs 1 argument, we just need to pass the /bin/cat flag.txt string into RDI register. 
@@ -117,7 +124,11 @@ Since this challenge only needs 1 argument, we just need to pass the /bin/cat fl
 ------
 #### Exploitation 
 
-Now let’s craft the payload. The payload will become  "A" * 40 + <pop_rdi> + <cat_flag> + <system_plt>. Below is a simple python script using pwntools to automate the process.
+Now let’s craft the payload.
+
+Junk + pop_rdi + bin_cat + system_plt
+
+Full exploit using pwntools:
 
 ----
  
@@ -138,7 +149,7 @@ if __name__ == "__main__":
     main() ----
 
 
-![source-01](/img/Screenshot_2020-05-14_08-23-29.png	){: .align-left}
+
 
 
 
