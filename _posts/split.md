@@ -76,10 +76,10 @@ ret2win by ROP Emporium
 ```
 As expected the program segfaulted (crashed),we have a valid crash scenario here,but we are not sure if we have overwritten any registers.So lets attach the binary to gdb and analyze the crash.
 
-Attach the binary to GDB using gdb -q return2win
+Attach the binary to GDB using gdb -q splilit
 
 ###### Calculating offset
-Generate cylic pattern and send to the program
+Generate the unique pattern and send to the program
 ```
 gef➤  pattern create 100
 [+] Generating a pattern of 100 bytes
@@ -98,12 +98,15 @@ The program has crashed and we have overwritten the rsp,to find the extact offse
 ![source-01](/img/Screenshot_2020-05-09_11-23-21.png){: .align-left}
 
 #### Building ROP-Chain
-Now we know what we need to build our ROP syscall: 
+
+Now we know what we need to build our ROP syscall:
+
 (1) A string containing “/bin/cat flag.txt”, 
 (2) the address of system and 
 (3) a gadget to add “/bin/cat flag.txt” to rdi register, pop rdi; ret, is what we want.
 
 let's find the pop rdi; ret; so the string would be provided to system for execution.
+(/bin/ls) and will thus only print out the files in the current directory. While this proves code execution or command injection… doesn't help us getting that flag! What we really want is to call the obj.usefulString as an argument to system
 
 
 ![source-01](/img/Screenshot_2020-05-14_08-23-29.png	){: .align-left}
