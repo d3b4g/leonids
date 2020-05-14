@@ -103,8 +103,7 @@ Now we know what we need to build our ROP syscall:
 (2) the address of system and 
 (3) a gadget to add “/bin/cat flag.txt” to rdi register, pop rdi; ret, is what we want.
 
-
-POP- RDI
+let's find the pop rdi; ret; so the string would be provided to system for execution.
 
 
 ![source-01](/img/Screenshot_2020-05-14_08-23-29.png	){: .align-left}
