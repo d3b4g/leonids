@@ -10,7 +10,7 @@ comments: true
 
 
 ## Introduction
-This is the Second challenge from ROP Emporium, named "Split". In this i am, going to write a small ROP chain to complete this challenge. Going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries.
+This is the Second challenge from ROP Emporium, named "Split". In this challenge we have to create a small ROP Chain which execute system and give us the flag to complete the challenge. In this iam going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries.
 
 ###### Challenge Description 
 Combine elements from the ret2win challenge that have been split apart to beat this challenge. Learn how to use another tool whilst crafting a short ROP chain. 
@@ -59,8 +59,11 @@ Just like in retwin challenge, we have a 32 byte buffer that can be overflowed w
 ![source-01](/img/Screenshot_2020-05-13_08-34-01.png){: .align-left}
 
 
-This function call system with /bin/cat flag.txt, so we need to return to this function to exploit the binary successfuly. 
+This function directly call system with /bin/ls, and there is also usefullstring which /bin/cat flag.txt so we need to return to this function to exploit the binary successfuly. 
 
+Get strings 
+
+![source-01](/img/Screenshot_2020-05-15_14-55-41.png){: .align-left}
 
 ## Fuzzing:
 So now the binary analysis is out of the way. Lets start fuzzing the binary.
@@ -168,6 +171,9 @@ w00t we got the flag!
 Thats the end of ret2win challenge,it is a very simple one but as i progress through the challenges the exploits will become more complex and fun. Remember never stop learning, Cheers!.
 
 > Code for this challenge  https://github.com/d3b4g/ROP-Emporium
+
+
+
 
 
 
