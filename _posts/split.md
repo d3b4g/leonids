@@ -3,14 +3,14 @@ layout: post
 title:  "ROP Emporium - split"
 date:   2020-05-8 14:07:19
 categories: [ROP]
-excerpt: "Doing these challenges to improve my binary exploitation skills and teach my self Return oriented programming (ROP). These challenges use the usual CTF objective of retrieving the contents of a file named flag.txt from a remote machine by exploiting a given binary"
+excerpt: "This is the Second challenge from ROP Emporium, named "Split". In this i am, going to write a small ROP chain to complete this challenge. Going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries."
 
 comments: true
 ---
 
 
 ## Introduction
-This is the Second challenge from ROP Emporium named "Split". In this i am, going to write a small ROP chain to complete this challenge. Going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries.
+This is the Second challenge from ROP Emporium, named "Split". In this i am, going to write a small ROP chain to complete this challenge. Going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries.
 
 ###### Challenge Description 
 Combine elements from the ret2win challenge that have been split apart to beat this challenge. Learn how to use another tool whilst crafting a short ROP chain. 
@@ -61,22 +61,24 @@ Just like in retwin challenge, we have a 32 byte buffer that can be overflowed w
 
 This function call system with /bin/cat flag.txt, so we need to return to this function to exploit the binary successfuly. 
 
-------
-We can see that system call command being executed invoking /bin/ls to list the files in the current workingdirectory.
-
-Let's have a look at what strings are available to us in the binary. To do this, we use the iz command to list all strings in the data sections, or izz to list all strings in the binary. However this is a none-Visual Mode command, so to execute it from Visual Mode we hit :, then enter the command. This is a little bit easier than quitting out to command mode, then re-entering Visual Mode and finding where we were.
-
 
 ## Fuzzing:
 So now the binary analysis is out of the way. Lets start fuzzing the binary.
 Run the program and send more than 40 bytes
 ```
-
-➜  ret2win ./ret2win      
-ret2win by ROP Emporium
+gef➤  pattern create 100
+[+] Generating a pattern of 100 bytes
+aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaa
+[+] Saved as '$_gef0'
+gef➤  r
+Starting program: /root/Desktop/ROP/split/split/split 
+split by ROP Emporium
 64bits
-> AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa
-[5]    74490 segmentation fault  ./ret2win
+
+Contriving a reason to ask user for data...
+> aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaa
+
+Program received signal SIGSEGV, Segmentation fault.
 
 ```
 As expected the program segfaulted (crashed),we have a valid crash scenario here,but we are not sure if we have overwritten any registers.So lets attach the binary to gdb and analyze the crash.
@@ -86,15 +88,17 @@ Attach the binary to GDB using gdb -q splilit
 ###### Calculating offset
 Generate the unique pattern and send to the program
 ```
-gef➤  pattern create 100
-[+] Generating a pattern of 100 bytes
-aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaa
-[+] Saved as '$_gef0'
+gef➤  pattern offset 0x00007fffffffe048
+[+] Searching '0x00007fffffffe048'
+[+] Found at offset 40 (little-endian search) likely
+[+] Found at offset 33 (big-endian search) 
+gef➤  
+
 ```
 Copy past the generated pattern to the program
 
 
-![source-01](/img/Screenshot_2020-05-09_11-20-57.png){: .align-left}
+![source-01](/img/Screenshot_2020-05-15_10-20-53.png){: .align-left}
 
 
 The program has crashed and we have overwritten the rsp,to find the extact offset copy the hex at rsp to the clipboard, then type pattern offset.
