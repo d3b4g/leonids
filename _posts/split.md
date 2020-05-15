@@ -133,6 +133,9 @@ Now let’s craft the payload.
 
 Junk + pop_rdi + bin_cat + system_plt
 
+First padding offset to the stack pointer and gadget pop rdi; ret; as the /bin/cat flag.txt this will be stored in rdi register and we will just provide the system address and its done.
+
+
 Full exploit using pwntools:
 
 ----
