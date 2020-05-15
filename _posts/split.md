@@ -110,6 +110,7 @@ The program has crashed and we have overwritten the rsp,to find the extact offse
 
 Lets find the pieces we need to build a ROP chain.
 
+- Offset
 - string containing “/bin/cat flag.txt”, 
 - Address of system
 - pop rdi; ret
