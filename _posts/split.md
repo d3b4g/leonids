@@ -3,14 +3,14 @@ layout: post
 title:  "ROP Emporium - split"
 date:   2020-05-8 14:07:19
 categories: [ROP]
-excerpt: "This is the Second challenge from ROP Emporium, named "Split". In this i am, going to write a small ROP chain to complete this challenge. Going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries."
+excerpt: "This is the Second challenge from ROP Emporium, named as "Split". In this i am, going to write a small ROP chain to complete this challenge. Going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries."
 
 comments: true
 ---
 
 
 ## Introduction
-This is the Second challenge from ROP Emporium, named "Split". In this challenge we have to create a small ROP Chain which execute system and give us the flag to complete the challenge. In this iam going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries.
+This is the Second challenge from ROP Emporium, named as "Split". In this challenge we have to create a small ROP Chain which execute system and give us the flag to complete the challenge. Through out this i am going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries.
 
 ###### Challenge Description 
 Combine elements from the ret2win challenge that have been split apart to beat this challenge. Learn how to use another tool whilst crafting a short ROP chain. 
@@ -21,7 +21,7 @@ Our binary is usual ELF executable in 64-bit architecture.Lets check what protec
 ![source-01](/img/Screenshot_2020-05-13_12-32-28.png){: .align-left}
 
 
-PIE isn't enabled and nx set to true, we know shellcode cannot be executed off the stack and we know binary has ASLR disabled.
+PIE isn't enabled and nx set to true, so we know shellcode cannot be executed off the stack and the binary has ASLR disabled.
 
 ## Analyzing the 64bit ELF binary
 Lets load the binary with radare2 and dump the functions.The afl command list the functions. We can also output it as JSON using this command aflj~{}
@@ -29,12 +29,13 @@ Lets load the binary with radare2 and dump the functions.The afl command list th
 ![source-01](/img/Screenshot_2020-05-13_08-41-16.png){: .align-left}
 
 
-Here we can see interesting functions:
+Here we can see three interesting functions:
+
 - main()
 - pwnme()
 - usefulFunction()
 
-So lets disassemble and see what these fucntions does!
+So lets disassemble the binary and see what these fucntions does!
 
 ###### main():
 
@@ -59,9 +60,7 @@ Just like in retwin challenge, we have a 32 byte buffer that can be overflowed w
 ![source-01](/img/Screenshot_2020-05-13_08-34-01.png){: .align-left}
 
 
-This function directly call system with /bin/ls, and there is also usefullstring which /bin/cat flag.txt so we need to return to this function to exploit the binary successfuly. We can find all the strings in binary using rabin2
-
-![source-01](/img/Screenshot_2020-05-15_14-55-41.png){: .align-left}
+This function directly call system with /bin/ls,which list the files in current working directory and there is also usefullstring which /bin/cat flag.txt so we need to return to this function to exploit the binary successfuly. 
 
 
 
@@ -106,18 +105,31 @@ gef➤
 
 Lets find the pieces we need to build a ROP chain.
 
-- Offset
-- string containing “/bin/cat flag.txt”, 
-- Address of system
-- pop rdi; ret
+-- UsefulString “/bin/cat flag.txt” 
 
-#### POP RDI RET
+We can find all the strings in binary using rabin2. 
+
+![source-01](/img/Screenshot_2020-05-15_14-55-41.png){: .align-left}
+
+UsefullString(0x601060)
+
+-- sytem@plt
+
+system(0x400810)
+
+-- pop rdi; ret
 
 Lets find the address of pop rdi ret
 
 ![source-01](/img/Screenshot_2020-05-14_08-23-29.png	){: .align-left}
 
-Let’s not forget to quickly grab the addresses for system@plt and the string “/bin/cat flag.txt”.
+pop rdi ret (0x400883)
+
+
+
+
+
+
 
 #### Exploitation 
 
@@ -125,7 +137,6 @@ Now let’s craft the payload.
 
 Junk + pop_rdi + bin_cat + system_plt
 
-First padding offset to the stack pointer and gadget pop rdi; ret; as the /bin/cat flag.txt this will be stored in rdi register and we will just provide the system address and its done.
 
 
 Full exploit using pwntools:
