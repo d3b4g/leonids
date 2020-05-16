@@ -117,6 +117,7 @@ Lets find the address of pop rdi ret
 
 ![source-01](/img/Screenshot_2020-05-14_08-23-29.png	){: .align-left}
 
+Let’s not forget to quickly grab the addresses for system@plt and the string “/bin/cat flag.txt”.
 
 #### Exploitation 
 
