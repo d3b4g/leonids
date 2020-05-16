@@ -107,27 +107,24 @@ Lets find the pieces we need to build a ROP chain.
 
 > UsefulString “/bin/cat flag.txt” 
 
-We can find all the strings in binary using rabin2. 
+We can find all the strings in binary using rabin2. As we can see from the below img the address of UsefullString is (0x601060)
+
 
 ![source-01](/img/Screenshot_2020-05-15_14-55-41.png){: .align-left}
 
-UsefullString(0x601060)
 
 > sytem@plt
 
-system(0x400810)
+As we can see from below img the address of systemis(0x4005e0)
 
--- pop rdi; ret
+![source-01](/img/Screenshot_2020-05-16_07-41-34.png	){: .align-left}
 
-Lets find the address of pop rdi ret
+
+> pop rdi; ret
+
+I used ROPGadget to find the pop rdi ret, as we can see from the below img the address is (0x400883)
 
 ![source-01](/img/Screenshot_2020-05-14_08-23-29.png	){: .align-left}
-
-pop rdi ret (0x400883)
-
-
-
-
 
 
 
