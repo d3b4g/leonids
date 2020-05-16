@@ -24,7 +24,7 @@ Our binary is usual ELF executable in 64-bit architecture.Lets check what protec
 PIE isn't enabled and nx set to true, so we know shellcode cannot be executed off the stack and the binary has ASLR disabled.
 
 ## Analyzing the 64bit ELF binary
-Lets load the binary with radare2 and dump the functions.The afl command list the functions. We can also output it as JSON using this command aflj~{}
+Lets load the binary with radare2 and dump the functions. The afl command list the functions. We can also output it as JSON using this command aflj~{}
 
 ![source-01](/img/Screenshot_2020-05-13_08-41-16.png){: .align-left}
 
@@ -60,12 +60,11 @@ Just like in retwin challenge, we have a 32 byte buffer that can be overflowed w
 ![source-01](/img/Screenshot_2020-05-13_08-34-01.png){: .align-left}
 
 
-This function directly call system with /bin/ls,which list the files in current working directory and there is also usefullstring which /bin/cat flag.txt so we need to return to this function to exploit the binary successfuly. 
-
+This function directly call system with /bin/ls,which list the files in current working directory and there is also usefullstring which /bin/cat flag.txt. so we need to return to this function to exploit the binary successfuly. 
 
 
 ## Fuzzing:
-So now the binary analysis is out of the way. Lets start fuzzing the binary.Generate the unique pattern and send to the program.
+So now the binary analysis is out of the way. Lets start fuzzing the binary. Generate the unique pattern and send to the program.
 
 ```
 gef➤  pattern create 100
@@ -86,12 +85,11 @@ Program received signal SIGSEGV, Segmentation fault.
 ```
 ![source-01](/img/Screenshot_2020-05-15_10-20-53.png){: .align-left}
 
-As expected the program segfaulted (crashed),we have a valid crash scenario here.
+As expected the program crashed and we have a valid crash scenario here.
 
 
 ###### Calculating offset
 
-Copy past the generated pattern to the program.
 ```
 gef➤  pattern offset 0x00007fffffffe048
 [+] Searching '0x00007fffffffe048'
