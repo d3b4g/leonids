@@ -105,7 +105,7 @@ gef➤
 
 Lets find the pieces we need to build a ROP chain.
 
--- UsefulString “/bin/cat flag.txt” 
+> UsefulString “/bin/cat flag.txt” 
 
 We can find all the strings in binary using rabin2. 
 
@@ -113,7 +113,7 @@ We can find all the strings in binary using rabin2.
 
 UsefullString(0x601060)
 
--- sytem@plt
+> sytem@plt
 
 system(0x400810)
 
