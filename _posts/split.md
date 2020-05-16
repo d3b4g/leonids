@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "ROP Emporium - split"
-date:   2020-05-8 14:07:19
+title:  "ROP Emporium - Split"
+date:   2020-05-15 14:07:19
 categories: [ROP]
-excerpt: "This is the Second challenge from ROP Emporium, named as "Split". In this i am, going to write a small ROP chain to complete this challenge. Going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries."
+excerpt: "This is the Second challenge from ROP Emporium, named as Split. In this challenge we have to create a small ROP Chain which execute system and give us the flag to complete the challenge. Through out this i am going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries."
 
 comments: true
 ---
