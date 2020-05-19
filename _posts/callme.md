@@ -38,6 +38,9 @@ Lets load the binary with radare2 and type aaaa command to analyze it. And use a
 
 ![source-01](/img/Screenshot_2020-05-19_18-52-31.png){: .align-left}
 
++ -d  – Open in the debug mode
++ aas – Analyze functions, symbols and more
+
 
 Here we can see three interesting functions:
 
