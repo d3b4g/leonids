@@ -28,7 +28,7 @@ Reliably make consecutive calls to imported functions. Use some new techniques a
 ###### About the Binary:
 Our binary is usual ELF executable in 64-bit architecture.Lets check what protection are on this binary, using rabin2, which comes with **radare2 framework**.
 
-![source-01](/img/Screenshot_2020-05-13_12-32-28.png){: .align-left}
+![source-01](/img/Screenshot_2020-05-19_19-13-15.png){: .align-left}
 
 
 PIE isn't enabled and nx set to true, so we know shellcode cannot be executed off the stack and the binary has ASLR disabled.
