@@ -10,7 +10,7 @@ comments: true
 
 
 ## Introduction
-This is the third challenge from ROP Emporium, named as **Callme**. In this challenge we need to execute callme_one(), callme_two() and callme_three() function  in sequential order to get the flag.
+This is the third challenge from ROP Emporium, named as **Callme**. In this challenge we need to execute callme_one(), callme_two() and callme_three() function  in sequential order to get the flag. Alonge the way iam going to explore the more advance usage of radare2.
 
 > Challenge Description: 
 Reliably make consecutive calls to imported functions. Use some new techniques and learn about the Procedure Linkage Table.
@@ -30,7 +30,7 @@ Our binary is usual ELF executable in 64-bit architecture.Lets check what protec
 ![source-01](/img/Screenshot_2020-05-19_19-13-15.png){: .align-left}
 
 
-PIE isn't enabled and nx set to true, so we know shellcode cannot be executed off the stack and the binary has ASLR disabled.
+The binary is NX protected which means that we won’t have an executable stack, PIE isn't enabled and the binary has ASLR disabled.
 
 ## Analyzing the 64bit ELF binary
 
@@ -75,6 +75,19 @@ This function directly call system with **/bin/ls**, which list the files in cur
 
 ## Fuzzing:
 So now the binary analysis is out of the way. Lets start fuzzing the binary. Generate the unique pattern and send to the program.
+
+#### rarun2 profile
+In radare2, when it gets to interact with a debuggee, rarun2 is your go-to tool.
+
+This program is used as a launcher for running programs with different environments, arguments, permissions, directories and overridden default file descriptors.
+Source: man rarun2
+
+First, create a rarun profile as shown above. Then, open the debuggee in radare2 and load this profile using the -r flag:
+$ cat profile.rr2 
+#!/usr/bin/rarun2
+stdin=!./exp
+
+Load the program in debug mode and use dc to execute it:
 
 ```
 gef➤  pattern create 100
