@@ -3,7 +3,7 @@ layout: post
 title:  "ROP Emporium - Split"
 date:   2020-05-15 14:07:20
 categories: [ROP]
-excerpt: "This is the Second challenge from ROP Emporium, named as Split. In this challenge we have to create a small ROP Chain which execute system and give us the flag to complete the challenge. Through out this i am going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries."
+excerpt: "This is the third challenge from ROP Emporium, named as **Callme**. In this challenge we need to execute callme_one(), callme_two() and callme_three() function  in sequential order to get the flag. Alonge the way i am going to explore more advance usage of radare2."
 
 comments: true
 ---
@@ -44,13 +44,15 @@ Lets load the binary with radare2 and type aaaa command to analyze it. And use a
 
 Here we can see three interesting functions:
 
-+ **callmeone()**
-+ **callmetwo()**
-+ **camethree()**
++ **callme_one()**
++ **callme_two()**
++ **callme_three()**
+
+There is also a symbol called usefulFunction / usefulGadgets.
 
 So lets disassemble the binary and see what these fucntions does!
 
-###### main():
+###### callme_one()
 
 
 ![source-01](/img/Screenshot_2020-05-13_08-44-57.png){: .align-left}
@@ -58,7 +60,7 @@ So lets disassemble the binary and see what these fucntions does!
 
 The only interesting thing here for us is, its calling the function name **pwnme()** which have overflow vulnerability.
 
-###### pwnme():
+###### callme_two()
 
 
 ![source-01](/img/Screenshot_2020-05-13_08-48-45.png){: .align-left}
@@ -67,13 +69,20 @@ The only interesting thing here for us is, its calling the function name **pwnme
 Just like in retwin challenge, we have a 32 byte buffer that can be overflowed with fgets that takes 96 characters from the user.
 
 
-###### usefulFunction()
+###### callme_three()
 
 
 ![source-01](/img/Screenshot_2020-05-13_08-34-01.png){: .align-left}
 
 
 This function directly call system with **/bin/ls**, which list the files in current working directory and there is also usefullstring which **/bin/cat flag.txt**. so we need to return to this function to exploit the binary successfuly. 
+
+###### Usefullfunction()
+
+callme_one / callme_two / callme_three is called in usefulFunction. Unlike x86, x64 needs to store the argument in a register.First argument: rdi, second argument: rsi, third argument: rdx.
+
+The usefulFunction function uses the mov instruction to store the argument in a register.
+However, the flags are not output because the arguments are (4, 5, 6).
 
 
 ## Fuzzing:
