@@ -10,11 +10,11 @@ comments: true
 
 
 ## Introduction
-This is the Second challenge from ROP Emporium, named as **Split**. In this challenge we have to create a small ROP Chain which execute system and give us the flag to complete the challenge. Through out this i am going to use radare2 as much as i can, just for the sake of learning the tool. Radare2 is a complete framework for reverse-engineering and analyzing binaries.
-I assume that anyone reading this is familiar with the basics of binary exploitation, as i skipped explaining many basic things.
+This is the third challenge from ROP Emporium, named as **Callme**. In this challenge we have to create a small ROP Chain which execute system and give us the flag to complete the challenge. 
 
-###### Challenge Description 
-Combine elements from the ret2win challenge that have been split apart to beat this challenge. Learn how to use another tool whilst crafting a short ROP chain.
+
+> Challenge Description: 
+Reliably make consecutive calls to imported functions. Use some new techniques and learn about the Procedure Linkage Table.
 
 ###### Tools Used:
 
@@ -34,9 +34,10 @@ Our binary is usual ELF executable in 64-bit architecture.Lets check what protec
 PIE isn't enabled and nx set to true, so we know shellcode cannot be executed off the stack and the binary has ASLR disabled.
 
 ## Analyzing the 64bit ELF binary
-Lets load the binary with radare2 and dump the functions. The afl command list the functions. We can also output it as JSON using this command aflj~{}
 
-![source-01](/img/Screenshot_2020-05-13_08-41-16.png){: .align-left}
+Lets load the binary with radare2 and type aaaa command to analyze it. And use afl command to list the functions. We can also output it as JSON using this command aflj~{}
+
+![source-01](/img/Screenshot_2020-05-19_18-52-31.png){: .align-left}
 
 
 Here we can see three interesting functions:
