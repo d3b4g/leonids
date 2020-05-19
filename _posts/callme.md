@@ -10,8 +10,7 @@ comments: true
 
 
 ## Introduction
-This is the third challenge from ROP Emporium, named as **Callme**. In this challenge we have to create a small ROP Chain which execute system and give us the flag to complete the challenge. 
-
+This is the third challenge from ROP Emporium, named as **Callme**. In this challenge we need to execute callme_one(), callme_two() and callme_three() function  in sequential order to get the flag.
 
 > Challenge Description: 
 Reliably make consecutive calls to imported functions. Use some new techniques and learn about the Procedure Linkage Table.
@@ -42,9 +41,9 @@ Lets load the binary with radare2 and type aaaa command to analyze it. And use a
 
 Here we can see three interesting functions:
 
-+ **main()**
-+ **pwnme()**
-+ **usefulFunction()**
++ **callmeone()**
++ **callmetwo()**
++ **camethree()**
 
 So lets disassemble the binary and see what these fucntions does!
 
