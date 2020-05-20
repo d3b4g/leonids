@@ -31,8 +31,8 @@ I assume the reader is familier with following concepts:
 + Dynamic linking, relocatable code and Procedure link table and Global offset table (PLT/GOT)
 + Virtual memory
 + Stack frames
-+ Return oriented programming and stack overflow
-+ Stack smashing mitigation techniques such as NX, ASLR and canaries
++ ROP and basic stack overflow
++ Exploit mitigation techniques NX,ASLR and canaries
 
 ###### About the Binary:
 Our binary is usual ELF executable in 64-bit architecture.Lets check what protection are on this binary, using rabin2, which comes with **radare2 framework**.
@@ -166,7 +166,7 @@ gef➤
 
 ## Building the ROP-Chain
 
-Lets find the building blocks that need to build a ROP chain.
+Lets find the building blocks that need to build a ROP chain. As need to pass three arguments (1,2,3) into each function, let’s find the required ROP chain using ROPgadget.
 
 ###### Finding gadgets
 
