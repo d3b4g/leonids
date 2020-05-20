@@ -24,7 +24,7 @@ Reliably make consecutive calls to imported functions. Use some new techniques a
 + dgb& gef
  
 ###### Prerequisites
-There are a few basic computing concepts used in this walkthrough the reader should be familiar with:
+I assume the reader is familier with following concepts:
 
 + Intel x86/x86-64 processor instruction set and architecture
 + ELF binary structure
