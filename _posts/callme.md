@@ -79,10 +79,16 @@ This function directly call system with **/bin/ls**, which list the files in cur
 
 ###### Usefullfunction()
 
+![source-01](/img/Screenshot_2020-05-20_11-37-48.png	){: .align-left}
+
+
 callme_one / callme_two / callme_three is called in usefulFunction. Unlike x86, x64 needs to store the argument in a register.First argument: rdi, second argument: rsi, third argument: rdx.
 
 The usefulFunction function uses the mov instruction to store the argument in a register.
 However, the flags are not output because the arguments are (4, 5, 6).
+
+###### UsefulGadget()
+This function execute the pop instruction in the order rdi, rsi, rdx, the ret instruction is executed.
 
 
 ## Fuzzing:
