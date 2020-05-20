@@ -56,13 +56,15 @@ Lets load the binary with radare2 and type aaaa command to analyze it. And use a
 + aas – Analyze functions, symbols and more
 
 
-Here we can see three interesting functions:
+Here we can see six functions and in addition to that their is a symbol called usefulGadgets.
 
++ **main()**
++ **Pwnme()**
++ **usefullFunction()
 + **callme_one()**
 + **callme_two()**
 + **callme_three()**
 
-There is also a symbol called usefulFunction / usefulGadgets.
 
 So lets disassemble the binary and see what these fucntions does!
 
@@ -193,7 +195,7 @@ I used ROPGadget to find the pop rdi ret.
 
 Now we have everything we need to put together our first ROPChain, let’s craft the payload.
 
-+ Junk + pop_rdi + bin_cat + system_plt
++ "A" * 44 + <callone_function> + <rop_chain> + <arguments> + <calltwo_function> + <rop_chain> + <arguments><callthree_function> + <rop_chain> + <arguments> 
 
 + b"A" * 40 + 0x0000000000400883 + 0x00601060 + 0x4005e0
 
