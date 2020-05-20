@@ -40,7 +40,11 @@ Our binary is usual ELF executable in 64-bit architecture.Lets check what protec
 ![source-01](/img/Screenshot_2020-05-19_19-13-15.png){: .align-left}
 
 
-The binary is NX protected which means that we won’t have an executable stack, PIE isn't enabled and the binary has ASLR disabled.
+The binary is: 
+
++ NX protected which means that we won’t have an executable stack
++ PIE disabled
++ ASLR disabled.
 
 ## Analyzing the 64bit ELF binary
 
