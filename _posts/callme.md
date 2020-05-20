@@ -10,7 +10,7 @@ comments: true
 
 
 ## Introduction
-This is the third challenge from ROP Emporium, named as **Callme**. In this challenge we need to execute callme_one(), callme_two() and callme_three() function  in sequential order to get the flag. Alonge the way iam going to explore the more advance usage of radare2.
+This is the third challenge from ROP Emporium, named as **Callme**. In this challenge we need to execute callme_one(), callme_two() and callme_three() function  in sequential order to get the flag. This challenge add more levels of complexity. Alonge the way i am going to explore the more advance usage of radare2.
 
 > Challenge Description: 
 Reliably make consecutive calls to imported functions. Use some new techniques and learn about the Procedure Linkage Table.
@@ -92,7 +92,12 @@ This function directly call system with **/bin/ls**, which list the files in cur
 ![source-01](/img/Screenshot_2020-05-20_11-37-48.png	){: .align-left}
 
 
-callme_one / callme_two / callme_three is called in usefulFunction. Unlike x86, x64 needs to store the argument in a register.First argument: rdi, second argument: rsi, third argument: rdx.
+Three functions are being called with three arguments.
++ callme_one
++ callme_two 
++ callme_three 
+
+Unlike x86, x64 needs to store the argument in a register.First argument: rdi, second argument: rsi, third argument: rdx.
 
 The usefulFunction function uses the mov instruction to store the argument in a register.
 However, the flags are not output because the arguments are (4, 5, 6).
