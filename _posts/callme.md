@@ -122,11 +122,13 @@ This program is used as a launcher for running programs with different environme
 Source: man rarun2
 
 First, create a rarun profile as shown above. Then, open the debuggee in radare2 and load this profile using the -r flag:
+```
 $ cat profile.rr2 
 #!/usr/bin/rarun2
-stdin=!./exp
+stdin=!./pattern.txt
+```
 
-Load the program in debug mode and use dc to execute it:
+Load the program in debug mode and use dc to execute it and We executed our binary and passed the content of pattern.txt to stdin with rarun2 and received SIGSEV 11
 
 ```
 gef➤  pattern create 100
