@@ -48,12 +48,14 @@ The binary is:
 
 ## Analyzing the 64bit ELF binary
 
-Lets load the binary with radare2 and type aaaa command to analyze it. And use afl command to list the functions. We can also output it as JSON using this command aflj~{}
+Lets load the binary with radare2 to analyze the imported symbols and in the callme binary.
 
 ![source-01](/img/Screenshot_2020-05-19_18-52-31.png){: .align-left}
 
 + -d  – Open in the debug mode
 + aas – Analyze functions, symbols and more
++ afl - To list the functions
++ aflj~{} - Output as JSON
 
 
 Here we can see six functions and in addition to that their is a symbol called usefulGadgets.
@@ -74,7 +76,7 @@ So lets disassemble the binary and see what these fucntions does!
 ![source-01](/img/Screenshot_2020-05-20_13-52-20.png){: .align-left}
 
 
-The only interesting thing here for us is, its calling the function name **pwnme()** which have overflow vulnerability.
+The only interesting thing here for us is, its calling the function name **pwnme()**
 
 ###### callme_two()
 
@@ -169,6 +171,16 @@ gef➤
 ## Building the ROP-Chain
 
 Lets find the building blocks that need to build a ROP chain. As need to pass three arguments (1,2,3) into each function, let’s find the required ROP chain using ROPgadget.
+
+###### Address of callme functions
+
+callme rabin2 -s callme | grep callme
+37   ---------- 0x00000000 LOCAL  FILE   0        callme.c
+40   ---------- 0x00000000 LOCAL  FILE   0        callme.asm
+4    0x00001810 0x00401810 GLOBAL FUNC   16       imp.callme_three
+8    0x00001850 0x00401850 GLOBAL FUNC   16       imp.callme_one
+11   0x00001870 0x00401870 GLOBAL FUNC   16       imp.callme_two
+
 
 ###### Finding gadgets
 
