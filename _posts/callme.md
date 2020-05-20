@@ -68,10 +68,10 @@ Here we can see six functions and in addition to that their is a symbol called u
 
 So lets disassemble the binary and see what these fucntions does!
 
-###### callme_one()
+###### main()
 
 
-![source-01](/img/Screenshot_2020-05-13_08-44-57.png){: .align-left}
+![source-01](/img/Screenshot_2020-05-20_13-52-20.png){: .align-left}
 
 
 The only interesting thing here for us is, its calling the function name **pwnme()** which have overflow vulnerability.
@@ -167,6 +167,14 @@ gef➤
 ## Building the ROP-Chain
 
 Lets find the building blocks that need to build a ROP chain.
+
+###### Finding gadgets
+
+we know that we need to put:
+
++ 0x1 in the RDI register (First parameter)
++ 0x2 in the RSI register (Second parameter)
++ 0x3 in the RDX register (Third Parameter)
 
 ######  UsefulString “/bin/cat flag.txt” 
 
