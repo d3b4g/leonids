@@ -26,13 +26,13 @@ Reliably make consecutive calls to imported functions. Use some new techniques a
 ###### Prerequisites
 There are a few basic computing concepts used in this walkthrough the reader should be familiar with:
 
-Intel x86/x86-64 processor instruction set and architecture
-ELF binary structure
-Dynamic linking, relocatable code and Procedure link table and Global offset table (PLT/GOT)
-Virtual memory
-Stack frames
-Return oriented programming and stack overflow
-Stack smashing mitigation techniques such as NX, ASLR and canaries
++ Intel x86/x86-64 processor instruction set and architecture
++ ELF binary structure
++ Dynamic linking, relocatable code and Procedure link table and Global offset table (PLT/GOT)
++ Virtual memory
++ Stack frames
++ Return oriented programming and stack overflow
++ Stack smashing mitigation techniques such as NX, ASLR and canaries
 
 ###### About the Binary:
 Our binary is usual ELF executable in 64-bit architecture.Lets check what protection are on this binary, using rabin2, which comes with **radare2 framework**.
