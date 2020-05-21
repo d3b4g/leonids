@@ -37,10 +37,7 @@ I assume the reader is familier with following concepts:
 ###### About the Binary:
 Our binary is usual ELF executable in 64-bit architecture.Lets check what protection are on this binary, using rabin2, which comes with **radare2 framework**.
 
-![source-01](/img/Screenshot_2020-05-19_19-13-15.png){: .align-left}
-
-
-The binary is: 
+![source-01](/img/Screenshot_2020-05-19_19-13-15.png){: .align-left} 
 
 + NX protected which means it is a none-executable stack.
 + PIE disabled
@@ -48,7 +45,7 @@ The binary is:
 
 ## Analyzing the 64bit ELF binary
 
-Lets load the binary with radare2 to analyze the imported symbols and in the callme binary.
+Lets load the binary with radare2 to analyze the imported symbols and functions in the callme binary.
 
 ![source-01](/img/Screenshot_2020-05-19_18-52-31.png){: .align-left}
 
@@ -170,7 +167,11 @@ gef➤
 
 ## Building the ROP-Chain
 
-Lets find the building blocks that need to build a ROP chain. As need to pass three arguments (1,2,3) into each function, let’s find the required ROP chain using ROPgadget.
+Lets find the building blocks that need to build a ROP chain. As need to pass three arguments (1,2,3) into each function, let’s find the required ROP chain using ROPgadget.According to the description of the challenge, to get flag the ROP chain need to make the following function calls in following sequence order.
+
++-------------------------------------------------------------+
+| callme_one(1,2,3) + callme_two(1,2,3) + callme_three(1,2,3) |
++-------------------------------------------------------------+
 
 ###### Address of callme functions
 
@@ -190,36 +191,17 @@ we know that we need to put:
 + 0x2 in the RSI register (Second parameter)
 + 0x3 in the RDX register (Third Parameter)
 
-######  UsefulString “/bin/cat flag.txt” 
-
-Using rabin2 to find all the strings in the binary
-
-
-![source-01](/img/Screenshot_2020-05-15_14-55-41.png){: .align-left}
-
-
-######  sytem@plt
-
-Using objdump grab the address of system@plt.
-
-![source-01](/img/Screenshot_2020-05-16_07-41-34.png	){: .align-left}
-
-
-######  pop rdi; ret gadget
-
-I used ROPGadget to find the pop rdi ret.
-
-![source-01](/img/Screenshot_2020-05-14_08-23-29.png	){: .align-left}
-
 
 
 #### Exploitation 
 
 Now we have everything we need to put together our first ROPChain, let’s craft the payload.
 
-+ "A" * 44 + <callone_function> + <rop_chain> + <arguments> + <calltwo_function> + <rop_chain> + <arguments><callthree_function> + <rop_chain> + <arguments> 
++ "A" * 44 + <call_one> + <rop_chain> + <arguments> + <call_two> + <rop_chain> + <arguments> + <call_three> + <rop_chain> + <arguments> 
 
-+ b"A" * 40 + 0x0000000000400883 + 0x00601060 + 0x4005e0
++ b"A" * 40 + 0x00401850 + 0x00601060 + 0x4005e0
+
+
 
 
 
