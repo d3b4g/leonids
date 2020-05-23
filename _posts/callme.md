@@ -15,24 +15,7 @@ This is the third challenge from ROP Emporium, named as **Callme**. In this chal
 > Challenge Description: 
 Reliably make consecutive calls to imported functions. Use some new techniques and learn about the Procedure Linkage Table.
 
-###### Tools Used:
-
-
-+ ROPGadget 
-+ Pwntools  
-+ Radare2   
-+ dgb& gef
  
-###### Prerequisites
-I assume the reader is familier with following concepts:
-
-+ Intel x86/x86-64 processor instruction set and architecture
-+ ELF binary structure
-+ Dynamic linking, relocatable code and Procedure link table and Global offset table (PLT/GOT)
-+ Virtual memory
-+ Stack frames
-+ ROP and basic stack overflow
-+ Exploit mitigation techniques NX,ASLR and canaries
 
 ###### About the Binary:
 Our binary is usual ELF executable in 64-bit architecture.Lets check what protection are on this binary, using rabin2, which comes with **radare2 framework**.
@@ -98,6 +81,7 @@ This function directly call system with **/bin/ls**, which list the files in cur
 
 
 Three functions are being called with three arguments.
+
 + callme_one
 + callme_two 
 + callme_three 
@@ -115,12 +99,12 @@ This function execute the pop instruction in the order rdi, rsi, rdx, the ret in
 So now the binary analysis is out of the way. Lets start fuzzing the binary. Generate the unique pattern and send to the program.
 
 #### rarun2 profile
-In radare2, when it gets to interact with a debuggee, rarun2 is your go-to tool.
+In radare2, when it gets to interact with a debugger.
 
 This program is used as a launcher for running programs with different environments, arguments, permissions, directories and overridden default file descriptors.
 Source: man rarun2
 
-First, create a rarun profile as shown above. Then, open the debuggee in radare2 and load this profile using the -r flag:
+First, create a rarun profile as shown above. Then, open the file in radare2 and load this profile using the -r flag:
 ```
 $ cat profile.rr2 
 #!/usr/bin/rarun2
@@ -129,23 +113,7 @@ stdin=!./pattern.txt
 
 Load the program in debug mode and use dc to execute it and We executed our binary and passed the content of pattern.txt to stdin with rarun2 and received SIGSEV 11
 
-```
-gef➤  pattern create 100
-[+] Generating a pattern of 100 bytes
-aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaa
-[+] Saved as '$_gef0'
-gef➤  r
-Starting program: /root/Desktop/ROP/split/split/split 
-split by ROP Emporium
-64bits
 
-Contriving a reason to ask user for data...
-> aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaa
-
-Program received signal SIGSEGV, Segmentation fault.
-
-
-```
 As expected the program crashed and we have a valid crash scenario here.We have overwritten rsp with our unique patters.
 
 ![source-01](/img/Screenshot_2020-05-15_10-20-53.png){: .align-left}
@@ -167,7 +135,7 @@ gef➤
 
 ## Building the ROP-Chain
 
-Lets find the building blocks that need to build a ROP chain. As need to pass three arguments (1,2,3) into each function, let’s find the required ROP chain using ROPgadget.According to the description of the challenge, to get flag the ROP chain need to make the following function calls in following sequence order.
+As need to pass three arguments (1,2,3) into each function, let’s find the required ROP chain using ROPgadget.According to the description of the challenge, to get flag the ROP chain need to make the following function calls in following sequence order.
 
 +-------------------------------------------------------------+
 | callme_one(1,2,3) + callme_two(1,2,3) + callme_three(1,2,3) |
