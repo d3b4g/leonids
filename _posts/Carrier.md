@@ -139,7 +139,27 @@ root@r1:~# cat user.txt
 
 
 #### Network Enumeration:
-Agin back to enumeration, we need to gather all the information we need to escalate our priviledges to root.
+So we are basically inside a router, by typing hostname it says we are in R1. Agine back to enumeration, we need to gather all the information we need to escalate our priviledges to root.
+
+The router has three network interfaces:
++ eth0: 10.99.64.2/24
++ eth1: 10.78.10.1/24
++ eth2: 10.78.11.1/24
+
+The arp table shows IP addresses from all of the networks listed above.
+
+```python
+
+root@r1:~# arp
+arp
+Address                  HWtype  HWaddress           Flags Mask            Iface
+10.78.11.2               ether   00:16:3e:c4:fa:83   C                     eth2
+10.78.10.2               ether   00:16:3e:5b:49:a9   C                     eth1
+10.99.64.251             ether   00:16:3e:f3:92:14   C                     eth0
+10.99.64.1               ether   fe:3c:27:ea:df:39   C                     eth0
+root@r1:~# 
+```
+
 
 Crontab:
 ```python
@@ -172,11 +192,51 @@ systemctl start quagga
 ```
 This script restores the BGP configuration every 10 minutes and overwrite changes to the Quagga configuration. So basical if you want bring any changes to the BGP configuration for our attack we just need to change the permission of this restore.sh file.
 
-The machine has three network interfaces:
-+ eth0: 10.99.64.2/24
-+ eth1: 10.78.10.1/24
-+ eth2: 10.78.11.1/24
+Searching for quagga, we can see all configuration related it from /etc/quagga
+```python
 
-The arp table includes IP addresses from all of the networks listed above
+root@r1:~# cd /etc/quagga
+cd /etc/quagga
+root@r1:/etc/quagga# ls
+ls
+bgpd.conf
+bgpd.conf.orig
+bgpd.conf.sav
+daemons
+debian.conf
+zebra.conf
+zebra.conf.orig
+zebra.conf.sav
+root@r1:/etc/quagga# 
+```
+###### BGP Configuration:
+```python
+
+root@r1:~# cat /etc/quagga/bgpd.conf
+cat /etc/quagga/bgpd.conf
+!
+! Zebra configuration saved from vty
+!   2018/07/02 02:14:27
+!
+route-map to-as200 permit 10
+route-map to-as300 permit 10
+!
+router bgp 100
+ bgp router-id 10.255.255.1
+ network 10.101.8.0/21
+ network 10.101.16.0/21
+ redistribute connected
+ neighbor 10.78.10.2 remote-as 200
+ neighbor 10.78.11.2 remote-as 300
+ neighbor 10.78.10.2 route-map to-as200 out
+ neighbor 10.78.11.2 route-map to-as300 out
+!
+line vty
+!
+```
+
+### BGP Hijacking - Priviledge Escalation
+
+
 
 
