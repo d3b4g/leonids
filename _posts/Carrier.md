@@ -78,5 +78,39 @@ Yes this look like the serial number we are looking for. Lets try to log in with
 
 ![source-01](/img/Screenshot_2020-05-27_17-08-58.png){: .align-left}
 
+Ticket tab:
+
+After going through the webpage.The ticket number 6 give us some information about VIP is having issues connecting by FTP to an important server in the 10.120.15.0/24 network, investigating... This might be important to us later !
+
+![source-01](/img/Screenshot_2020-05-27_17-17-26.png){: .align-left}
+
+Checking diag page:
+
+![source-01](/img/Screenshot_2020-05-27_17-23-45.png){: .align-left}
+
+It look like commands are being passed to the server from the page for the quagga service.
+> Quagga is a routing software suite, providing implementations of OSPFv2, OSPFv3, RIP v1 and v2, RIPng and BGP-4 for Unix platforms, particularly FreeBSD, Linux, Solaris and NetBSD. Quagga is a fork of GNU Zebra which was developed by Kunihiro Ishiguro.
+
+Exploitation:
+
+Lets explore the web app further behavior in the burp suite. We can see check=some based64 encoded chars its sending.
+
+![source-01](/img/Screenshot_2020-05-27_17-38-09.png){: .align-left}
+
+Lets decode it and see what it is.
+
+![source-01](/img/Screenshot_2020-05-27_17-38-09.png){: .align-left}
+
+Decoding the base64 reveals it is sending the word quagga, Lets explore this futher and see if we can inject our own command to it and send.
+
+![source-01](/img/Screenshot_2020-05-27_17-38-09.png){: .align-left}
+
+And it works, we have command injection and it shows as root !!
+
+![source-01](/img/Screenshot_2020-05-27_17-38-09.png){: .align-left}
+
+
+
+
 
 
