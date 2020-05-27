@@ -1,4 +1,4 @@
-
+.
 #### Background
 Carrier is a retired vulnerable VM from Hack. This box is really fun since it allows us to play with some BGP Hijacking which i have not seen from any challenges i solved so far.
 
@@ -12,7 +12,7 @@ Based on the Apache version, it looks like we are dealing with Xenial / Ubuntu 1
 In addition to usual ports, 22 and 80 UDP port 161 is open. UDP 161 is the standard SNMP port.There is also a filtered ftp port showing.
 
 ![source-01](/img/Screenshot_2020-05-27_16-31-11.png){: .align-left}
-Browsing to the site we see a login page with weird error messeges. Lets start directory enumeration.
+Browsing to the site we see a login page with weird error messeges (Error 45007 and Error 45009). Lets start directory enumeration.
 
 ```python
 ➜  carrier wfuzz --hc=404 -z file,/usr/share/wordlists/dirb/common.txt http://10.10.10.105/FUZZ
@@ -46,6 +46,18 @@ ID           Response   Lines    Word     Chars       Payload
 
 
 ```
+
+The directory enumeration reveals an interesting directory /doc which contains a network diagram and a usermanual.
+
+Network diagram showing 3 different BGP autonomous systems.
+
+>BGP is the protocol that makes the Internet work. It does this by enabling data routing on the Internet.BGP is responsible for looking at all of the available paths that data could travel and picking the best route, which usually means hopping between autonomous systems. 
+
+![source-01](/img/diagram_for_tac.png){: .align-left}
+
+Document Manual 
+
+![source-01](/img/Screenshot_2020-05-27_16-49-23.png){: .align-left}
 
 
 
