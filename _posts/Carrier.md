@@ -138,5 +138,45 @@ root@r1:~# cat user.txt
 ```
 
 
+#### Network Enumeration:
+Agin back to enumeration, we need to gather all the information we need to escalate our priviledges to root.
+
+Crontab:
+```python
+
+root@r1:~#     crontab -l
+    crontab -l
+# Edit this file to introduce tasks to be run by cron.
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+*/10 * * * * /opt/restore.sh
+root@r1:~# 
+```
+So there is a bash script in /opt/ directory called “restore.sh”
+```python
+
+root@r1:/opt# cat restore.sh
+cat restore.sh
+#!/bin/sh
+systemctl stop quagga
+killall vtysh
+cp /etc/quagga/zebra.conf.orig /etc/quagga/zebra.conf
+cp /etc/quagga/bgpd.conf.orig /etc/quagga/bgpd.conf
+systemctl start quagga
+```
+This script restores the BGP configuration every 10 minutes and overwrite changes to the Quagga configuration. So basical if you want bring any changes to the BGP configuration for our attack we just need to change the permission of this restore.sh file.
+
+The machine has three network interfaces:
++ eth0: 10.99.64.2/24
++ eth1: 10.78.10.1/24
++ eth2: 10.78.11.1/24
+
+The arp table includes IP addresses from all of the networks listed above
 
 
