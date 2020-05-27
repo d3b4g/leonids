@@ -55,9 +55,12 @@ Network diagram showing 3 different BGP autonomous systems.
 
 ![source-01](/img/diagram_for_tac.png){: .align-left}
 
+Lyghtspeed networks AS 100 is connected to two other networks, AS 200 and AS 300.
+
 Document Manual 
 
 ![source-01](/img/Screenshot_2020-05-27_16-49-23.png){: .align-left}
 
+The “error_codes.pdf” contains explanations for different error codes, the weird error codes we saw earlier on webpage. One of those are 45009, which states that the admin still uses default credentials which are set to a “chassis serial number”
 
 
