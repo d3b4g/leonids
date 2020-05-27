@@ -63,4 +63,20 @@ Document Manual
 
 The “error_codes.pdf” contains explanations for different error codes, the weird error codes we saw earlier on webpage. One of those are 45009, which states that the admin still uses default credentials which are set to a “chassis serial number”
 
+After further enumeration, i coudnt find the chassis serial number, so decided to move on and check SNMP service.
+
+#### SNMP Enumeration:
+```python
+
+➜  carrier snmpwalk -c public 10.10.10.105 -v 1
+Created directory: /var/lib/snmp/mib_indexes
+iso.3.6.1.2.1.47.1.1.1.1.11 = STRING: "SN#NET_45JDX23"
+End of MIB
+```
+
+Yes this look like the serial number we are looking for. Lets try to log in with credentials (admin:NET_45JDX23)
+
+![source-01](/img/Screenshot_2020-05-27_17-08-58.png){: .align-left}
+
+
 
