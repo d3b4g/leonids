@@ -88,7 +88,9 @@ Checking diag page:
 
 ![source-01](/img/Screenshot_2020-05-27_17-23-45.png){: .align-left}
 
-It look like commands are being passed to the server from the page for the quagga service.
+Look like the server might be running “ps” command.
+
+
 > Quagga is a routing software suite, providing implementations of OSPFv2, OSPFv3, RIP v1 and v2, RIPng and BGP-4 for Unix platforms, particularly FreeBSD, Linux, Solaris and NetBSD. Quagga is a fork of GNU Zebra which was developed by Kunihiro Ishiguro.
 
 Exploitation:
@@ -99,16 +101,15 @@ Lets explore the web app further behavior in the burp suite. We can see check=so
 
 Lets decode it and see what it is.
 
-![source-01](/img/Screenshot_2020-05-27_17-38-09.png){: .align-left}
-
-Decoding the base64 reveals it is sending the word quagga, Lets explore this futher and see if we can inject our own command to it and send.
-
 ![source-01](/img/Screenshot_2020-05-27_17-39-13.png){: .align-left}
 
-And it works, we have command injection and it shows as root !!
+Decoding the base64 reveals it is sending the word quagga, And the web application is showing all the process that contains the string “quagga”. So that means the web application is maybe running “ps” with “grep quagga” command. Lets explore this futher and see if we can inject our own command to it and send. 
+
+By changing the parameter to “id” and then encoding it with base64 encode and forward the request to the server.
 
 ![source-01](/img/Screenshot_2020-05-27_17-41-07.png){: .align-left}
 
+And it works, we have command injection and it shows as root !!
 
 
 
