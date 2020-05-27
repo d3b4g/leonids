@@ -103,11 +103,11 @@ Lets decode it and see what it is.
 
 Decoding the base64 reveals it is sending the word quagga, Lets explore this futher and see if we can inject our own command to it and send.
 
-![source-01](/img/Screenshot_2020-05-27_17-38-09.png){: .align-left}
+![source-01](/img/Screenshot_2020-05-27_17-39-13.png){: .align-left}
 
 And it works, we have command injection and it shows as root !!
 
-![source-01](/img/Screenshot_2020-05-27_17-38-09.png){: .align-left}
+![source-01](/img/Screenshot_2020-05-27_17-41-07.png){: .align-left}
 
 
 
