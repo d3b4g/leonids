@@ -178,7 +178,7 @@ root@r1:~#     crontab -l
 */10 * * * * /opt/restore.sh
 root@r1:~# 
 ```
-So there is a bash script in /opt/ directory called “restore.sh”
+A script in /opt/ directory called “restore.sh”
 ```python
 
 root@r1:/opt# cat restore.sh
@@ -211,6 +211,7 @@ root@r1:/etc/quagga#
 ```
 + Zebra maintains routing information
 + BGPD maintains BGP neighbor relations and settings
++ debian.conf give us an importnt piece of information which has the line -vtysh_enable=yes. This mean the system has vtysh enabled. We will use this to get into BGP configuration.
 
 ###### BGP Configuration:
 ```python
@@ -237,6 +238,7 @@ router bgp 100
 line vty
 !
 ```
+
 
 ### BGP Hijacking - Priviledge Escalation
 
