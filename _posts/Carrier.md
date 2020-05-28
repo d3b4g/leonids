@@ -441,7 +441,7 @@ Total number of prefixes 27
 ```
 The prefix is successfully updated.
 
-###### Sniffing FTP traffic
+###### Listening FTP traffic
 
 ```python
 
@@ -459,7 +459,7 @@ USER root
 331
 PASS BGPtelc0rout1ng
 ```
-Once we recive a connection to FTP server press Enter and when root USER popups enter 331. We have successfully hijacked BGP  to steal FTP credentials. 
+Once we recive a connection to FTP server press Enter and when root USER popups enter 331 FTP response code for Enter password. We have successfully hijacked BGP  to steal FTP credentials. 
 
 Awsome Now, we can revert the network configurations and log in to carrier with the root credentials to root.txt
 
