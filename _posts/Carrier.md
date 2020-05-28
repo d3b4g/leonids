@@ -159,7 +159,27 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
 10.99.64.1               ether   fe:3c:27:ea:df:39   C                     eth0
 root@r1:~# 
 ```
+###### 10.120.15.0/24  Network Scan:
 
+From the ticket we know the important FTP server in 10.120.15.0/24 subnet. Lets quickly grab the live IP;s from the subnet.
+```python
+root@r1:~# for i in {1..255}; do ping -c 1 10.120.15.$i | grep "bytes from" | cut -d " " -f4 | cut -d ":" -f1 ; done
+<$i | grep "bytes from" | cut -d " " -f4 | cut -d ":" -f1 ; done             
+10.120.15.1
+10.120.15.10
+
+```
+Here we got two IP's one is the gateway and another one is the real FTP Server IP. Lets confirm this.
+```python
+
+root@r1:~# telnet 10.120.15.10 21
+telnet 10.120.15.10 21
+Trying 10.120.15.10...
+Connected to 10.120.15.10.
+Escape character is '^]'.
+220 (vsFTPd 3.0.3)
+```
+Great, 10.120.15.10 is the FTP server we are looking for.
 
 ###### Interesting job in Crontab:
 ```python
@@ -314,30 +334,7 @@ Important information we need to note from the routing table to perform our atta
 
 + AS300 is advertising the 10.120.15.0/24 prefix.
 + Traffic to 10.120.15.10 are routed through 10.78.11.2
-
-###### 10.120.15.0/24  Network Scan:
-
-From the ticket we know the important FTP server in 10.120.15.0/24 subnet. Lets quickly grab the live IP;s from the subnet.
-```python
-root@r1:~# for i in {1..255}; do ping -c 1 10.120.15.$i | grep "bytes from" | cut -d " " -f4 | cut -d ":" -f1 ; done
-<$i | grep "bytes from" | cut -d " " -f4 | cut -d ":" -f1 ; done             
-10.120.15.1
-10.120.15.10
-
-```
-Here we got two IP's one is the gateway and another one is the real FTP Server IP. Lets confirm this.
-```python
-
-root@r1:~# telnet 10.120.15.10 21
-telnet 10.120.15.10 21
-Trying 10.120.15.10...
-Connected to 10.120.15.10.
-Escape character is '^]'.
-220 (vsFTPd 3.0.3)
-```
-Great, 10.120.15.10 is the FTP server we are looking for.
-
-
++ R1 is peering with two BGP neighbors, AS200 and AS300.
 
 
 ### BGP Hijacking - Priviledge Escalation
@@ -348,11 +345,13 @@ From our network  recon we have got the following information:
 + AS300 was advertising the 10.120.15.0/24 prefix
 + We have full control of BGP router.
 + IP Address of FTP Server 10.120.15.10
-+  We need to intercept traffic comming from 10.120.15.0/25 to perform our attack.
++ We need to intercept traffic comming from 10.120.15.10 to perform our attack.
 
 
 ##### Prefix Hijacking Attacks
 
-
++ We need to advertise a route to the other autonomous systems (AS) stating that we R1,AS100) know how to reach that destination. 
++ Since AS300 is advertising routes for 10.120.15.0/24, so our attack to work we advertise a route that supersedes AS300 in order to the other routers to add the routing entry to their routing tables. 
++ We will advertise a route with a longer prefix, nstead of a /24, we’ll advertise 10.120.15.0/25.
 
 
