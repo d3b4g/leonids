@@ -240,7 +240,82 @@ line vty
 !
 ```
 
-10.120.15.0/24  Network Scan:
+###### BGP routing table:
+```python
+
+root@r1:~# vtysh
+vtysh
+
+Hello, this is Quagga (version 0.99.24.1).
+Copyright 1996-2005 Kunihiro Ishiguro, et al.
+
+r1# show ip bgp
+show ip bgp
+BGP table version is 0, local router ID is 10.255.255.1
+Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
+              i internal, r RIB-failure, S Stale, R Removed
+Origin codes: i - IGP, e - EGP, ? - incomplete
+
+   Network          Next Hop            Metric LocPrf Weight Path
+*> 10.78.10.0/24    0.0.0.0                  0         32768 ?
+*> 10.78.11.0/24    0.0.0.0                  0         32768 ?
+*> 10.99.64.0/24    0.0.0.0                  0         32768 ?
+*  10.100.10.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.11.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.12.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.13.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.14.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.15.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.16.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.17.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.18.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.19.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.20.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*> 10.101.8.0/21    0.0.0.0                  0         32768 i
+*> 10.101.16.0/21   0.0.0.0                  0         32768 i
+*> 10.120.10.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.11.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.12.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.13.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.14.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.15.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.16.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.17.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.18.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.19.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.20.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+
+Total number of prefixes 27
+
+```
+Important information we need to note from the routing table to perform our attack.
+
++ AS300 is advertising the 10.120.15.0/24 prefix.
++ Traffic to 10.120.15.10 are routed through 10.78.11.2
+
+###### 10.120.15.0/24  Network Scan:
 
 From the ticket we know the important FTP server in 10.120.15.0/24 subnet. Lets quickly grab the live IP;s from the subnet.
 ```python
@@ -272,6 +347,8 @@ From our network  recon we have got the following information:
 + There is a VIP FTP server in the 10.120.15.0/24 network.
 + AS300 was advertising the 10.120.15.0/24 prefix
 + We have full control of BGP router.
++ IP Address of FTP Server 10.120.15.10
++  We need to intercept traffic comming from 10.120.15.0/25 to perform our attack.
 
 
 ##### Prefix Hijacking Attacks
