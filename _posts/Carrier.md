@@ -139,7 +139,7 @@ root@r1:~# cat user.txt
 
 
 #### Network Enumeration:
-So we are basically inside a router, by typing hostname it says we are in R1. Agine back to enumeration, we need to gather all the information we need to escalate our priviledges to root.
+So we are basically inside a router, by typing hostname it says we are in R1. Again back to enumeration, we need to gather all the information we need to escalate our priviledges to root. So i ran LinePeas.sh which is a post exploitation information gathering tool.
 
 The router has three network interfaces:
 + eth0: 10.99.64.2/24
@@ -161,7 +161,7 @@ root@r1:~#
 ```
 
 
-Crontab:
+###### Interesting job in Crontab:
 ```python
 
 root@r1:~#     crontab -l
@@ -190,7 +190,7 @@ cp /etc/quagga/zebra.conf.orig /etc/quagga/zebra.conf
 cp /etc/quagga/bgpd.conf.orig /etc/quagga/bgpd.conf
 systemctl start quagga
 ```
-This script restores the BGP configuration every 10 minutes and overwrite changes to the Quagga configuration. So basical if you want bring any changes to the BGP configuration for our attack we just need to change the permission of this restore.sh file.
+This script restores the BGP configuration every 10 minutes and overwrite changes to the Quagga configuration. So basical if we want bring any changes to the BGP configuration for our attack we just need to change the permission of this restore.sh file, so it wont run every 10 min and overwrite our changes. 
 
 Searching for quagga, we can see all configuration related it from /etc/quagga
 ```python
@@ -209,6 +209,9 @@ zebra.conf.orig
 zebra.conf.sav
 root@r1:/etc/quagga# 
 ```
++ Zebra maintains routing information
++ BGPD maintains BGP neighbor relations and settings
+
 ###### BGP Configuration:
 ```python
 
