@@ -80,7 +80,7 @@ Yes this look like the serial number we are looking for. Lets try to log in with
 
 Ticket tab:
 
-After going through the webpage.The ticket number 6 give us some information about VIP is having issues connecting by FTP to an important server in the 10.120.15.0/24 network, investigating... This might be important to us later !
+After going through the webpage.The ticket number 6 give us some information about VIP is having issues connecting to FTP to an important server in the 10.120.15.0/24 network, investigating... This might be important to us later !
 
 ![source-01](/img/Screenshot_2020-05-27_17-17-26.png){: .align-left}
 
@@ -209,11 +209,12 @@ zebra.conf.orig
 zebra.conf.sav
 root@r1:/etc/quagga# 
 ```
-+ Zebra maintains routing information
 + BGPD maintains BGP neighbor relations and settings
-+ debian.conf give us an importnt piece of information which has the line -vtysh_enable=yes. This mean the system has vtysh enabled. We will use this to get into BGP configuration.
++ Zebra maintains routing information
++ debian.conf give us an importnt piece of information which has the line -vtysh_enable=yes. This mean the system has vtysh enabled. vtysh is a integrated shell for Quagga routing engine We will use this to get into BGP configuration.
 
 ###### BGP Configuration:
+The bgpd.conf file contains the BGP configuration of the r1 router.
 ```python
 
 root@r1:~# cat /etc/quagga/bgpd.conf
@@ -239,8 +240,41 @@ line vty
 !
 ```
 
+10.120.15.0/24  Network Scan:
+
+From the ticket we know the important FTP server in 10.120.15.0/24 subnet. Lets quickly grab the live IP;s from the subnet.
+```python
+root@r1:~# for i in {1..255}; do ping -c 1 10.120.15.$i | grep "bytes from" | cut -d " " -f4 | cut -d ":" -f1 ; done
+<$i | grep "bytes from" | cut -d " " -f4 | cut -d ":" -f1 ; done             
+10.120.15.1
+10.120.15.10
+
+```
+Here we got two IP's one is the gateway and another one is the real FTP Server IP. Lets confirm this.
+```python
+
+root@r1:~# telnet 10.120.15.10 21
+telnet 10.120.15.10 21
+Trying 10.120.15.10...
+Connected to 10.120.15.10.
+Escape character is '^]'.
+220 (vsFTPd 3.0.3)
+```
+Great, 10.120.15.10 is the FTP server we are looking for.
+
+
+
 
 ### BGP Hijacking - Priviledge Escalation
+
+From our network  recon we have got the following information:
+
++ There is a VIP FTP server in the 10.120.15.0/24 network.
++ AS300 was advertising the 10.120.15.0/24 prefix
++ We have full control of BGP router.
+
+
+##### Prefix Hijacking Attacks
 
 
 
