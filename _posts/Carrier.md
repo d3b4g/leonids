@@ -350,8 +350,12 @@ From our network  recon we have got the following information:
 
 ##### Prefix Hijacking Attacks
 
-+ We need to advertise a route to the other autonomous systems (AS) stating that we R1,AS100) know how to reach that destination. 
-+ Since AS300 is advertising routes for 10.120.15.0/24, so our attack to work we advertise a route that supersedes AS300 in order to the other routers to add the routing entry to their routing tables. 
-+ We will advertise a route with a longer prefix, nstead of a /24, we’ll advertise 10.120.15.0/25.
+BGP always favors the shortest, most specific path to the desired IP address. In order for the BGP hijack to be successful, the route announcement must either:
 
+1) Offer a more specific route by announcing a smaller range of IP addresses than other ASes had previously announced.
+2) Offer a shorter route to certain blocks of IP addresses.
+
++ We need to advertise a route to the other autonomous systems (AS) stating that we R1,AS100) know how to reach that destination. 
++ AS300 is advertising routes for 10.120.15.0/24 network, so we will advertise a more specific route that supersedes AS300 route and our route to the neighour routers routing tables. 
++ We will advertise a route with a larger prefix, we’ll advertise 10.120.15.0/25.
 
