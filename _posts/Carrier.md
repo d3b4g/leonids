@@ -1,7 +1,9 @@
 .
 #### Background
-Carrier is a retired vulnerable VM from Hack. This box is really fun since it allows us to play with some BGP Hijacking which i have not seen from any challenges i solved so far.
+![source-01](/img/Screenshot_2020-05-29_07-52-38.png){: .align-left}
 
+
+Carrier is a retired vulnerable VM from Hack. This box is really fun since it allows us to play with  BGP Hijacking which is pretty rare to see in CTF like challenges.
 
 To begin the enumeration process, a TCP/UDP port scan was run against the target using nmap. The purpose of scan is to quickly determine which ports are open and which services are running. 
 
@@ -10,6 +12,22 @@ Based on the Apache version, it looks like we are dealing with Xenial / Ubuntu 1
 
 ###### Open Ports:
 In addition to usual ports, 22 and 80 UDP port 161 is open. UDP 161 is the standard SNMP port.There is also a filtered ftp port showing.
+```python
+
+PORT   STATE    SERVICE REASON         VERSION
+21/tcp filtered ftp     no-response
+22/tcp open     ssh     syn-ack ttl 63 OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
+| 
+80/tcp open     http    syn-ack ttl 62 Apache httpd 2.4.18 ((Ubuntu))
+| http-cookie-flags:
+|   /:
+|     PHPSESSID:
+|_      httponly flag not set
+| http-methods:
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Login
+```
 
 ![source-01](/img/Screenshot_2020-05-27_16-31-11.png){: .align-left}
 Browsing to the site we see a login page with weird error messeges (Error 45007 and Error 45009). Lets start directory enumeration.
