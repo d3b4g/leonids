@@ -493,28 +493,12 @@ root@carrier:~#
 Notice secretdata.txt, i digged about this a bit and found out it is related to the LXD containers
 for the machine.
 
-root@carrier:~#  lxc list
-+------+---------+---------------------+------+------------+-----------+
-| NAME |  STATE  |        IPV4         | IPV6 |    TYPE    | SNAPSHOTS |
-+------+---------+---------------------+------+------------+-----------+
-| r1   | RUNNING | 10.99.64.2 (eth0)   |      | PERSISTENT | 0         |
-|      |         | 10.78.11.1 (eth2)   |      |            |           |
-|      |         | 10.78.10.1 (eth1)   |      |            |           |
-+------+---------+---------------------+------+------------+-----------+
-| r2   | RUNNING | 10.99.64.3 (eth0)   |      | PERSISTENT | 0         |
-|      |         | 10.78.12.1 (eth2)   |      |            |           |
-|      |         | 10.78.10.2 (eth1)   |      |            |           |
-+------+---------+---------------------+------+------------+-----------+
-| r3   | RUNNING | 10.99.64.4 (eth0)   |      | PERSISTENT | 0         |
-|      |         | 10.78.12.2 (eth2)   |      |            |           |
-|      |         | 10.78.11.2 (eth1)   |      |            |           |
-|      |         | 10.120.15.1 (eth3)  |      |            |           |
-+------+---------+---------------------+------+------------+-----------+
-| web  | RUNNING | 10.99.64.251 (eth0) |      | PERSISTENT | 0         |
-+------+---------+---------------------+------+------------+-----------+
-root@carrier:~# 
+ LXC is installed in this host. lxc list command shows there are multiple containers running, R1,R2,R3 in the host.
+ 
+> LXC (Linux Containers) is an operating-system-level virtualization method for running multiple isolated Linux systems (containers) on a control host using a single Linux kernel.
 
 
 ###### Conclusion:
 
+This was a great box which expose me to BGP Hijacking, It’s pretty rare to find network related boxes 
 
