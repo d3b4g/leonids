@@ -461,6 +461,35 @@ PASS BGPtelc0rout1ng
 Once we recive a connection to FTP server press Enter and when root USER popups enter 331 FTP response code for Enter password. We have successfully hijacked BGP  to steal FTP credentials. 
 
 Awsome Now, we can revert the network configurations and log in to carrier with the root credentials to root.txt
+```python
+
+  carrier ssh root@10.10.10.105
+The authenticity of host '10.10.10.105 (10.10.10.105)' can't be established.
+ECDSA key fingerprint is SHA256:ocbg7qpaEpjQc5WGCnavYd2bgyXg7S8if8UaXgT1ztE.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.10.105' (ECDSA) to the list of known hosts.
+root@10.10.10.105's password: 
+Welcome to Ubuntu 18.04 LTS (GNU/Linux 4.15.0-24-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri May 29 09:21:33 UTC 2020
+
+  System load:  0.0                Users logged in:       0
+  Usage of /:   40.8% of 19.56GB   IP address for ens33:  10.10.10.105
+  Memory usage: 30%                IP address for lxdbr0: 10.99.64.1
+  Swap usage:   0%                 IP address for lxdbr1: 10.120.15.10
+  Processes:    203
+
+
+
+Last login: Wed Sep  5 14:32:15 2018
+root@carrier:~# ls
+root.txt  secretdata.txt
+root@carrier:~# 
+```
 
 ###### Conclusion:
 
