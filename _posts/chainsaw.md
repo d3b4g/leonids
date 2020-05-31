@@ -35,5 +35,10 @@ ftp> dir
 226 Directory send OK.
 ftp> mget *
 ```
+We have got three interesting files from FTP server, after a bit of researching i found out these are components of a smart contract
+
+WeaponizedPing.json - A compiled Solidity smart-contract in JSON format
+WeaponizedPing.sol - An Ethereum smart-sontract written in Solidity
+address.txt - Possibly an address on a blockchain where the contract is been deployed.
 
 
