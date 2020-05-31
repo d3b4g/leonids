@@ -1,4 +1,4 @@
-**Carrier** Chainsaw is a retired vulnerable VM from Hack. This box is about Solidity, Ethereum Blockchain and IPFS Exploitation. 
+**Chainsaw** is a retired vulnerable VM from Hack. This box is about Solidity, Ethereum Blockchain and IPFS Exploitation. 
 
 #### Enumeration
 
@@ -14,7 +14,8 @@ In addition to usual ports
 + Port 22 : SSH Server
 + Port 9810 : A webserver ?
 
-Quickly checking VPN reveals some interesting files, downloaded all the files to local machine.
+###### Anonymous FTP:
+
 ```python
 
 ➜  chainsaw ftp 10.10.10.142
@@ -35,7 +36,7 @@ ftp> dir
 226 Directory send OK.
 ftp> mget *
 ```
-We have got three interesting files from FTP server, after a bit of researching i found out these are components of a smart contract
+We have got three interesting files from FTP server, after a bit of researching i found out these files are party of a etherum smart contract.
 
 WeaponizedPing.json - A compiled Solidity smart-contract in JSON format
 WeaponizedPing.sol - .sol extention means its an Ethereum smart-sontract written in Solidity
@@ -67,5 +68,7 @@ contract WeaponizedPing
 }
 ```
 
-+ Smart contracts are written in Solidity and associate it with popular blockchain platforms, such as Ethereum
-
++ Smart contracts is written in Solidity. It is a contract-oriented, high-level language for implementing smart contracts.
++ A getDomain function and setDomain which accepts a string_value. 
++ The getDomain function  retrieves the current value of the domain string
++ setDomain set a value for the domain string
