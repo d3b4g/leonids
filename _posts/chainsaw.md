@@ -38,7 +38,34 @@ ftp> mget *
 We have got three interesting files from FTP server, after a bit of researching i found out these are components of a smart contract
 
 WeaponizedPing.json - A compiled Solidity smart-contract in JSON format
-WeaponizedPing.sol - An Ethereum smart-sontract written in Solidity
+WeaponizedPing.sol - .sol extention means its an Ethereum smart-sontract written in Solidity
 address.txt - Possibly an address on a blockchain where the contract is been deployed.
 
+#### What is a Smart Contract ?
+
+> A smart contract is an agreement between two people in the form of computer code. They run on the blockchain, so they are stored on a public database and cannot be changed.
+
+**Lets take a look at the solidity code:**
+WeaponizedPing.sol
+
+```python
+pragma solidity ^0.4.24;
+
+contract WeaponizedPing
+{
+  string store = "google.com";
+
+  function getDomain() public view returns (string)
+  {
+      return store;
+  }
+
+  function setDomain(string _value) public
+  {
+      store = _value;
+  }
+}
+```
+
++ Smart contracts are written in Solidity and associate it with popular blockchain platforms, such as Ethereum
 
