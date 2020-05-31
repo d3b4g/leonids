@@ -1,4 +1,4 @@
-**Carrier** Chainsaw is a retired vulnerable VM from Hack. This box is about smart contract exploitation.
+**Carrier** Chainsaw is a retired vulnerable VM from Hack. This box is about Solidity, Ethereum Blockchain and IPFS Exploitation. 
 
 #### Enumeration
 
