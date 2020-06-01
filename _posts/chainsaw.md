@@ -38,13 +38,17 @@ ftp> mget *
 ```
 We have got three interesting files from FTP server, after a bit of researching i found out these files are party of a etherum smart contract.
 
+#### What is a Smart Contract ?
+
+> A smart contract is an agreement between two people in the form of computer code. They run on the blockchain, so they are stored on a public database and cannot be changed.
+
+#### Analyzing Smart Contract
+
 WeaponizedPing.json - A compiled Solidity smart-contract in JSON format
 WeaponizedPing.sol - .sol extention means its an Ethereum smart-sontract written in Solidity
 address.txt - Possibly an address on a blockchain where the contract is been deployed.
 
-#### What is a Smart Contract ?
 
-> A smart contract is an agreement between two people in the form of computer code. They run on the blockchain, so they are stored on a public database and cannot be changed.
 
 **Lets take a look at the solidity code:**
 WeaponizedPing.sol
@@ -75,10 +79,16 @@ contract WeaponizedPing
 
 ##### Initial Foothold:
 
-After some enumeration and reading about etherum blockchain i was able to determine the service running in 9810/tcp was running. Ganache CLI was runnng in that port.
+After some enumeration and reading about etherum blockchain i was able to determine the service running in tcp port 9810 was Ganache CLI.
 
 > Ganache CLI, part of the Truffle suite of Ethereum development tools, is the command line version of Ganache, your personal blockchain for Ethereum development.
 
 Ganache CLI uses ethereumjs to simulate full client behavior and make developing Ethereum applications faster, easier, and safer. It also includes all popular RPC functions and features (like events) and can be run deterministically to make development a breez.
 
-To interact with the Ethereum blockchain, i will be using python library w3.py
+To interact with the Ethereum blockchain, i will be using python library web3.py. To interact with the Smart Contract, we need:
+
++ The address of the contract 
++ Application Binary Interface of the contract
+
+###### Building Python Script
+
