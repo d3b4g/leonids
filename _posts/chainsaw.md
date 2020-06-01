@@ -68,7 +68,17 @@ contract WeaponizedPing
 }
 ```
 
-+ Smart contracts is written in Solidity. It is a contract-oriented, high-level language for implementing smart contracts.
++ Smart contracts is written in Solidity, which is a contract-oriented, high-level language for implementing smart contracts.
 + A getDomain function and setDomain which accepts a string_value. 
 + The getDomain function  retrieves the current value of the domain string
 + setDomain set a value for the domain string
+
+##### Initial Foothold:
+
+After some enumeration and reading about etherum blockchain i was able to determine the service running in 9810/tcp was running. Ganache CLI was runnng in that port.
+
+> Ganache CLI, part of the Truffle suite of Ethereum development tools, is the command line version of Ganache, your personal blockchain for Ethereum development.
+
+Ganache CLI uses ethereumjs to simulate full client behavior and make developing Ethereum applications faster, easier, and safer. It also includes all popular RPC functions and features (like events) and can be run deterministically to make development a breez.
+
+To interact with the Ethereum blockchain, i will be using python library w3.py
