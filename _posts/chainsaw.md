@@ -106,5 +106,9 @@ import json
 
 My final exploit is shown below
 
+#### Initial Shell
+
+Now that we know we can do RCE, lets replace the ping with our payload.
+
 
 
