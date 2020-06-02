@@ -36,7 +36,7 @@ ftp> dir
 226 Directory send OK.
 ftp> mget *
 ```
-We have got three interesting files from FTP server, after a bit of researching i found out these files are party of a etherum smart contract.
+We have got three interesting files from FTP server, after a bit of researching i found out these files are belong to a etherum smart contract.
 
 #### What is a Smart Contract ?
 
@@ -90,5 +90,9 @@ To interact with the Ethereum blockchain, i will be using python library web3.py
 + The address of the contract 
 + Application Binary Interface of the contract
 
+To test this vulnerability we can use setDomain() function and set the domain to our localhost  and then call getDomain(). This will make the contract ping localhost, if ping successful we know we got remote code execution.
+
 ###### Building Python Script
+
+
 
