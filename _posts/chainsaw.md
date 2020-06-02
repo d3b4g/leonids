@@ -93,6 +93,16 @@ To interact with the Ethereum blockchain, i will be using python library web3.py
 To test this vulnerability we can use setDomain() function and set the domain to our localhost  and then call getDomain(). This will make the contract ping localhost, if ping successful we know we got remote code execution.
 
 ###### Building Python Script
+So let’s start building a python script to interact with this contract.
+```python
+
+from web3 import Web3
+import json
+```
++ web3.Web3 intract with the blockchain
++ json to load the WeaponizedPing.json
+
+
 
 
 
