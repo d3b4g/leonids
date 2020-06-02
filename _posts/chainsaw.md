@@ -87,7 +87,7 @@ Ganache CLI uses ethereumjs to simulate full client behavior and make developing
 
 To interact with the Ethereum blockchain, i will be using python library web3.py. To interact with the Smart Contract, we need:
 
-+ The address of the contract 
++ the address to identify the contract
 + Application Binary Interface of the contract
 
 To test this vulnerability we can use setDomain() function and set the domain to our localhost  and then call getDomain(). This will make the contract ping localhost, if ping successful we know we got remote code execution.
@@ -103,6 +103,8 @@ import json
 + json to load the WeaponizedPing.json
 
 
+
+My final exploit is shown below
 
 
 
