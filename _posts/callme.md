@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "ROP Emporium - Split"
+title:  "ROP Emporium - callme"
 date:   2020-05-15 14:07:20
 categories: [ROP]
 excerpt: "This is the third challenge from ROP Emporium, named as **Callme**. In this challenge we need to execute callme_one(), callme_two() and callme_three() function  in sequential order to get the flag. Alonge the way i am going to explore more advance usage of radare2."
@@ -99,7 +99,7 @@ This function execute the pop instruction in the order rdi, rsi, rdx, the ret in
 So now the binary analysis is out of the way. Lets start fuzzing the binary. Generate the unique pattern and send to the program.
 
 #### rarun2 profile
-In radare2, when it gets to interact with a debugger.
+In radare2, when it gets to interact with a debugger, we need to use rarun2.
 
 This program is used as a launcher for running programs with different environments, arguments, permissions, directories and overridden default file descriptors.
 Source: man rarun2
