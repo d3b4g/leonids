@@ -81,7 +81,7 @@ contract WeaponizedPing
 
 After some enumeration and reading about etherum blockchain i was able to determine the service running in tcp port 9810 was Ganache CLI.
 
-> Ganache CLI, part of the Truffle suite of Ethereum development tools, is the command line version of Ganache, your personal blockchain for Ethereum development.
+> Ganache (formally known as testrpc) is an Ethereum implementation written in Node.js meant for testing purposes while developing dapps locally.
 
 Ganache CLI uses ethereumjs to simulate full client behavior and make developing Ethereum applications faster, easier, and safer. It also includes all popular RPC functions and features (like events) and can be run deterministically to make development a breez.
 
