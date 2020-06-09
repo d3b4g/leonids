@@ -143,7 +143,7 @@ Before doing anything i upgraded the shell to a fully tty. After that i quickly 
 ###### Enumeration:
 I dropped my SSH public key into the /home/administrator/.ssh/authorized_keys file so i can get into the system easily, without having to run the exploit again and again.
 
-Checked to see if their is anyother users in the system
+Checked to see if their is anyother users in the system, i can see user bobby which we might have to escalate to. 
 
 ```python
 
@@ -155,4 +155,32 @@ administrator:x:1001:1001:Chuck Rhoades,,,,IT Administrator:/home/administrator:
 administrator@chainsaw:/home$ 
 ```
 
+###### InterPlanetary File System
 
+> The InterPlanetary File System is a protocol and peer-to-peer network for storing and sharing data in a distributed file system. IPFS uses content-addressing to uniquely identify each file in a global namespace connecting all computing devices.
+
+```python
+
+administrator@chainsaw:/home/administrator$ ls -la
+ls -la
+total 104
+drwxr-x--- 8 administrator administrator  4096 Dec 20  2018 .
+drwxr-xr-x 4 root          root           4096 Dec 12  2018 ..
+lrwxrwxrwx 1 administrator administrator     9 Dec 12  2018 .bash_history -> /dev/null
+-rw-r----- 1 administrator administrator   220 Dec 12  2018 .bash_logout
+-rw-r----- 1 administrator administrator  3771 Dec 12  2018 .bashrc
+-rw-r----- 1 administrator administrator   220 Dec 20  2018 chainsaw-emp.csv
+drwxrwxr-x 5 administrator administrator  4096 Jan 23  2019 .ipfs
+drwxr-x--- 3 administrator administrator  4096 Dec 12  2018 .local
+drwxr-x--- 3 administrator administrator  4096 Dec 13  2018 maintain
+drwxr-x--- 2 administrator administrator  4096 Dec 12  2018 .ngrok2
+-rw-r----- 1 administrator administrator   807 Dec 12  2018 .profile
+drwxr-x--- 2 administrator administrator  4096 Dec 12  2018 .ssh
+drwxr-x--- 2 administrator administrator  4096 Dec 12  2018 .swt
+-rw-r----- 1 administrator administrator  1739 Dec 12  2018 .tmux.conf
+-rw-r----- 1 administrator administrator 45152 Dec 12  2018 .zcompdump
+lrwxrwxrwx 1 administrator administrator     9 Dec 12  2018 .zsh_history -> /dev/null
+-rw-r----- 1 administrator administrator  1295 Dec 12  2018 .zshrc
+administrator@chainsaw:/home/administrator$ 
+
+```
