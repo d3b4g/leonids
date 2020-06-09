@@ -111,4 +111,14 @@ My final exploit is shown below
 Now that we know we can do RCE, lets replace the ping with our payload.
 
 
+Capturing packets:
+
+➜  ~ tcpdump -i tun0 icmp -n
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
+13:20:24.477177 IP 10.10.14.35 > 10.10.10.142: ICMP echo request, id 49854, seq 1, length 64
+13:20:25.494467 IP 10.10.14.35 > 10.10.10.142: ICMP echo request, id 49854, seq 2, length 64
+13:20:26.522636 IP 10.10.14.35 > 10.10.10.142: ICMP echo request, id 49854, seq 3, length 64
+
+
 
