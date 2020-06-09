@@ -185,7 +185,21 @@ administrator@chainsaw:/home/administrator$
 
 ```
 
-Interesting file in maintaine folder
+Interesting files in maintain and pub folder
+
+```python
+
+administrator@chainsaw:~/maintain$ cd pub && ls -al
+total 28
+drwxrwxr-x 2 administrator administrator 4096 Dec 13  2018 .
+drwxr-x--- 3 administrator administrator 4096 Dec 13  2018 ..
+-rw-rw-r-- 1 administrator administrator  380 Dec 13  2018 arti.key.pub
+-rw-rw-r-- 1 administrator administrator  380 Dec 13  2018 bobby.key.pub
+-rw-rw-r-- 1 administrator administrator  380 Dec 13  2018 bryan.key.pub
+-rw-rw-r-- 1 administrator administrator  380 Dec 13  2018 lara.key.pub
+-rw-rw-r-- 1 administrator administrator  380 Dec 13  2018 wendy.key.pub
+```
+In pub folder we can see public key of bobby.
 
 ```python
 
