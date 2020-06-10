@@ -210,6 +210,8 @@ This comment "distributing keys over Protonmail" is a interesting one. This scri
 
 ###### InterPlanetary File System
 
+There is a .ipfs folder in administrator’s homedirectory.
+
 > The InterPlanetary File System is a protocol and peer-to-peer network for storing and sharing data in a distributed file system. IPFS uses content-addressing to uniquely identify each file in a global namespace connecting all computing devices.
 
 ```python
@@ -361,7 +363,7 @@ clgKMTVVMjEwQmR4RUZVRGNpeE5pd1Rwb0JTNk1meENPWndOLzFadjBtRThFQ0krNDRMY3FWdDN3
 PT0KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0=
 -----------------------d296272d7cb599bff2a1ddf6d6374d93--
 ```
-And found a mail which contains a base64 encoded RSA key.
+And found a mail which contains a base64 encoded RSA key, the key is encrypted and we need to crack it to use it.
 
-
+###### Cracking Password
 
