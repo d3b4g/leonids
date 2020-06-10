@@ -419,10 +419,9 @@ resources folder contains documentation related to IPFS:
 
 ```python
 
-bobby@chainsaw:~$ find resources/ -type f
-resources/InterPlanetary_File_System.pdf
-resources/IPFS-Draft.pdf
-resources/IPFS-Presentation.pdf
+bobby@chainsaw:~/resources$ ls
+InterPlanetary_File_System.pdf  IPFS-Draft.pdf  IPFS-Presentation.pdf
+
 ```
 
 Project folder contains few files related smart contract a SUID binary:
@@ -434,5 +433,89 @@ drwxrwxr-x 3 bobby bobby 4096 Dec 20  2018 .
 drwxr-x--- 9 bobby bobby 4096 Jan 23  2019 ..
 drwxrwxr-x 2 bobby bobby 4096 Jan 23  2019 ChainsawClub
 ```
+##### ChainsawClub: Analysis
+Another smart contract, Looks like we’re going to be doing some more smart contract exploitation.
+
+Chainsaw SUID binary:
+```python
+
+bobby@chainsaw:~/projects/ChainsawClub$ ./ChainsawClub 
+
+      _           _
+     | |         (_)
+  ___| |__   __ _ _ _ __  ___  __ ___      __
+ / __| '_ \ / _` | | '_ \/ __|/ _` \ \ /\ / /
+| (__| | | | (_| | | | | \__ \ (_| |\ V  V /
+ \___|_| |_|\__,_|_|_| |_|___/\__,_| \_/\_/
+                                            club
+                                                                                                                                                                      
+- Total supply: 1000                                                                                                                                                  
+- 1 CHC = 51.08 EUR                                                                                                                                                   
+- Market cap: 51080 (€)                                                                                                                                               
+                                                                                                                                                                      
+[*] Please sign up first and then log in!                                                                                                                             
+[*] Entry based on merit.
+
+Username: test
+Password: 
+[*] Wrong credentials!
+
+```
+Running the binary prompt for a username and password which we don't have.
 
 
+ChainsawClub.sol:
+
+```python
+
+bobby@chainsaw:~/projects/ChainsawClub$ cat ChainsawClub.sol
+pragma solidity ^0.4.22;
+
+contract ChainsawClub {
+
+  string username = 'nobody';
+  string password = '7b455ca1ffcb9f3828cfdde4a396139e';
+  bool approve = false;
+  uint totalSupply = 1000;
+  uint userBalance = 0;
+
+  function getUsername() public view returns (string) {
+      return username;
+  }
+  function setUsername(string _value) public {
+      username = _value;
+  }
+  function getPassword() public view returns (string) {
+      return password;
+  }
+  function setPassword(string _value) public {
+      password = _value;
+  }
+  function getApprove() public view returns (bool) {
+      return approve;
+  }
+  function setApprove(bool _value) public {
+      approve = _value;
+  }
+  function getSupply() public view returns (uint) {
+      return totalSupply;
+  }
+  function getBalance() public view returns (uint) {
+      return userBalance;
+  }
+  function transfer(uint _value) public {
+      if (_value > 0 && _value <= totalSupply) {
+          totalSupply -= _value;
+          userBalance += _value;
+      }
+  }
+  function reset() public {
+      username = '';
+      password = '';
+      userBalance = 0;
+      totalSupply = 1000;
+      approve = false;
+  }
+}
+```
+Just like before we’ll write a python script to interact with the contract.
