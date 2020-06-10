@@ -408,7 +408,7 @@ bobby@chainsaw:~$ wc -l user.txt
 ```
 
 ###### Priviledge Escalation
-In addition to user.txt, there are two folders in bobby’s homedir:
+During enumeration i noticed few interesting files in bobbys home. In addition to user.txt, there are two folders in bobby’s homedir:
 ```python
 
 bobby@chainsaw:~$ ls
@@ -428,9 +428,11 @@ resources/IPFS-Presentation.pdf
 Project folder contains few files related smart contract a SUID binary:
 
 ```python
-
-bobby@chainsaw:~/projects/ChainsawClub$ ls
-ChainsawClub  ChainsawClub.json  ChainsawClub.sol
+bobby@chainsaw:~/projects$ ls -la
+total 12
+drwxrwxr-x 3 bobby bobby 4096 Dec 20  2018 .
+drwxr-x--- 9 bobby bobby 4096 Jan 23  2019 ..
+drwxrwxr-x 2 bobby bobby 4096 Jan 23  2019 ChainsawClub
 ```
 
 
