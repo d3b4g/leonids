@@ -257,7 +257,7 @@ drwx------  2 administrator administrator 4096 Dec 13  2018 keystore
 -rw-r--r--  1 administrator administrator    2 Dec 13  2018 version
 administrator@chainsaw:/home/administrator/.ipfs$ 
 ```
-I searched for files containing bobby inside ipfs folder grep -iRl bobby
+I searched for files containing bobby inside ipfs folder grep -iRl bobby and found few IPFS blocks which contains bobby's data. In IPFS, a block refers to a single unit of data, identified by its key (hash).
 
 ```python
 
@@ -319,6 +319,7 @@ RGVwYXJ0bWVudDxicj48L2Rpdj4=
 I am writing this email in reference to the method on how we access our Linux server from now on. Due to security reasons, we have disabled SSH password authentication and instead we will use private/public key pairs to securely and conveniently access the machine.<br></div><div><br></div><div>Attached you will find your personal encrypted private key. Please ask&nbsp;reception desk for your password, therefore be sure to bring your valid ID as always.
 IT Administration Department
 ```
+The mail attachment contains encrypted RSA key.
 
 ###### Base64 decoded RSA key
 
@@ -363,7 +364,6 @@ clgKMTVVMjEwQmR4RUZVRGNpeE5pd1Rwb0JTNk1meENPWndOLzFadjBtRThFQ0krNDRMY3FWdDN3
 PT0KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0=
 -----------------------d296272d7cb599bff2a1ddf6d6374d93--
 ```
-And found a mail which contains a base64 encoded RSA key, the key is encrypted and we need to crack it to use it.
 
 ###### Cracking Password
 
