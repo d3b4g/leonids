@@ -140,7 +140,7 @@ administrator@chainsaw:/opt/WeaponizedPing$
 ```
 Before doing anything i upgraded the shell to a fully tty. After that i quickly searched for the user.txt but it is not here, so back to further enumeration. 
 
-###### Enumeration:
+###### System Enumeration :
 I dropped my SSH public key into the /home/administrator/.ssh/authorized_keys file so i can get into the system easily, without having to run the exploit again and again.
 
 Checked to see if their is anyother users in the system, i can see user bobby which we might have to escalate to. 
@@ -319,7 +319,7 @@ RGVwYXJ0bWVudDxicj48L2Rpdj4=
 I am writing this email in reference to the method on how we access our Linux server from now on. Due to security reasons, we have disabled SSH password authentication and instead we will use private/public key pairs to securely and conveniently access the machine.<br></div><div><br></div><div>Attached you will find your personal encrypted private key. Please ask&nbsp;reception desk for your password, therefore be sure to bring your valid ID as always.
 IT Administration Department
 ```
-The mail attachment contains encrypted RSA key.
+The mail attachment contains SSH keypair bobby.
 
 ###### Base64 decoded RSA key
 
@@ -366,4 +366,47 @@ PT0KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0=
 ```
 
 ###### Cracking Password
+
+To decrypt the key we need to use ssh2john and convert the encrypted RSA Private Key into a hash format and feed it to JTR.
+
+```python
+
+➜  chainsaw python ssh2john.py bobby.key.enc.b64 > bobby_hash                     
+
+```
+After few seconds the key is cracked.
+
+```python
+
+➜  chainsaw john --wordlist=/usr/share/wordlists/rockyou.txt  bobby_hash 
+Using default input encoding: UTF-8
+Loaded 1 password hash (SSH [RSA/DSA/EC/OPENSSH (SSH private keys) 32/64])
+Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 1 for all loaded hashes
+Cost 2 (iteration count) is 2 for all loaded hashes
+Will run 4 OpenMP threads
+Note: This format may emit false positives, so it will keep trying even after
+finding a possible candidate.
+Press 'q' or Ctrl-C to abort, almost any other key for status
+jackychain       (bobby.key.enc.b64)
+Warning: Only 2 candidates left, minimum 4 needed for performance.
+1g 0:00:00:16 DONE (2020-06-10 05:11) 0.05938g/s 851644p/s 851644c/s 851644C/sa6_123..*7¡Vamos!
+Session completed
+```
+
+###### Getting user.txt
+
+Now I can connect as bobby and grab user.txt 
+```python
+
+➜  chainsaw ssh -i bobby.key.enc.b64 bobby@10.10.10.142
+Enter passphrase for key 'bobby.key.enc.b64': 
+bobby@chainsaw:~$ id
+uid=1000(bobby) gid=1000(bobby) groups=1000(bobby),30(dip)
+bobby@chainsaw:~$ wc -l user.txt 
+1 user.txt
+
+```
+
+###### Priviledge Escalation
+
 
