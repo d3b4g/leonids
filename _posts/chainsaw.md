@@ -534,4 +534,22 @@ Interesting functions available in the solidity file:
 + transfer() which actually performs a simple, logical transaction
 + reset() resets all variable to default values
 
-Just like before we’ll write a python script to interact with the contract.
+###### PrivEscalation Exploit:
+
+Just like before we’ll write a python script to interact with the contract.To make our exploit work we need to meet certain conditions:
+
++  Set a new username and password.
++  Match the credentials from the smart contract, otherwise you get a “Wrong credentials”
+message
++ Approve our user since the program was returning a “User is not approved” message
++ Transfer enough (all) funds from supply to our user’s balance in order to enter the club (root
+shell), otherwise you get a “Not enough funds” message
+
+Ganache-cli running locally on port 63991 so we need to portforward, so we can access it locally.
+```python
+
+➜  chainsaw ssh -i bobby.key.enc.b64 -L 63991:127.0.0.1:63991 bobby@10.10.10.142
+Enter passphrase for key 'bobby.key.enc.b64': 
+bobby@chainsaw:~$ 
+```
+
