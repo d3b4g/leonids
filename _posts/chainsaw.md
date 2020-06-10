@@ -545,7 +545,25 @@ message
 + Transfer enough (all) funds from supply to our user’s balance in order to enter the club (root
 shell), otherwise you get a “Not enough funds” message
 
-Ganache-cli running locally on port 63991 so we need to portforward, so we can access it locally.
+Ganache-cli running locally on port 63991 
+```python
+
+bobby@chainsaw:~/projects/ChainsawClub$ netstat -ntlp
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:9810            0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:63991         0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::21                   :::*                    LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+bobby@chainsaw:~/projects/ChainsawClub$ 
+
+
+```
+So we need to portforward,that way we can access it locally.
 ```python
 
 ➜  chainsaw ssh -i bobby.key.enc.b64 -L 63991:127.0.0.1:63991 bobby@10.10.10.142
