@@ -308,6 +308,20 @@ YXNlIGFzayZuYnNwO3JlY2VwdGlvbiBkZXNrIGZvciB5b3VyIHBhc3N3b3JkLCB0aGVyZWZvcmUg
 YmUgc3VyZSB0byBicmluZyB5b3VyIHZhbGlkIElEIGFzIGFsd2F5cy48YnI+PC9kaXY+PGRpdj48
 YnI+PC9kaXY+PGRpdj5TaW5jZXJlbHksPGJyPjwvZGl2PjxkaXY+SVQgQWRtaW5pc3RyYXRpb24g
 RGVwYXJ0bWVudDxicj48L2Rpdj4=
+```
+###### Base64 decoded 
+
+```python
+
+
+I am writing this email in reference to the method on how we access our Linux server from now on. Due to security reasons, we have disabled SSH password authentication and instead we will use private/public key pairs to securely and conveniently access the machine.<br></div><div><br></div><div>Attached you will find your personal encrypted private key. Please ask&nbsp;reception desk for your password, therefore be sure to bring your valid ID as always.
+IT Administration Department
+```
+
+###### Base64 decoded RSA key
+
+```python
+
 -----------------------ffced83f318ffbd54e80374f045d2451--
 -----------------------d296272d7cb599bff2a1ddf6d6374d93
 Content-Type: application/octet-stream; filename="bobby.key.enc"; name="bobby.key.enc"
