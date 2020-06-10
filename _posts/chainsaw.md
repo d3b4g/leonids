@@ -408,5 +408,29 @@ bobby@chainsaw:~$ wc -l user.txt
 ```
 
 ###### Priviledge Escalation
+In addition to user.txt, there are two folders in bobby’s homedir:
+```python
+
+bobby@chainsaw:~$ ls
+projects  resources  user.txt
+bobby@chainsaw:~$ 
+```
+resources folder contains documentation related to IPFS:
+
+```python
+
+bobby@chainsaw:~$ find resources/ -type f
+resources/InterPlanetary_File_System.pdf
+resources/IPFS-Draft.pdf
+resources/IPFS-Presentation.pdf
+```
+
+Project folder contains few files related smart contract a SUID binary:
+
+```python
+
+bobby@chainsaw:~/projects/ChainsawClub$ ls
+ChainsawClub  ChainsawClub.json  ChainsawClub.sol
+```
 
 
