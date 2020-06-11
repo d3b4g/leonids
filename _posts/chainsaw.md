@@ -144,7 +144,7 @@ python -c 'import pty; pty.spawn("/bin/bash")'
 administrator@chainsaw:/opt/WeaponizedPing$ 
 
 ```
-Before doing anything i upgraded the shell to a fully tty. After that i quickly searched for the user.txt but it is not here, so back to further enumeration. 
+Before doing anything i upgraded my shell. After that i quickly searched for the user.txt but it is not here, so back to further enumeration. 
 
 ###### System Enumeration :
 
@@ -528,22 +528,15 @@ contract ChainsawClub {
 ```
 Interesting functions available in the solidity file:
 
-+ setUsername() and setPassword() use to create a ‘new’ account
-+ setApprove() to possibly approve the user. Default is false so we may need to overwrite
-+ getSupply() to get total supply from the application and getBalance() to get user balance
-+ transfer() which actually performs a simple, logical transaction
-+ reset() resets all variable to default values
++ setUsername() and setPassword() 
++ setApprove()
++ getSupply() 
++ transfer() 
++ reset() 
 
 ###### PrivEscalation Exploit:
 
-Just like before we’ll write a python script to interact with the contract.To make our exploit work we need to meet certain conditions:
-
-+  Set a new username and password.
-+  Match the credentials from the smart contract, otherwise you get a “Wrong credentials”
-message
-+ Approve our user since the program was returning a “User is not approved” message
-+ Transfer enough (all) funds from supply to our user’s balance in order to enter the club (root
-shell), otherwise you get a “Not enough funds” message
+Just like before we’ll write a python script to interact with the contract.
 
 Ganache-cli running locally on port 63991 
 ```python
@@ -571,6 +564,13 @@ So we need to portforward,that way we can access it locally.
 Enter passphrase for key 'bobby.key.enc.b64': 
 bobby@chainsaw:~$ 
 ```
+To make our exploit work we need to meet certain conditions:
+
++  Set a new username and password.
++  Match the credentials from the smart contract
++ Approve our user 
++ Transfer enough  funds to join  the club 
+
 
 Full Exploit
 
