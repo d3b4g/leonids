@@ -22,8 +22,6 @@ comments: true
 
 To begin the enumeration process, a **TCP/UDP** port scan was run against the target using nmap. The purpose of scan is to quickly determine which ports are open and which services are running. 
 
-###### OS Information
-Based on the Apache version, it looks like we are dealing with Xenial / Ubuntu 16.04 based system.
 
 ###### Open Ports and Services :
 In addition to usual ports
@@ -56,11 +54,11 @@ ftp> mget *
 ```
 We have got three interesting files from FTP server, after a bit of researching i found out these files are belong to a etherum smart contract.
 
-#### What is a Smart Contract ?
+###### What is a Smart Contract ?
 
 > A smart contract is an agreement between two people in the form of computer code. They run on the blockchain, so they are stored on a public database and cannot be changed.
 
-#### Analyzing Smart Contract
+###### Analyzing Smart Contract
 
 + WeaponizedPing.json - A compiled Solidity smart-contract in JSON format
 + WeaponizedPing.sol - .sol extention, Ethereum smart-sontract written in Solidity
@@ -95,7 +93,7 @@ contract WeaponizedPing
 + The getDomain function  retrieves the current value of the domain string
 + setDomain set a value for the domain string
 
-##### Initial Foothold:
+# Initial Foothold:
 
 After some enumeration and reading about etherum blockchain i was able to determine the service running in tcp port 9810 was Ganache CLI.
 
@@ -110,10 +108,11 @@ To interact with the Smart Contract, we need:
 
 To test this vulnerability we can use setDomain() function and set the domain to our localhost  and then call getDomain(). This will make the contract ping localhost, if ping successful we know we got remote code execution.
 
-###### Building Python Script
+###### Building the Exploit:
+
 To test our theory let’s start building a python script to interact with this contract. I will be using web3 liabrary to interect with smart contract.
 
-My final exploit is shown below:
+Final Exploit:
 
 ```python
 #!/usr/bin/env python3
@@ -130,7 +129,7 @@ contract.functions.getDomain().call()
 ```
 > Watch out the address.txt changes after every reset. Wasted a lot of time because of this :/
 
-#### Initial Shell
+# User Shell
 
 Before trying to get a remote shell lets test our theory and find if we can achive RCE. Our script will send a ping request to our VPN IP.
 
@@ -340,7 +339,7 @@ YnI+PC9kaXY+PGRpdj5TaW5jZXJlbHksPGJyPjwvZGl2PjxkaXY+SVQgQWRtaW5pc3RyYXRpb24g
 RGVwYXJ0bWVudDxicj48L2Rpdj4=
 ```
 
-Baseg4 decoded Mail body: 
+Base64 decoded Mail body: 
 
 ```python
 
@@ -348,9 +347,7 @@ Baseg4 decoded Mail body:
 I am writing this email in reference to the method on how we access our Linux server from now on. Due to security reasons, we have disabled SSH password authentication and instead we will use private/public key pairs to securely and conveniently access the machine.<br></div><div><br></div><div>Attached you will find your personal encrypted private key. Please ask&nbsp;reception desk for your password, therefore be sure to bring your valid ID as always.
 IT Administration Department
 ```
-The mail attachment contains SSH keypair bobby.
-
-Base64 decoded SSH keypair key:
+The mail attachment contains base64 encoded SSH keypair of user bobby.
 
 ```python
 
@@ -394,9 +391,9 @@ PT0KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0=
 -----------------------d296272d7cb599bff2a1ddf6d6374d93--
 ```
 
-#### Cracking Password
+###### Cracking SSH Keys
 
-The file is encrypted with  triple DES with CBC mode. To decrypt the key we need to use ssh2john and convert the encrypted RSA Private Key into a hash format and feed it to JTR.
+The file is encrypted with triple DES in CBC mode. To decrypt the key we need to use ssh2john and convert the encrypted RSA Private Key into a hash format and feed it to JTR.
 
 ```python
 
@@ -422,9 +419,10 @@ Warning: Only 2 candidates left, minimum 4 needed for performance.
 Session completed
 ```
 
-#### Getting user.txt
+###### Getting user.txt
 
 Now I can connect as bobby and grab user.txt 
+
 ```python
 
 ➜  chainsaw ssh -i bobby.key.enc.b64 bobby@10.10.10.142
@@ -436,7 +434,7 @@ bobby@chainsaw:~$ wc -l user.txt
 
 ```
 
-#### Priviledge Escalation
+# privilege escalation (root)
 
 During the enumeration for root i noticed few interesting files in bobbys home. In addition to user.txt, there are two folders in bobby’s homedirectory:
 
@@ -463,7 +461,7 @@ drwxrwxr-x 3 bobby bobby 4096 Dec 20  2018 .
 drwxr-x--- 9 bobby bobby 4096 Jan 23  2019 ..
 drwxrwxr-x 2 bobby bobby 4096 Jan 23  2019 ChainsawClub
 ```
-##### ChainsawClub: Analysis
+###### ChainsawClub: Analysis
 
 Here we have got another smart contract, Looks like we’re going to be doing some more smart contract exploitation.
 
@@ -552,13 +550,13 @@ contract ChainsawClub {
 ```
 Interesting functions available in the solidity file:
 
-+ **setUsername() and setPassword() 
-+ **setApprove()
-+ **getSupply() 
-+ **transfer() 
-+ **reset() 
++ setUsername()
++ setPassword() 
++ setApprove()
++ getSupply() 
++ transfer() 
++ reset() 
 
-#### PrivEscalation Exploit:
 
 Just like before we’ll write a python script to interact with the contract.
 
@@ -589,7 +587,7 @@ So we need to portforward,that way we can access it locally.
 Enter passphrase for key 'bobby.key.enc.b64': 
 bobby@chainsaw:~$ 
 ```
-#### Exploitation
+# Exploitation
 
 To make our exploit work we need to meet certain conditions:
 
@@ -599,7 +597,7 @@ To make our exploit work we need to meet certain conditions:
 
 We need to build a smiliar exploit justt like before.The exploit add a username 'd3' and set password as dog@1, approve the user and enough funds to join the club, now we can login with that credentials to chainsawclub.
 
-##### Root Shell
+###### Root Shell
 
 ```python
 
@@ -624,7 +622,7 @@ root@chainsaw:/home#
 
 Look like we have to dig deeper to find the root.tx file. After hours of enumeration i coudn't find anything and had to ask for a hint. 
 
-##### Slack Space
+###### Slack Space
 
 Based on the hint i found a **bmap** folder in **/sbin** directory.
 > bmap is a tool for creating the block map for a file or copying files using the block map,
@@ -636,8 +634,9 @@ slack size: 4044
 block size: 4096
 68c874b7d*******
 
-There is another way we can exploit this SUID binary, but i am totally exausted after battling with this one for past few days.
+There is another way we can exploit this SUID binary, but i am totally exhausted after battling with this one for past few days.
 
-#### Concluion
-This was a great box, i learned a lot about smartcontacts,blockchain,IPFS and slack spacing.
+###### Concluion
+
+This was a great box, i learned a lot about smartcontacts,blockchain and IPFS exploitation.
 
