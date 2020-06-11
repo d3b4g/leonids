@@ -571,3 +571,24 @@ Enter passphrase for key 'bobby.key.enc.b64':
 bobby@chainsaw:~$ 
 ```
 
+Full Exploit
+
+
+##### Root Shell
+
+```python
+
+Username: d3
+Password: 
+
+         ************************
+         * Welcome to the club! *
+         ************************
+
+ Rule #1: Do not get excited too fast.
+    
+root@chainsaw:/home/bobby/projects/ChainsawClub# id
+uid=0(root) gid=0(root) groups=0(root)
+root@chainsaw:/home/bobby/projects/ChainsawClub# 
+```
+
