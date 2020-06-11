@@ -110,6 +110,7 @@ contract = w3.eth.contract(address=address, abi=abi['abi'])
 contract.functions.setDomain(sys.argv[1]).transact({"from":account,"to":address})
 contract.functions.getDomain().call()
 ```
+> Watch out the address.txt changes after every reset. Wasted a lot of time because of this :/
 
 #### Initial Shell
 
