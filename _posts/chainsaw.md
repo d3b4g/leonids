@@ -620,6 +620,8 @@ slack size: 4044
 block size: 4096
 68c874b7d*******
 
+There is another way we can exploit this SUID binary, but i will leave it  from here.
+
 #### Concluion
 This was a great box, i learned a lot about smartcontacts,blockchain,IPFS and slack spacing.
 
