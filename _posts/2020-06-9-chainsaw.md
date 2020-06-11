@@ -18,7 +18,7 @@ comments: true
 
 
 
-# Enumeration
+#### Enumeration
 
 To begin the enumeration process, a **TCP/UDP** port scan was run against the target using nmap. The purpose of scan is to quickly determine which ports are open and which services are running. 
 
@@ -93,7 +93,7 @@ contract WeaponizedPing
 + The getDomain function  retrieves the current value of the domain string
 + setDomain set a value for the domain string
 
-# Initial Foothold:
+#### Initial Foothold:
 
 After some enumeration and reading about etherum blockchain i was able to determine the service running in tcp port 9810 was Ganache CLI.
 
@@ -129,7 +129,7 @@ contract.functions.getDomain().call()
 ```
 > Watch out the address.txt changes after every reset. Wasted a lot of time because of this :/
 
-# User Shell
+#### User Shell
 
 Before trying to get a remote shell lets test our theory and find if we can achive RCE. Our script will send a ping request to our VPN IP.
 
@@ -434,7 +434,7 @@ bobby@chainsaw:~$ wc -l user.txt
 
 ```
 
-# privilege escalation (root)
+#### Privilege Escalation (root)
 
 During the enumeration for root i noticed few interesting files in bobbys home. In addition to user.txt, there are two folders in bobby’s homedirectory:
 
@@ -587,7 +587,7 @@ So we need to portforward,that way we can access it locally.
 Enter passphrase for key 'bobby.key.enc.b64': 
 bobby@chainsaw:~$ 
 ```
-# Exploitation
+#### Exploitation
 
 To make our exploit work we need to meet certain conditions:
 
