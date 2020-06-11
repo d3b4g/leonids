@@ -590,5 +590,11 @@ Password:
 root@chainsaw:/home/bobby/projects/ChainsawClub# id
 uid=0(root) gid=0(root) groups=0(root)
 root@chainsaw:/home/bobby/projects/ChainsawClub# 
+root@chainsaw:/home# locate root.txt
+\/root/root.txt
+root@chainsaw:/home# cat /root/root.txt
+Mine deeper to get rewarded with root coin (RTC)...
+root@chainsaw:/home# 
 ```
 
+Look like we have to dig deeper to find the root.tx file. 
