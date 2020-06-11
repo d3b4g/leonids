@@ -564,6 +564,7 @@ bobby@chainsaw:~/projects/ChainsawClub$
 
 ```
 So we need to portforward,that way we can access it locally.
+
 ```python
 
 ➜  chainsaw ssh -i bobby.key.enc.b64 -L 63991:127.0.0.1:63991 bobby@10.10.10.142
@@ -597,4 +598,20 @@ Mine deeper to get rewarded with root coin (RTC)...
 root@chainsaw:/home# 
 ```
 
-Look like we have to dig deeper to find the root.tx file. 
+Look like we have to dig deeper to find the root.tx file. After hours of enumeration i coudn't find anything and had to ask for a hint. 
+
+##### Slack Space
+
+Based on the hint i found a bmap folder in sbin directory.
+> bmap is a tool for creating the block map for a file or copying files using the block map,
+
+root@chainsaw:~# bmap --slack root.txt
+getting from block 2655304
+file size was: 52
+slack size: 4044
+block size: 4096
+68c874b7d*******
+
+#### Concluion
+This was a great box, i learned a lot about smartcontacts,blockchain,IPFS and slack spacing.
+
