@@ -623,9 +623,11 @@ Look like we have to dig deeper to find the root.tx file. After enumerating for 
 
 ###### Slack Space
 
-Based on the hint i found a **bmap** tool, installed on the system and used it to read data hidden in slack-space.
+Based on the hint i found  **bmap** tool, installed on the system and used it to read data hidden in slack-space.
 
 > bmap is a tool for creating the block map for a file or copying files using the block map,
+
+```python
 
 root@chainsaw:~# bmap --slack root.txt
 getting from block 2655304
@@ -633,6 +635,7 @@ file size was: 52
 slack size: 4044
 block size: 4096
 68c874b7d*******
+```
 
 w00t, got the root flag hidden in slack-space.
 
