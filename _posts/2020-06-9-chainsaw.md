@@ -9,7 +9,7 @@ comments: true
 ---
 
 
-#### Background
+#### Box Details:
 
 **Chainsaw** is a retired vulnerable VM from Hack. This box is about Solidity, Ethereum Blockchain and IPFS Exploitation. 
 
@@ -17,7 +17,7 @@ comments: true
 
 
 
-#### Enumeration
+#### Recon
 
 To begin the enumeration process, a **TCP/UDP** port scan was run against the target using nmap. The purpose of scan is to quickly determine which ports are open and which services are running. 
 
@@ -29,7 +29,7 @@ In addition to usual ports
 + Port 22 : SSH Server
 + Port 9810 : A webserver ?
 
-###### Anonymous FTP:
+###### FTP Enumeration:
 
 ```python
 
