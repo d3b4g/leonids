@@ -32,6 +32,8 @@ A quick google search reveals the default credentials are admin:gophish. And i w
 
 ![source-01](/img/Screenshot_2020-06-12_17-00-46.png){: .align-left}
 
+.
+
 
 
 
