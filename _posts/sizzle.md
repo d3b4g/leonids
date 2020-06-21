@@ -83,7 +83,7 @@ So we need a username and password to access /certsrv, lets enumerate the SMB sh
 
 There is nothing interesting in department shares and most of the folders are empty.
 
-![source-01](/img/sizzle3.PNG){: .align-left}
+![source-01](/img/sizzle4.PNG){: .align-left}
 
 
 
