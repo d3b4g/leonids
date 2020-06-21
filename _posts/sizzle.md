@@ -103,6 +103,23 @@ What is WinRM ?
 
 #### Intial Acess - Compromising User
 
+Now we can use the cersrv portal and request for Certificate Signing Request (CSR).
+
+#### Certificate Signing Request (CSR)
+We can use OpenSSL to generate CSR file 
+
+![source-01](/img/Screenshot_2020-06-21_16-47-07.png){: .align-left}
+
+On the certificate web enrollment page copy/paste the content of the CSR file.
+
+![source-01](/img/Screenshot_2020-06-21_16-55-08.png){: .align-left}
+
+
+
+
+
+
+
 
 
 
