@@ -37,5 +37,38 @@ PORT     STATE SERVICE       REASON          VERSION
 #### Notes:
 - There are a lot of ports open and by looking at the open ports we know it is most likely a windows active directory setup.
 
+#### HTTP - TCP 80
+Gobuster did find an interesting directory **certenroll**  which is microsoft certificate authority enrolement service.
+```python
+
+/aspnet_client (Status: 301)
+/certenroll (Status: 301)
+/Images (Status: 301)
+/images (Status: 301)
+/index.html (Status: 200)
+```
+But visiting that directory show us 403 forbidden
+
+![source-01](/img/sizzle1.PNG){: .align-left}
 
 
+
+#### SMB - TCP 445
+Using SMB client i was able to get bunch of shares.
+
+```python
+
+sizzle smbclient -N -L \\\\sizzle.htb.local
+
+        Sharename       Type      Comment
+        ---------       ----      -------
+        ADMIN$          Disk      Remote Admin
+        C$              Disk      Default share
+        CertEnroll      Disk      Active Directory Certificate Services share
+        Department Shares Disk
+        IPC$            IPC       Remote IPC
+        NETLOGON        Disk      Logon server share
+        Operations      Disk
+        SYSVOL          Disk      Logon server share
+SMB1 disabled -- no workgroup available
+```
