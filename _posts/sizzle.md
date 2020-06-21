@@ -79,4 +79,12 @@ Visting that directory pop us for a username and password
 
 ![source-01](/img/sizzle2.PNG){: .align-left}
 
+So we need a username and password to access /certsrv, lets enumerate the SMB shares further.
+
+There is nothing interesting in department shares and most of the folders are empty.
+
+![source-01](/img/sizzle3.PNG){: .align-left}
+
+
+
 
