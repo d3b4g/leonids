@@ -91,6 +91,19 @@ Feed  the captured hash to hashcat to crack it.
 
 And we got the password.
 
+#### Certenrol Access
+Using the credential for amanda we can login to /cersrv which is Microsoft certificate certificate enrol service.
+
+![source-01](/Screenshot_2020-06-21_16-25-23.png){: .align-left}
+
+Great now we can request certificates, why we need a certificate anyway ?. From our initial nmap scans we know winrm port is open which is https, to use this service we need to have a valid certificate.
+
+What is WinRM ?
+> Windows Remote Management, or WinRM, is a Windows-native built-in remote management protocol in its simplest form that uses Simple Object Access Protocol to interface with remote computers and servers, as well as Operating Systems and applications.
+
+#### Intial Acess - Compromising User
+
+
 
 
 
