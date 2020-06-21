@@ -72,3 +72,11 @@ sizzle smbclient -N -L \\\\sizzle.htb.local
         SYSVOL          Disk      Logon server share
 SMB1 disabled -- no workgroup available
 ```
+Notes:
+- From the shares i noticed the CertEnroll which is used by Microsoft Certificate Authority. From my years of experience with managing windows Active directory environments /certsrv 
+
+Visting that directory pop us for a username and password
+
+![source-01](/img/sizzle2.PNG){: .align-left}
+
+
