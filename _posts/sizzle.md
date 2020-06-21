@@ -77,5 +77,22 @@ From all the folders we have Full access to  /Users folder.
 When we have read/write access to a SMB file share, we can performa a SCF file attack to steal NetNTLMv2 hash.
 > 
 
+After uploading the malicious SCF file, we wait for responder 
+
+![source-01](/img/sizzle8.PNG){: .align-left}
+
+And we got user Amanda's NetNTLM Hash
+
+#### Hash Cracking
+
+Feed  the captured hash to hashcat to crack it.
+
+![source-01](/img/sizzle9.PNG){: .align-left}
+
+And we got the password.
+
+
+
+
 
 
