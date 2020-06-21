@@ -64,10 +64,18 @@ Visting that directory pop us for a username and password
 
 So we need a username and password to access /certsrv, lets enumerate the SMB shares further.
 
-There is nothing interesting in department shares and most of the folders are empty.
+There is nothing interesting in department shares and most of the folders are empty. 
 
 ![source-01](/img/sizzle4.PNG){: .align-left}
 
+From all the folders we have Full access to  /Users folder.
+
+![source-01](/img/sizzle7.PNG){: .align-left}
+
+#### SMB Share – SCF File Attacks
+
+When we have read/write access to a SMB file share, we can performa a SCF file attack to steal NetNTLMv2 hash.
+> 
 
 
 
