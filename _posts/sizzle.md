@@ -94,7 +94,7 @@ And we got the password.
 #### Certenrol Access
 Using the credential for amanda we can login to /cersrv which is Microsoft certificate certificate enrol service.
 
-![source-01](/Screenshot_2020-06-21_16-25-23.png){: .align-left}
+![source-01](/img/Screenshot_2020-06-21_16-25-23.png){: .align-left}
 
 Great now we can request certificates, why we need a certificate anyway ?. From our initial nmap scans we know winrm port is open which is https, to use this service we need to have a valid certificate.
 
