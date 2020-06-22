@@ -165,7 +165,7 @@ It was simple enough to bypass the PowerShell CL using powershell downgrade atta
 
 Uploading Powerview for the kerberoas attack
 
-![source-01](/img/Screenshot2020-06-22 160728.png){: .align-left}
+![source-01](/img/invokeweb.png){: .align-left}
 
 
 SPN- Attack
