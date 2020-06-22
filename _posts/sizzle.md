@@ -133,6 +133,17 @@ On the certificate web enrollment page copy/paste the content of the CSR file.
 
 ![source-01](/img/Screenshot_2020-06-21_16-55-08.png){: .align-left}
 
+After generating and signing the cerificate for amanda SSL authentication, we need to set some variables in WinRM script. 
+
+![source-01](/img/Screenshot 2020-06-22 10:04:19.png){: .align-left}
+
+
+#### Initial Access:
+Now we can use WinRM script to Loging as amanda.
+
+![source-01](/img/Screenshot 2020-06-22 09:58:58.png){: .align-left}
+
+
 
 
 
