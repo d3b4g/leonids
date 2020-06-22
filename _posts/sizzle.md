@@ -158,6 +158,17 @@ Try to upload and run bloodhound to the syste, but it was blocked by powershell 
 #### PowerShell CL and AppLocker Bypass
 Lets bypass powershell constrained language mode and AppLocker to run our tools.
 It was simple enough to bypass the PowerShell CL using powershell downgrade attack, i used powershell version2 to bypass the CL mode.
+> When forcing PowerShell to run using its PowerShell 2.0 engine none of the advanced security features are available, since the older .NET Framework v2.0 is loaded with powershell.
+
+SPN- Attack
+Getting all the users with SPN, for easy kerberoasting win
+
+![source-01](/img/Screenshot2020-06-22142754.png){: .align-left}
+
+And we can see the user milky have a service principal name, the user is running some service using that account.
+
+
+
 
 
 
