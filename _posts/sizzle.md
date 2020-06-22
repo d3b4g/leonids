@@ -147,9 +147,12 @@ User.txt file is not in amanda folders, there was another user in the system. So
 
 ![source-01](/img/Screenshot_2020-06-22.png){: .align-left}
 
+#### Notes:
++ There is a user called sizzler,krbtgt and milky. This information maybe helpful in our attack.
+
 
 #### System Enumeration:
-Try to upload and run bloodhound to the syste, but it was blocked by powershell constrained deligation, on top of that AppLocker is in place and its blocking everything i throw it.
+Try to upload and run bloodhound to the syste, but it was blocked by powershell constrained deligation, on top of that AppLocker is in place and its blocking everything i throw it. Directly importing powershell script into memory didn't work either.
 
 ![source-01](/img/Screenshot2020-06-2211.png){: .align-left}
 
@@ -159,6 +162,11 @@ Try to upload and run bloodhound to the syste, but it was blocked by powershell 
 Lets bypass powershell constrained language mode and AppLocker to run our tools.
 It was simple enough to bypass the PowerShell CL using powershell downgrade attack, i used powershell version2 to bypass the CL mode.
 > When forcing PowerShell to run using its PowerShell 2.0 engine none of the advanced security features are available, since the older .NET Framework v2.0 is loaded with powershell.
+
+Uploading Powerview for the kerberoas attack
+
+![source-01](/img/Screenshot2020-06-22 160728.png){: .align-left}
+
 
 SPN- Attack
 Getting all the users with SPN, for easy kerberoasting win
