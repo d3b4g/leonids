@@ -157,6 +157,7 @@ Try to upload and run bloodhound to the syste, but it was blocked by powershell 
 
 #### PowerShell CL and AppLocker Bypass
 Lets bypass powershell constrained language mode and AppLocker to run our tools.
+It was simple enough to bypass the PowerShell CL using powershell downgrade attack, i used powershell version2 to bypass the CL mode.
 
 
 
