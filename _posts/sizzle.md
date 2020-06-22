@@ -151,6 +151,8 @@ User.txt file is not in amanda folders, there was another user in the system. So
 #### System Enumeration:
 Try to upload and run bloodhound to the syste, but it was blocked by powershell constrained deligation, on top of that AppLocker is in place and its blocking everything i throw it.
 
+![source-01](/img/Screenshot2020-06-2211.png){: .align-left}
+
 > PowerShell Constrained Language is a language mode of PowerShell designed to support day-to-day administrative tasks, yet restrict access to sensitive language elements that can be used to invoke arbitrary Windows APIs.
 
 #### PowerShell CL and AppLocker Bypass
