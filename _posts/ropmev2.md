@@ -37,14 +37,21 @@ After decompile the binary, here is snippet of main's pseudocode:
 + Call to read that reads 500 bytes from stdin.
 + strcmp compares the entered string with "DEBUG"
 
-From the main function graph view we can see, at the end the program CALL's a weird function.
+From the main function graph view we can see, at the end the program CALL's to another function.
 
 
 ![source-01](/img/ropemev2-001.PNG){: .align-left}
 
-Lets have a look at this function. I decompiled the function with Cutter.
+Lets have a look at this function. I decompiled the function with Cutter. 
+
+> To decompile a function from function view right-click and select show-in decompiler. 
 
 ![source-01](/img/ropv2-2.PNG){: .align-left}
+
++ This function just apply RO13 to the inputs we enter 
+
+> ROT13 ("rotate by 13 places", sometimes hyphenated ROT-13) is a simple letter substitution cipher that replaces a letter with the 13th letter after it, in the alphabet.
+
 
 
 
