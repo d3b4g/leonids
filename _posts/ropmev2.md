@@ -49,8 +49,13 @@ Lets have a look at this function. I decompiled the function with Cutter.
 ![source-01](/img/ropv2-2.PNG){: .align-left}
 
 + This function just apply RO13 to the inputs we enter 
++ It add or sub 0xd to every character we enter.
 
 > ROT13 ("rotate by 13 places", sometimes hyphenated ROT-13) is a simple letter substitution cipher that replaces a letter with the 13th letter after it, in the alphabet.
+
+# Exploitation
+
+So now binary analysis out of the way lets start exploiting
 
 
 
