@@ -1,8 +1,11 @@
 #### Summary
 
-This is a recently retired pwn challenge from hackthebox. I will be using Cutter for reverse engineering this binary
+This is a recently retired pwn challenge from hackthebox. I will be using Cutter for reverse engineering this binary.
 
-#### Binary's protection
+> Cutter is a Free and Open Source RE Platform powered by radare2
+
+
+# Binary Analysis
 
 Open the binary using Cutter
 
@@ -22,13 +25,10 @@ aaa command  execute other below commands to analyze the binary.
 
 #### Note(s):
 
-+ Binary has a non executable stack
++ As expected Binary has a non executable stack.
 
-# Binary Analysis
 
-I will use Cutter for binary analysis.
-
-After decompile the binary, here is snippet of main's pseudocode:
+For futher analysis lets decompile the binary, here is snippet of main's pseudocode:
 
 ![source-01](/img/ropv2-1.PNG){: .align-left}
 
@@ -44,7 +44,7 @@ From the main function graph view we can see, at the end the program CALL's to a
 
 ![source-01](/img/ropemev2-001.PNG){: .align-left}
 
-Lets have a look at this function. I decompiled the function with Cutter. 
+Lets have a look at this function.
 
 > To decompile a function from function view right-click and select show-in decompiler. 
 
@@ -54,6 +54,7 @@ Lets have a look at this function. I decompiled the function with Cutter.
 
 + This function just apply RO13 to the inputs we enter 
 + It add or sub 0xd to every character we enter.
++ we can bypass this by adding a null byte 
 
 > ROT13 ("rotate by 13 places", sometimes hyphenated ROT-13) is a simple letter substitution cipher that replaces a letter with the 13th letter after it, in the alphabet.
 
