@@ -57,11 +57,21 @@ Lets have a look at this function. I decompiled the function with Cutter.
 
 So now binary analysis out of the way lets start exploiting. 
 
+I will use below pwntool based script for fuzzing the binary.
+
+![source-01](/img/ropv2-7.PNG){: .align-left}
 
 
 Program received segmentation fault and crashed. Now from GDB we can
 
 ![source-01](/img/ropv2-4.PNG){: .align-left}
+
+To calculate the offset copy and past the value is RSP to Metasploit pattern_offset tool.
+
+![source-01](/img/ropv2-6.PNG){: .align-left}
+
+
+
 
 
 
