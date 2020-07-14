@@ -55,7 +55,14 @@ Lets have a look at this function. I decompiled the function with Cutter.
 
 # Exploitation
 
-So now binary analysis out of the way lets start exploiting
+So now binary analysis out of the way lets start exploiting. 
+
+
+
+Program received segmentation fault and crashed. Now from GDB we can
+
+![source-01](/img/ropv2-4.PNG){: .align-left}
+
 
 
 
