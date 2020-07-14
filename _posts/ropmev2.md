@@ -66,8 +66,14 @@ I will use below pwntool based script for fuzzing the binary.
 
 ![source-01](/img/ropv2-7.PNG){: .align-left}
 
+#### Note(s):
 
-Program received segmentation fault and crashed. Now from GDB we can
++ Open the program in GDB and set a break point
++ Send cyclic pattern to the program
+
+After running the script, PRESS "c" to continue the execution.
+
+Program received segmentation fault and crashed. Now from GDB we can examine 
 
 ![source-01](/img/ropv2-4.PNG){: .align-left}
 
