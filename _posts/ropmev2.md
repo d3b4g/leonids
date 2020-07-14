@@ -20,6 +20,7 @@ aaa command  execute other below commands to analyze the binary.
     + aan - autoname functions that either start with fcn.* or sym.func.*
     + afta - do type matching analysis for all functions
 
+#### Note(s):
 
 + Binary has a non executable stack
 
@@ -31,7 +32,8 @@ After decompile the binary, here is snippet of main's pseudocode:
 
 ![source-01](/img/ropv2-1.PNG){: .align-left}
 
-#### So what's happening in here:
+#### Note(s):
+
 
 + Prints a welcome message "Please dont hack me"
 + Call to read that reads 500 bytes from stdin.
@@ -47,6 +49,8 @@ Lets have a look at this function. I decompiled the function with Cutter.
 > To decompile a function from function view right-click and select show-in decompiler. 
 
 ![source-01](/img/ropv2-2.PNG){: .align-left}
+
+#### Note(s):
 
 + This function just apply RO13 to the inputs we enter 
 + It add or sub 0xd to every character we enter.
