@@ -54,7 +54,7 @@ Lets have a look at this function.
 
 + This function just apply RO13 to the inputs we enter 
 + It add or sub 0xd to every character we enter.
-+ we can bypass this by adding a null byte 
++ we can bypass this by adding a null byte to the begning of our payload
 
 > ROT13 ("rotate by 13 places", sometimes hyphenated ROT-13) is a simple letter substitution cipher that replaces a letter with the 13th letter after it, in the alphabet.
 
@@ -91,6 +91,11 @@ pop_rax = 0x0000000000401162 # pop rax ; ret
 pop_rsi_r15 = 0x0000000000401429 # pop rsi ; pop r15 ; ret
 pop_rdx_r13 = 0x0000000000401164 # pop rdx ; pop r13 ; ret
 
+We need to change /bin/sh to /ova/fu because it is changed by the rot13 function
+
+#### Exploit
+
+Now we have everything we need to build the exploit
 
 
 
