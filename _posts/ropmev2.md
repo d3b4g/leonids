@@ -77,7 +77,7 @@ Program received segmentation fault and crashed. Now from GDB we can examine
 
 ![source-01](/img/ropv2-4.PNG){: .align-left}
 
-To calculate the offset copy and past the value is RSP to Metasploit pattern_offset tool.
+To calculate the offset copy and past the value is RIP to Metasploit pattern_offset tool.
 
 ![source-01](/img/ropv2-6.PNG){: .align-left}
 
