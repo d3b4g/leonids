@@ -69,11 +69,12 @@ I will use below pwntool based script for fuzzing the binary.
 #### Note(s):
 
 + Open the program in GDB and set a break point
-+ Send cyclic pattern to the program
++ Send the unique pattern to the program
++ Added a nullbyte to the start of the payload to stop rot13 messing with it
 
 After running the script, PRESS "c" to continue the execution.
 
-Program received segmentation fault and crashed. Now from GDB we can examine 
+Program received segmentation fault and crashed.
 
 ![source-01](/img/ropv2-4.PNG){: .align-left}
 
@@ -81,7 +82,7 @@ To calculate the offset copy and past the value is RIP to Metasploit pattern_off
 
 ![source-01](/img/ropv2-6.PNG){: .align-left}
 
-#### Finding Gadgets
+#### Collecting ROP Gadgets
 
 I used ROPGadget tool to find the gadgets.
 
@@ -91,11 +92,10 @@ pop_rax = 0x0000000000401162 # pop rax ; ret
 pop_rsi_r15 = 0x0000000000401429 # pop rsi ; pop r15 ; ret
 pop_rdx_r13 = 0x0000000000401164 # pop rdx ; pop r13 ; ret
 
-We need to change /bin/sh to /ova/fu because it is changed by the rot13 function
+
 
 #### Exploit
-
-Now we have everything we need to build the exploit
+Final Exploit look like this
 
 
 
