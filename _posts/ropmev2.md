@@ -17,11 +17,10 @@ Select the aaa option to analyze the binary
 
 aaa command  execute other below commands to analyze the binary.
 
-    + aa - alias for af@@ sym.*;af@entry0;afva
-    + aac - analyze function calls (af @@ `pi len~call[1]`)
+    + aac - analyze function calls 
     + aar - analyze len bytes of instructions for references
-    + aan - autoname functions that either start with fcn.* or sym.func.*
     + afta - do type matching analysis for all functions
+
 
 #### Binary protection :
 Using checksec command we can check, the protection enabled in the binary.
@@ -34,7 +33,7 @@ Using checksec command we can check, the protection enabled in the binary.
 + As expected Binary has a non executable stack.
 
 
-For futher analysis lets decompile the binary, here is snippet of main's pseudocode:
+For futher analysis i decompile the binary, here is snippet of main's pseudocode.
 
 ![source-01](/img/ropv2-1.PNG){: .align-left}
 
@@ -52,7 +51,7 @@ From the main function graph view we can see, at the end the program CALL's to a
 
 Lets have a look at this function.
 
-> To decompile a function from function view right-click and select show-in decompiler. 
+> To decompile a function right-click and select show-in decompiler. 
 
 ![source-01](/img/ropv2-2.PNG){: .align-left}
 
@@ -69,6 +68,19 @@ Lets have a look at this function.
 So now binary analysis out of the way lets start exploiting. 
 
 I will use below pwntool based script for fuzzing the binary.
+
+![source-01](/img/ropv2-10.PNG){: .align-left}
+
+
+Monitor from the GDB.
+
+![source-01](/img/ropv2-9.PNG){: .align-left}
+
++ The program crashed and registers are overwritten, but thats not the payload we sent ! we send "A"s. So here what happend is the rot13 function messed up our payload. From the binary analysis part we know there is function which apply ROT13 operation on the input we enter.
+
+
+
+Lets modify our script to bypass the rot13 
 
 ![source-01](/img/ropv2-7.PNG){: .align-left}
 
