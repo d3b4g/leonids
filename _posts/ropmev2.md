@@ -104,16 +104,24 @@ To calculate the offset copy and past the value is RIP to Metasploit pattern_off
 
 I used ROPGadget tool to find the gadgets.
 
-pop_rdi_ret = 0x000000000040142b # pop rdi ; ret
-syscall = 0x0000000000401168 # syscall
-pop_rax = 0x0000000000401162 # pop rax ; ret
-pop_rsi_r15 = 0x0000000000401429 # pop rsi ; pop r15 ; ret
-pop_rdx_r13 = 0x0000000000401164 # pop rdx ; pop r13 ; ret
+![source-01](/img/ropv2-11.PNG){: .align-left}
+
+Below are the gadgets we need to form our ropchain
+
+![source-01](/img/ropv2-12.PNG){: .align-left}
 
 
+#### Exploitation
 
-#### Exploit
-Final Exploit look like this
+Running the exploit, we get a local shell.
+
+![source-01](/img/ropv2-13.PNG){: .align-left}
+
+
+#### Conclusion:
+I learned few new things from this challenge. 
+
+> You can find all code for this challenge from my github repo:
 
 
 
