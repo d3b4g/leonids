@@ -76,11 +76,14 @@ Monitor from the GDB.
 
 ![source-01](/img/ropv2-9.PNG){: .align-left}
 
-+ The program crashed and registers are overwritten, but thats not the payload we sent ! we send "A"s. So here what happend is the rot13 function messed up our payload. From the binary analysis part we know there is function which apply ROT13 operation on the input we enter.
+#### Notes(s):
+
++ The program crashed and registers are overwritten, but thats not the payload we sent ! 
++ we send "A"s but it is overwritten with "nnnnn" 
++ So here what happend was the rot13 function messed up our payload. From the binary analysis we know there is function which apply ROT13 operation on the input we enter.
 
 
-
-Lets modify our script to bypass the rot13 
+Lets modify our script to get around with rot13.
 
 ![source-01](/img/ropv2-7.PNG){: .align-left}
 
