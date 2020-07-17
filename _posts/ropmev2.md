@@ -23,6 +23,12 @@ aaa command  execute other below commands to analyze the binary.
     + aan - autoname functions that either start with fcn.* or sym.func.*
     + afta - do type matching analysis for all functions
 
+#### Binary protection :
+Using checksec command we can check, the protection enabled in the binary.
+
+![source-01](/img/ropv2-8.PNG){: .align-left}
+
+
 #### Note(s):
 
 + As expected Binary has a non executable stack.
