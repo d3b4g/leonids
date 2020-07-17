@@ -11,7 +11,7 @@ Open the binary using Cutter
 
 ![source-01](/img/Screenshotr5.png){: .align-left}
 
-Select the aaa option to analyze the binary 
+Select the **aaa** option to analyze the binary 
 
 ![source-01](/img/Screenshotr6.png){: .align-left}
 
@@ -122,9 +122,10 @@ Running the exploit, we get a local shell.
 
 
 #### Conclusion:
-I learned few new things from this challenge. 
 
-> You can find all code for this challenge from my github repo:
+This was a great challenge and a great learning experience for me. 
+
+> You can find all code for this challenge from my github repo: https://github.com/d3b4g/ropchallenges/
 
 
 
