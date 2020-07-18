@@ -15,6 +15,8 @@ This is a recently retired binary exploitation(pwn) challenge from hackthebox.It
 
 > Cutter is a Free and Open Source RE Platform powered by radare2
 
+> I assume that anyone reading this post is familiar with the basics of binary exploitation, as i skipped explaining many basic things. And please note that i am just learning these concepts, none of these things are new research or expert opinion.
+
 
 # Binary Analysis
 
@@ -133,7 +135,7 @@ Running the exploit, we get a local shell.
 
 #### Conclusion:
 
-This was a great challenge i learned few new techniiques.
+This was a great challenge i learned few new binary exploitation techniiques.
 
 > You can find all code for this challenge from my github repo: https://github.com/d3b4g/ropchallenges/
 
