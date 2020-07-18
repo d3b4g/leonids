@@ -3,7 +3,7 @@ layout: post
 title:  "RopMev2 - Challenge"
 date:   2020-07-17 14:07:20
 categories: [ROP]
-excerpt: "This is a recently retired pwn challenge from hackthebox."
+excerpt: "This is a recently retired binary exploitation (pwn) challenge from hackthebox."
 
 comments: true
 ---
@@ -11,7 +11,7 @@ comments: true
 
 #### Summary
 
-This is a recently retired pwn challenge from hackthebox. I will be using Cutter for reverse engineering this binary.
+This is a recently retired binary exploitation(pwn) challenge from hackthebox. I will be using Cutter for reverse engineering this binary.
 
 > Cutter is a Free and Open Source RE Platform powered by radare2
 
@@ -40,7 +40,7 @@ Using checksec command we can check, the protection enabled in the binary.
 + As expected Binary has a non executable stack.
 
 
-For futher analysis i decompile the binary, here is snippet of main's pseudocode.
+For futher analysis i decompile the binary, here is the snippet of main's pseudocode.
 
 ![source-01](/img/ropv2-1.PNG){: .align-left}
 
@@ -51,7 +51,7 @@ For futher analysis i decompile the binary, here is snippet of main's pseudocode
 + Call to read that reads 500 bytes from stdin.
 + strcmp compares the entered string with "DEBUG"
 
-From the main function graph view we can see, at the end the program it CALL's to another function.
+From the main function graph view we can see, at the end the program it **CALL's** to another function.
 
 
 ![source-01](/img/ropemev2-001.PNG){: .align-left}
