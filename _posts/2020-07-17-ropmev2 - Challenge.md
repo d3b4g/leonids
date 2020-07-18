@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "RopmeV2"
+title:  "RopMev2 - Challenge"
 date:   2020-07-17 14:07:20
 categories: [ROP]
 excerpt: "This is a recently retired pwn challenge from hackthebox."
@@ -51,7 +51,7 @@ For futher analysis i decompile the binary, here is snippet of main's pseudocode
 + Call to read that reads 500 bytes from stdin.
 + strcmp compares the entered string with "DEBUG"
 
-From the main function graph view we can see, at the end the program CALL's to another function.
+From the main function graph view we can see, at the end the program it CALL's to another function.
 
 
 ![source-01](/img/ropemev2-001.PNG){: .align-left}
@@ -64,6 +64,8 @@ Lets have a look at this function.
 
 #### Note(s):
 
+What is the purpose of a function?
+
 + This function just apply RO13 to the inputs we enter 
 + It add or sub 0xd to every character we enter.
 + we can bypass this by adding a null byte to the begning of our payload
@@ -74,12 +76,12 @@ Lets have a look at this function.
 
 So now binary analysis out of the way lets start exploiting. 
 
-I will use below pwntool based script for fuzzing the binary.
+I will use a pwntool based script for fuzzing the binary.
 
 ![source-01](/img/ropv2-10.PNG){: .align-left}
 
 
-Monitor from the GDB.
+After running the script, monitor from the GDB for crashes.
 
 ![source-01](/img/ropv2-9.PNG){: .align-left}
 
@@ -100,13 +102,13 @@ Lets modify our script to get around with rot13.
 + Send the unique pattern to the program
 + Added a nullbyte to the start of the payload to stop rot13 messing with it
 
-After running the script, PRESS "c" to continue the execution.
+After running the script, **PRESS** "c" to continue the execution.
 
 Program received segmentation fault and crashed.
 
 ![source-01](/img/ropv2-4.PNG){: .align-left}
 
-To calculate the offset copy and past the value is RIP to Metasploit pattern_offset tool.
+To calculate the offset copy and past the value in RIP to Metasploit pattern_offset tool.
 
 ![source-01](/img/ropv2-6.PNG){: .align-left}
 
@@ -120,6 +122,7 @@ Below are the gadgets we need to form our ropchain
 
 ![source-01](/img/ropv2-12.PNG){: .align-left}
 
+Thats all we need to build the exploit. 
 
 #### Final Exploit
 
@@ -130,7 +133,7 @@ Running the exploit, we get a local shell.
 
 #### Conclusion:
 
-This was a great challenge and a great learning experience for me. 
+This was a great challenge i learned few new techniiques.
 
 > You can find all code for this challenge from my github repo: https://github.com/d3b4g/ropchallenges/
 
