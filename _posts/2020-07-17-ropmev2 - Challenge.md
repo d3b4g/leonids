@@ -11,7 +11,7 @@ comments: true
 
 #### Summary
 
-This is a recently retired binary exploitation(pwn) challenge from hackthebox. I will be using Cutter for reverse engineering this binary.
+This is a recently retired binary exploitation(pwn) challenge from hackthebox.It is a 64-bit ELF binary with NX protection enabled. Based on the name we already know we need to use ROP to exploit this binary. I will be using Cutter for reverse engineering this binary.
 
 > Cutter is a Free and Open Source RE Platform powered by radare2
 
