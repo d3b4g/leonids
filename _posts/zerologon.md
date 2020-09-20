@@ -1,4 +1,13 @@
-#### Introduction
+---
+layout: post
+title:  "Windows active directory takeover with Zerologin Vulnerability"
+date:   2020-09-19 14:07:20
+categories: [ActiveDirectory]
+excerpt: "Demo of recent Windows Zerologin exploit"
+
+comments: true
+---
+
 
 Last month, Microsoft patched a very interesting vulnerability (CVE-2020-1472), a privillege escalation vulnerability in Netlogon Remote Protocol that could allow anyone to take full control of windows domain controllers. This vulnerability has a huge impact as it basically allows any unauthenticated user on the local network to compromised the windows domain controller without having any special privilledges.  
 
