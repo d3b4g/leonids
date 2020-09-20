@@ -23,7 +23,9 @@ Exploit completed successfully, now we can dump the NTDS database using secretdu
 
 ![source-01](/img/zero2.PNG){: .align-left}
 
-Finally can use these hashes for pass-the-hash or cracking. As you can see this vulnerability is so simple to exploit and unauthenticated attacker is able to obtain full administrator privileges on Active Directory within few minutes. Please do not run the exploit in a production enviornment if you don't know how to revert back the changes.
+We can use these hashes for pass-the-hash or cracking. 
+As you can see this vulnerability is so simple to exploit an unauthenticated attacker is able to obtain full administrator privileges on Active Directory within few minutes. 
+***Note:*** Please do not run the exploit in a production enviornment if you don't know how to revert the changes.
 
 
 #### Affected Products
