@@ -10,9 +10,9 @@ Security firm Secura published technical detailes about the vulnerability https:
 
 
 
-#### Proof-of-Concept:
+#### Proof-of-Concept demo:
 
-In last week several poc's for this vulnerability are surfaced. i ended up using this poc from github for this demostration. My target is a recently retired hackthebox machine.
+In last week several poc's for this vulnerability are surfaced. i ended up using a poc from github for this demostration. My target is a recently retired hackthebox machine.
 
 Run the exploit against target:
 
