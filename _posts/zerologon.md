@@ -14,10 +14,13 @@ Security firm Secura published technical detailes about the vulnerability https:
 
 In last week several poc's for this vulnerability are surfaced. i ended up using this poc from github
 
+![source-01](/img/zero1.PNG){: .align-left}
 
 
 
+Now we can dump the NTDS database using secretdump tool
 
+![source-01](/img/zero2.PNG){: .align-left}
 
 #### Affected Products
 All Microsoft Windows Servers that use MS-NRPC to connect to a domain controller except server 2008 are affected.
