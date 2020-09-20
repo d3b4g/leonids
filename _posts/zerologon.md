@@ -30,11 +30,11 @@ Finally can use these hashes for pass-the-hash or cracking. As you can see this 
 
 All Microsoft Windows Servers that use MS-NRPC to connect to a domain controller except server 2008 are affected.
 
-Microsoft Windows Server 2019
-Microsoft Windows Server 2016
-Microsoft Windows Server 2012
-Microsoft Windows Server 2012 R2
-Microsoft Windows Server 2008 R2 Service Pack 1
++ Microsoft Windows Server 2019
++ Microsoft Windows Server 2016
++ Microsoft Windows Server 2012
++ Microsoft Windows Server 2012 R2
++ Microsoft Windows Server 2008 R2 Service Pack 1
 
 
 #### Mitigation Actions for Zerologon
