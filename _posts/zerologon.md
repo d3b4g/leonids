@@ -1,2 +1,5 @@
-Last month, Microsoft patched a very interesting vulnerability that would allow an attacker with a foothold on your internal network to essentially become Domain Admin with one click. All that is required is for a connection to the Domain Controller to be possible from the attacker’s viewpoint.
+#### Introduction
+
+Last month, Microsoft patched a very interesting vulnerability, a privillege escalation vulnerability in Netlogon that could grant anyone full takeover of domain controllers.This attack has a huge impact it basically allows any unauthenticated user on the local network to compromised the windows domain controller easily.
+
 
