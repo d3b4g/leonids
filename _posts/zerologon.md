@@ -12,15 +12,18 @@ Security firm Secura published technical detailes about the vulnerability https:
 
 #### Proof-of-Concept:
 
-In last week several poc's for this vulnerability are surfaced. i ended up using this poc from github
+In last week several poc's for this vulnerability are surfaced. i ended up using this poc from github for this demostration. My target is a recently retired hackthebox machine.
+
+Run the exploit against target:
 
 ![source-01](/img/zero1.PNG){: .align-left}
 
 
-
-Now we can dump the NTDS database using secretdump tool
+Exploit completed successfully, now we can dump the NTDS database using secretdump tool
 
 ![source-01](/img/zero2.PNG){: .align-left}
+
+Now we can use the dumped hash for pass-the-hash or cracking. 
 
 #### Affected Products
 All Microsoft Windows Servers that use MS-NRPC to connect to a domain controller except server 2008 are affected.
