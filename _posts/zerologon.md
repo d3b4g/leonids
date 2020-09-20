@@ -23,9 +23,11 @@ Exploit completed successfully, now we can dump the NTDS database using secretdu
 
 ![source-01](/img/zero2.PNG){: .align-left}
 
-Now we can use the dumped hash for pass-the-hash or cracking. 
+Finally can use these hashes for pass-the-hash or cracking. As you can see this vulnerability is so simple to exploit and unauthenticated attacker is able to obtain full administrator privileges on Active Directory within few minutes. Please do not run the exploit in a production enviornment if you don't know how to revert back the changes.
+
 
 #### Affected Products
+
 All Microsoft Windows Servers that use MS-NRPC to connect to a domain controller except server 2008 are affected.
 
 Microsoft Windows Server 2019
@@ -35,5 +37,6 @@ Microsoft Windows Server 2012 R2
 Microsoft Windows Server 2008 R2 Service Pack 1
 
 
-#### Solution
+#### Mitigation Actions for Zerologon
+
 The Zerologon vulnerability has been patched by Microsoft with the August 2020 security updates.
