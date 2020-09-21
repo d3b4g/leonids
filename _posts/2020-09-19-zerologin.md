@@ -34,6 +34,7 @@ Exploit completed successfully, now we can dump the NTDS database using secretdu
 
 We can use these hashes for pass-the-hash or cracking. 
 As you can see this vulnerability is so simple to exploit an unauthenticated attacker is able to obtain full administrator privileges on Active Directory within few minutes. 
+
 ***Note:*** Please do not run the exploit in a production enviornment if you don't know how to revert the changes.
 
 
