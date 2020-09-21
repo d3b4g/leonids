@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Windows active directory takeover with Zerologin Vulnerability"
+title:  "Windows Active Directory takeover with Zerologin Vulnerability (CVE-2020-1472)"
 date:   2020-09-19 14:07:20
 categories: [ActiveDirectory]
 excerpt: "Demo of recent Windows Zerologin exploit"
@@ -9,7 +9,7 @@ comments: true
 ---
 
 
-Last month, Microsoft patched a very interesting vulnerability (CVE-2020-1472), a privillege escalation vulnerability in Netlogon Remote Protocol that could allow anyone to take full control of windows domain controllers. This vulnerability has a huge impact as it basically allows any unauthenticated user on the local network to compromised the windows domain controller without having any special privilledges.  
+Last month, Microsoft patched a very interesting vulnerability (CVE-2020-1472), a privillege escalation vulnerability in Netlogon Remote Protocol that could allow anyone to take full control of windows domain controllers. This vulnerability has a huge impact as it basically allows any user on the local network to compromised the windows domain controller without having any special privilledges.  
 
 #### Vulnerability detail
 
@@ -28,12 +28,12 @@ Run the exploit against target:
 ![source-01](/img/zero1.PNG){: .align-left}
 
 
-Exploit completed successfully, now we can dump the NTDS database using secretdump tool
+Exploit completed successfully, it changed MULTIMASTER machine account to an empty string. now we can dump the NTDS database using secretdump tool
 
 ![source-01](/img/zero2.PNG){: .align-left}
 
 We can use these hashes for pass-the-hash or cracking. 
-As you can see this vulnerability is so simple to exploit an unauthenticated attacker is able to obtain full administrator privileges on Active Directory within few minutes. 
+As you can see this vulnerability is so simple to exploit, an unauthenticated attacker in local network is able to obtain full administrator privileges on Active Directory within few minutes. 
 
 ***Note:*** Please do not run the exploit in a production enviornment if you don't know how to revert the changes.
 
