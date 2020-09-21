@@ -33,7 +33,7 @@ Exploit completed successfully, it changed MULTIMASTER machine account to an emp
 ![source-01](/img/zero2.PNG){: .align-left}
 
 We can use these hashes for pass-the-hash or cracking. 
-As you can see this vulnerability is so simple to exploit, an unauthenticated attacker in local network is able to obtain full administrator privileges on Active Directory within few minutes. 
+As you can see this vulnerability is so simple to exploit, an unauthenticated attacker on local network can obtain full administrator privileges on Active Directory within few minutes. 
 
 ***Note:*** Please do not run the exploit in a production enviornment if you don't know how to revert the changes.
 
