@@ -13,4 +13,4 @@ After compromising a domain controller, attackers use AdminSDHolder for perssist
 
 #### Defence
 
-Domain Admins or higher privilledge users will be able to nodify the AdminSDHolder permions, protecting privillegedes yours prevents an attacker compromising or backdooring the AdminSDHolder.
+Domain Admins or higher privilledge users will be able to nodify the AdminSDHolder permions, protecting privillegedes yours prevents an attacker compromising or backdooring the AdminSDHolder. Monitoring and alerting any changes to AdminSDholder object permissions is very important. 
