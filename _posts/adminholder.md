@@ -14,6 +14,22 @@ The main function of SDPROP is to protect highly-privileged Active Directory acc
 
 After compromising a domain controller, attackers use AdminSDHolder for perssistance by modifing Access Control List(ACL)
 
+#### AdminSDHolder Default Protected Objects
+
+Account Operators
+Administrator
+Administrators
+Backup Operators
+Domain Admins
+Domain Controllers
+Enterprise Admins
+Krbtgt
+Print Operators
+Read-only Domain Controllers
+Replicator
+Schema Admins
+Server Operators
+
 
 #### Defence
 
