@@ -6,6 +6,8 @@ AdminSDHolder is an object in Active Directory that acts as a security descripto
 Active Directory Domain Services uses AdminSDHolder, protected groups and Security Descriptor propagator (SD propagator or SDPROP for short) to secure privileged users and groups from unintentional modification. 
 SDProp or security descriptor progagator runs by default every sixty minutes and reset the permissions on the protected accounts to match those of the AdminSDHolder container.
 
+![source-01](/img/ad1.PNG){: .align-left}
+
 #### Attack
 
 After compromising a domain controller, attackers use AdminSDHolder for perssistance by modifing Access Control List(ACL)
