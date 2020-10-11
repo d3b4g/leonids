@@ -26,6 +26,11 @@ The main function of SDPROP is to protect highly-privileged Active Directory acc
 + Schema Admins
 + Server Operators
 
+Using powershell we can view the users in AdminSDHolders container.
+
+![source-01](/img/0112.PNG){: .align-left}
+
+
 #### Attack
 
 After compromising a domain controller, attackers use AdminSDHolder for perssistance by modifing Access Control List(ACL)
