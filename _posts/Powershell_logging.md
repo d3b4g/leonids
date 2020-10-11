@@ -4,9 +4,10 @@ Powershell is an extremely powerful scripting and administration language that i
 powerShell is increasingly being used as an offensive tool for attacks by threat actors. There are a number of powershell-base offensive tools available, including Empire, PowerSploit, PSAttack and Nishang.4
 
 PowerShell supports three types of logging: 
-+ module logging
-+ script block logging
-+ transcription
+
++ Module logging
++ Script block logging
++ Transcription
 
 
 #### Setting up PowerShell Logging
