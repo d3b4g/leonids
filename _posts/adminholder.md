@@ -16,19 +16,19 @@ After compromising a domain controller, attackers use AdminSDHolder for perssist
 
 #### AdminSDHolder Default Protected Objects
 
-Account Operators
-Administrator
-Administrators
-Backup Operators
-Domain Admins
-Domain Controllers
-Enterprise Admins
-Krbtgt
-Print Operators
-Read-only Domain Controllers
-Replicator
-Schema Admins
-Server Operators
++ Account Operators
++ Administrator
++ Administrators
++ Backup Operators
++ Domain Admins
++ Domain Controllers
++ Enterprise Admins
++ Krbtgt
++ Print Operators
++ Read-only Domain Controllers
++ Replicator
++ Schema Admins
++ Server Operators
 
 
 #### Defence
