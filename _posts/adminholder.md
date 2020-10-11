@@ -1,4 +1,4 @@
-####  AdminSDHolder Attacks and defence
+####  AdminSDHolder Attack and Defence
 
 #### What is an AdminSDHolder?
 
