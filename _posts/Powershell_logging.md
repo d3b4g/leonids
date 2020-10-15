@@ -11,3 +11,17 @@ PowerShell supports three types of logging:
 
 
 #### Setting up PowerShell Logging
+Logging must be configured through Group Policy as follows:
+
+Administrative Templates → Windows Components → Windows PowerShell
+
+
+
+#### Module Logging
+
+Module logging records pipeline execution details as PowerShell executes.
+
++ Enable module logging:
+
+#### Script Block Logging
+This records all lines of code as they are executed by PowerShell.
