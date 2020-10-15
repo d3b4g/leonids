@@ -67,8 +67,6 @@ Go to Computer Configuration › Administrative Templates › Windows Components
 
 ![source-01](/img/powershell1.PNG){: .align-left}
 
-The transcriptions are written as text files and can grow in size quickly. 
-
 
 #### Conclusion
 
