@@ -30,5 +30,23 @@ Module logging records pipeline execution details as PowerShell executes. This f
 
 + Enable module logging:
 
+
+![source-01](/img/powershell2.PNG){: .align-left}
+
 #### Script Block Logging
-This records all lines of code as they are executed by PowerShell.
+
+This records all lines of code as they are executed by PowerShell. Events with ID 4104 are written to the Microsoft-Windows-PowerShell/Operational channel.
+
+
++ Enable Script Block Logging:
+
+Computer Configuration › Administrative Templates › Windows Components › Windows PowerShell and open the Turn on PowerShell Script Block Logging setting
+
+![source-01](/img/powershell3.PNG){: .align-left}
+
+#### Transcription Logging
+
+Go to Computer Configuration › Administrative Templates › Windows Components › Windows PowerShell and open the Turn on PowerShell Transcription setting.
+
+![source-01](/img/powershell1.PNG){: .align-left}
+
