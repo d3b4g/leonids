@@ -1,9 +1,9 @@
 #### Monitoring PowerShell in the Enterprise 
 
 Powershell is an extremely powerful scripting and administration language that is baked right into Windows, this make an attractive target for attackers. Over the years
-powerShell is increasingly being used as an offensive tool for attacks by threat actors. There are a number of powershell-base offensive tools used by security professionals, including Empire, PowerSploit, PSAttack and Nishang. 
+PowerShell is increasingly being used as an offensive tool for attacks by threat actors. There are a number of powershell-based offensive tools used by security professionals, including Empire, PowerSploit, PSAttack and Nishang. 
 
-Over the years microsoft implemented several security features into PowerShell, to over come the attacks againsts powershell.In PowerShell version 5.1 Microsoft implemented several security features.
+Over the years microsoft implemented several security features into PowerShell, to help the defenders to detect and mitigate PowerShell based attacks. In PowerShell version 5.1 Microsoft introduced several security features.
 
 + AMSI (Antimalware Integration)
 + JEA
@@ -25,7 +25,7 @@ This guide aims to help you configure Powershell logging for monitoring powershe
 
 #### Module Logging
 
-Module logging records pipeline execution details as PowerShell executes. This feature writes Event ID 4103 events to the Microsoft-Windows-PowerShell/Operational channel. This can be enabled by setting the LogPipelineExecutionDetails property of a module to True. Or through Group Policy
+Module logging records pipeline execution details as PowerShell executes. It writes Event ID 4103 events to the Microsoft-Windows-PowerShell/Operational channel.
 
 + Enable module logging:
 
@@ -35,7 +35,7 @@ Computer Configuration › Administrative Templates › Windows Components › W
 
 #### Script Block Logging
 
-Logs contents of all the script blocks processed by the PowerShell engine. Events with ID 4104 are written to the Microsoft-Windows-PowerShell/Operational channel.
+Script Block Logs contents of all the script blocks processed by the PowerShell engine. It writes Events ID 4104 to the Microsoft-Windows-PowerShell/Operational channel.
 
 
 + Enable Script Block Logging:
@@ -60,4 +60,4 @@ The transcriptions are written as text files and can grow in size quickly.
 
 #### Conclusion
 
-PowerShell generate large number of events and logs, due to this, organizations should carefully consider which events to log and send to monitorying systems.
+PowerShell generate large number of events and logs, due to this, organizations should carefully consider which events to log and send to log Log Aggregator or SIEM. 
