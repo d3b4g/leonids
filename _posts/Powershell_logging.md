@@ -35,7 +35,7 @@ Module logging records pipeline execution details as PowerShell executes. This f
 
 #### Script Block Logging
 
-This records all lines of code as they are executed by PowerShell. Events with ID 4104 are written to the Microsoft-Windows-PowerShell/Operational channel.
+Logs contents of all the script blocks processed by the PowerShell engine. Events with ID 4104 are written to the Microsoft-Windows-PowerShell/Operational channel.
 
 
 + Enable Script Block Logging:
@@ -46,7 +46,13 @@ Computer Configuration › Administrative Templates › Windows Components › W
 
 #### Transcription Logging
 
+
++ Enable Transcription Logging:
+
+By enabling transcription logging it logs everything user types in powershell console. Transcriptions are written to the current user’s Documents directory unless an output directory is not defined in the policy setting.
+
 Go to Computer Configuration › Administrative Templates › Windows Components › Windows PowerShell and open the Turn on PowerShell Transcription setting.
 
 ![source-01](/img/powershell1.PNG){: .align-left}
 
+The transcriptions are written as text files and can grow in size quickly. 
