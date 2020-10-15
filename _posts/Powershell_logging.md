@@ -18,10 +18,8 @@ In PowerShell version 5.1 Microsoft implemented several security features.
 
 
 #### Setting up PowerShell Logging
-Logging can be configured through Group Policy as follows:
 
-Administrative Templates → Windows Components → Windows PowerShell
-
+This guide aims to help you configure Powershell logging for monitoring powershell abuse.
 
 
 #### Module Logging
@@ -30,6 +28,7 @@ Module logging records pipeline execution details as PowerShell executes. This f
 
 + Enable module logging:
 
+Computer Configuration › Administrative Templates › Windows Components › Windows PowerShell and open the Turn on PowerShell Module Logging setting
 
 ![source-01](/img/powershell2.PNG){: .align-left}
 
@@ -56,3 +55,6 @@ Go to Computer Configuration › Administrative Templates › Windows Components
 ![source-01](/img/powershell1.PNG){: .align-left}
 
 The transcriptions are written as text files and can grow in size quickly. 
+
+
+#### Conclusion
