@@ -59,4 +59,4 @@ The transcriptions are written as text files and can grow in size quickly.
 
 #### Conclusion
 
-PowerShell generate large number of events and logs, due to this, organizations should carefully consider which events to log and send to monitorying systems. At a minimum, aggregating and monitoring suspicious script block logging events, EID 4104 with level “warning”, in a SIEM or other log monitoring tool. These events provide the best opportunity to identify evidence of compromise while maintaining a minimal dataset.
+PowerShell generate large number of events and logs, due to this, organizations should carefully consider which events to log and send to monitorying systems.
