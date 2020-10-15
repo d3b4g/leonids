@@ -1,3 +1,15 @@
+---
+layout: post
+title:  "Monitoring PowerShell in the Enterprise"
+date:   2020-10-13 14:07:20
+categories: [PowerShell]
+excerpt: "Powershell is an extremely powerful scripting and administration language that is baked right into Windows, this make an attractive target for attackers. Over the years PowerShell is increasingly being used as an offensive tool for attacks by threat actors"
+
+comments: true
+---
+
+
+
 #### Monitoring PowerShell in the Enterprise 
 
 Powershell is an extremely powerful scripting and administration language that is baked right into Windows, this make an attractive target for attackers. Over the years
