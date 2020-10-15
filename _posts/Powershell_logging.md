@@ -26,7 +26,7 @@ Administrative Templates → Windows Components → Windows PowerShell
 
 #### Module Logging
 
-Module logging records pipeline execution details as PowerShell executes.
+Module logging records pipeline execution details as PowerShell executes. This feature writes Event ID 4103 events to the Microsoft-Windows-PowerShell/Operational channel. This can be enabled by setting the LogPipelineExecutionDetails property of a module to True. Or through Group Policy
 
 + Enable module logging:
 
