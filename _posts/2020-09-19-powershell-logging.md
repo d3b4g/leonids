@@ -70,4 +70,4 @@ Go to Computer Configuration › Administrative Templates › Windows Components
 
 #### Conclusion
 
-PowerShell generate large number of events and logs, due to this, organizations should carefully consider which events to log and send to log Log Aggregator or SIEM. 
+PowerShell generate large number of events and logs, due to this, organizations should carefully consider which events to log and send to Log Aggregator or SIEM. 
