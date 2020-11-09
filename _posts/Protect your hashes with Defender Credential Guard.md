@@ -7,8 +7,15 @@ I have windows server 2012 domain controller without credential guard enabled. U
 
 ![source-01](/img/mimikatz1.PNG){: .align-left}
 
+Mimikatz was able to retrive NTLM hashes from the LSA process, attacker can use these hashes for lateral movement.
+
 
 ###Prevention:
 
 To prevent mimikatz from retriving  hashes LSA process, Enable credential guard through group policy.
 
+To enabled the device guard: 
+> From the Group Policy Management Console go to Computer Configuration -> Administrative Templates -> System -> Device Guard.
+  Double-click Turn On Virtualization Based Security, and then click the Enabled option.
+
+Device Guard group policy gives you the option of "Secure Boot with DMA Protection"
