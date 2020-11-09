@@ -20,4 +20,4 @@ To enabled the device guard:
 
 ![source-01](/img/mimikatz2.PNG){: .align-left}
 
-Device Guard group policy gives you the option of "Secure Boot with DMA Protection"
+Device Guard group policy gives you the option of "Secure Boot with DMA Protection".
