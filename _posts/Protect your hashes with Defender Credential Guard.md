@@ -5,8 +5,10 @@ Defender Credential Guard increases the security by taking advantage of platform
 ### Attack
 I have windows server 2012 domain controller without credential guard enabled. Using mimikatz i can query the credential stored in the LSA process to get the NTLM hash of the accounts.
 
+![source-01](/img/mimikatz1.PNG){: .align-left}
 
-Prevention:
+
+###Prevention:
 
 To prevent mimikatz from retriving  hashes LSA process, Enable credential guard through group policy.
 
