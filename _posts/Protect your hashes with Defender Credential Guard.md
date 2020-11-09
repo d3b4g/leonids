@@ -18,4 +18,6 @@ To enabled the device guard:
 > From the Group Policy Management Console go to Computer Configuration -> Administrative Templates -> System -> Device Guard.
   Double-click Turn On Virtualization Based Security, and then click the Enabled option.
 
+![source-01](/img/mimikatz2.PNG){: .align-left}
+
 Device Guard group policy gives you the option of "Secure Boot with DMA Protection"
