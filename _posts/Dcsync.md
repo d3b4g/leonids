@@ -29,4 +29,12 @@ We can use secretdump for Dcsync
 
 #### Detection:
 
+There are someways to detect DCsync attack.
+
++ Event ID 4662 Monitoring
+
+![source-01](/img/dcsyn4.PNG){: .align-left}
+
++ Network Monitoring1 - DsGeNCChange
+
 #### Defense 
