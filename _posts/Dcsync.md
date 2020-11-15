@@ -23,3 +23,6 @@ The user PTRACE@CONTOSO.LOCAL has the DS-Replication-Get-Changes privilege on th
 
 ![source-01](/img/dcsyn1.PNG){: .align-left}
 
+#### Detection:
+
+#### Defense 
