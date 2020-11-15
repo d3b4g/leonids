@@ -1,6 +1,6 @@
 #### Introduction:
 
-DCSync attacks allow an attacker to impersonate a domain controller and request password hashes from other domain controllers. This attack simulates the behavior of a domain controller and asks other domain controllers to replicate information using the Directory Replication Service Remote Protocol (MS-DRSR).
+DCSync attacks allow an attacker to impersonate a domain controller and request password hashes from other domain controllers. This attack simulates the behavior of a domain controller and asks other domain controllers to replicate information using the Directory Replication Service Remote Protocol (MS-DRSR).  utilises the Directory Replication Service Remote Protocol with the DSGetNCChanges function to request password hashes from the Primary DC.
 
 #### How the DCSync Attack Works?
 
