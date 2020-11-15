@@ -21,11 +21,11 @@ For this scinario i have configured a user with below permission.
 
 The user PTRACE@CONTOSO.LOCAL has the DS-Replication-Get-Changes privilege on the domain CONTOSO.LOCAL
 
-![source-01](/img/dcsyn2.PNG){: .align-left}
+![source-01](/img/dcsyn1.PNG){: .align-left}
 
 We can use secretdump for Dcsync
 
-![source-01](/img/dcsyn1.PNG){: .align-left}
+![source-01](/img/dcsyn2.PNG){: .align-left}
 
 #### Detection:
 
