@@ -33,6 +33,8 @@ There are someways to detect DCsync attack.
 
 + Event ID 4662 Monitoring
 
+Event 4662: An object was performed on an object.
+
 ![source-01](/img/dcsyn4.PNG){: .align-left}
 
 + Network Monitoring1 - DsGeNCChange
