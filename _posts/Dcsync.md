@@ -1,1 +1,13 @@
 
+To perform a DCSync attack, We must have compromised a user with the below permissions.
++ Replicating Directory Changes All
++ Replicating Directory Changes
+
+By default in activedirectory, members of the below groups have those permissions.
++ Administrators
++ Domain Admins
++ Enterprise Admins 
+
+The user PTRACE@CONTOSO.LOCAL has the DS-Replication-Get-Changes privilege on the domain CONTOSO.LOCAL
+
+![source-01](/img/dcsyn1.PNG){: .align-left}
