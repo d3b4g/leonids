@@ -25,7 +25,7 @@ The user PTRACE@CONTOSO.LOCAL has the DS-Replication-Get-Changes privilege on th
 
 We can use secretdump for Dcsync
 
-![source-01](/img/dcsyn2.PNG){: .align-left}
+![source-01](/img/dcsyn3.PNG){: .align-left}
 
 #### Detection:
 
