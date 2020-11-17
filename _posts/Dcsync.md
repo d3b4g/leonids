@@ -21,7 +21,7 @@ For this scenario i have configured a user with below permissions in my Lab envi
 
 #### Discovery
 
-Using bloodhound i discovered the attack path. 
+Using bloodhound i discovered the attack path, smilarly we can discover this using powerview
 
 The user PTRACE@CONTOSO.LOCAL has the DS-Replication-Get-Changes privilege on the domain CONTOSO.LOCAL
 
