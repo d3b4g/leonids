@@ -15,9 +15,13 @@ By default in activedirectory, members of the below groups have those permission
 
 
 #### Attack
-For this scinario i have configured a user with below permission.
+For this scenario i have configured a user with below permissions in my Lab environment.
 + Replicating Directory Changes All
 + Replicating Directory Changes
+
+#### Discovery
+
+Using bloodhound i discovered the attack path. 
 
 The user PTRACE@CONTOSO.LOCAL has the DS-Replication-Get-Changes privilege on the domain CONTOSO.LOCAL
 
