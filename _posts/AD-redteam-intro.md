@@ -1,14 +1,14 @@
 Active Directory Red Team - Lab Setup
 
-## Introduction
+### Introduction
 
 Enterprises are using Microsoft Active Directory for identity management and protecting resources. As a blue or red teamer knowing common Active Directory security issues and how to secure them is very important.
 
-## What you will learn
+### What you will learn
 
 In this series of posts, you will be guided through red team oriented Active Directory attacks, exploiting common misconfigurations and abusing Active Directory functionality to assess Active Directory security.
 
-### Below are the some of the attack scinarios i would like to cover:
+##### Some of the attack scenarios i would like to cover:
 
 + Active Directory Enumeration
 + Active Directory Enumeration with Bloodhound
@@ -25,7 +25,7 @@ In this series of posts, you will be guided through red team oriented Active Dir
 + Abusing Microsoft LAPS
 + Abusing SQL Server
 
-## Lab Topology
+### Lab Topology
 
 
 ![source-01](/img/redteam.png){: .align-left}
