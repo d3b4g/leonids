@@ -34,7 +34,7 @@ In this series of posts, you will be guided through red team oriented Active Dir
 + Abusing SQL Server
 
 ### Lab Topology
-![source-01](/img/labssz.png){:height="700px" width="400px"}
+![source-01](/img/labssz.png){:height="650px" width="350px"}
 
 
 I have built a red team cyber range that mimics real-world Active Directory environment  for demostrating the attacks. If you are looking to setup similar lab environment there are plenty of resource available, i am not going to cover lab setup in this post.
