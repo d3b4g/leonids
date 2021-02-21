@@ -32,7 +32,7 @@ In this series of posts, you will be guided through red team oriented Active Dir
 
 I have built a red team cyber range that mimics real-world Active Directory environment  for demostrating the attacks. If you are looking to setup similar lab environment there are plenty of resource available, i am not going to cover lab setup in this post. I will leave some refference materials for setting and automating a lab environment at the end of the post
 
-In my lab setup i have three domains.
+In the lab setup i have three domains.
 
 + Forest Root 
 + External Trusted Domain
