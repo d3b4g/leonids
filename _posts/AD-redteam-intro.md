@@ -40,8 +40,12 @@ In my lab setup i have three domains.
  
 
 #### Hardware Specifications:
-Processor: i7-7700
-RAM: 32GB RAM
-HDD: 1TB  SSD
-OS: Windows Server 2016, Windows Server 2012
-Virtualization Software: VMware Workstation
++ Processor: i7-7700
++ RAM: 32GB RAM
++ HDD: 1TB  SSD
++ OS: Windows Server 2016, Windows Server 2012
++ Virtualization Software: VMware Workstation
+
+
+#### Refference
+
