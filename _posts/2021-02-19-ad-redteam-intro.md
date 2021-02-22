@@ -9,7 +9,6 @@ comments: true
 ---
 
 
-
 Enterprises are using Microsoft Active Directory for identity management and protecting resources. As a blue or red teamer knowing common Active Directory security issues and how to secure them is very important.
 
 ### What you will learn
@@ -37,7 +36,7 @@ In this series of posts, you will be guided through red team oriented Active Dir
 ![source-01](/img/labssz.png)
 
 
-I have built a red team cyber range that mimics real-world Active Directory environment  for demostrating the attacks. If you are looking to setup similar lab environment there are plenty of resource available, i am not going to cover lab setup in this post.
+I have a redteam cyber range that mimics real-world Active Directory environment for demostrating the attacks. If you are looking to setup similar lab environment there are plenty of resource available, i am not going to cover lab setup in this post.
 
 In the lab setup i have three domains.
 
