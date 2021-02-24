@@ -20,16 +20,15 @@ In this series of posts, you will be guided through red team oriented Active Dir
 + Active Directory Enumeration
 + Active Directory Enumeration with Bloodhound
 + Abusing Active Directory Object Permissions ACLs / ACE
-+ Kerberos Attacks
 + SMB Relay Attacks
 + Domain Persistence
++ Abusing Microsoft LAPS
 + Credential Attacks
 + Kerberos Delegeation Attacks
    + Unconstrained Delegation
    + Constrained Delegation
    + Resource based Constrained Delegeation
 + Attacking Active Directory Forest
-+ Abusing Microsoft LAPS
 + Abusing SQL Server
 
 ### Lab Topology
