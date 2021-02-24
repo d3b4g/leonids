@@ -45,11 +45,11 @@ In the lab setup i have three domains.
 + Child Domain
  
 
-#### Hardware Specifications:
+#### Hardware and Software Specifications:
 + Processor: i7-7700
 + RAM: 32GB RAM
 + HDD: 1TB  SSD
-+ OS: Windows Server 2016, Windows Server 2012
++ OS: Windows Server 2016, Windows Server 2012, SQL Server 2019 Dev
 + Virtualization Software: VMware Workstation
 
 
