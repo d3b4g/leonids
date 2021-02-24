@@ -19,7 +19,7 @@ In this series of posts, you will be guided through red team oriented Active Dir
 
 + Active Directory Enumeration
 + Active Directory Enumeration with Bloodhound
-+ Abusing Active Directory Object Permissions ACLs / ACE
++ Abusing Active Directory Object Permissions
 + SMB Relay Attacks
 + Domain Persistence
 + Abusing Microsoft LAPS
