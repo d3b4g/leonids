@@ -15,3 +15,8 @@ Get-NetDomain -Domain contoso.ext specify -Domain Parameter
 Get-NetUser
 
 ![source-01](/img/enu3.PNG){: .align-left}
+
+
+get-net user
+
+![source-01](/img/enu4.PNG){: .align-left}
