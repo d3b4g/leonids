@@ -3,13 +3,13 @@ layout: post
 title:  "Active Directory Red Team - Lab Setup"
 date:   2021-02-19 14:07:20
 categories: [Active Directoru Red Team]
-excerpt: "Enterprises are using Microsoft Active Directory for identity management and protecting resources. As a blue or red teamer knowing common Active Directory security issues and how to secure them is very important" 
+excerpt: "Enterprises are using Microsoft Active Directory for identity management and protecting resources. As a blue or red teamer finding and exploiting flaws and understanding the underlying security issue is very important" 
 
 comments: true
 ---
 
 
-Enterprises are using Microsoft Active Directory for identity management and protecting resources. As a blue or red teamer finding and exploiting flaws and understanding the underlying security issue is very important.
+Enterprises are using Microsoft Active Directory for identity management and protecting resources. As a blue or red teamer finding and exploiting flaws and understanding the underlying security issues are very important.
 
 
 ### What you will learn
