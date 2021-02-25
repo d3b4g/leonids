@@ -20,3 +20,7 @@ Get-NetUser
 get-net user
 
 ![source-01](/img/enu4.PNG){: .align-left}
+
+Enumerating groups
+
+![source-01](/img/enu5.PNG){: .align-left}
