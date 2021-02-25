@@ -4,6 +4,8 @@ Domain Enumeration is very crucial in any engagement, in this post i will cover 
 
 Get-NetDomain 
 
+This command will give information about the current domain domain controller.
+
 ![source-01](/img/enu1.PNG){: .align-left}
 
 Get-NetDomain -Domain contoso.ext specify -Domain Parameter
