@@ -21,8 +21,12 @@ This cmdlt enumerates the users and dump usefull informations about the user
 
 #### Get-Net User
 
+The output of Get-Net User cmdlt is bit messy, so you can pipe Get-Net User cmdlt and select specific objects you want output.
+
 ![source-01](/img/enu4.PNG){: .align-left}
 
 #### Get-NetGroupMembers
+
+This cmdlt allow you to enumerate group emembership from active directory, this is very usefull in an engagement.
 
 ![source-01](/img/enu5.PNG){: .align-left}
