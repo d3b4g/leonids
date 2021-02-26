@@ -1,26 +1,28 @@
 Active Directory Red Team Domain Enumeration
 
-Domain Enumeration is very crucial in any engagement, in this post i will cover how you can enumerate domain with Powerview and  .NET System.DirectoryServices.ActiveDirectory.Domain Class. Most of the time in real world engagement you don't always have permissions of running tools like powerview, in such case Active Directory .NET clasess are very handy.
+Enumeration is very crucial in any engagement, in this post i will cover how you can enumerate microsoft Active Directorywith Powerview. Powerview includes many commands to enumerate and manage the active directory. I will demostrate the commands i mostly use in Active Directory assessments.
 
-Get-NetDomain 
+##### Get-NetDomain 
 
 This command will give information about the current domain domain controller.
 
 ![source-01](/img/enu1.PNG){: .align-left}
 
-Get-NetDomain -Domain contoso.ext specify -Domain Parameter
+-Domain parameter in Get-Net-Domain cmdlt allow you to specify domain name you want enumerate
 
 ![source-01](/img/enu2.PNG){: .align-left}
 
-Get-NetUser
+#### Get-NetUser
+
+This cmdlt enumerates the users and dump usefull informations about the user
 
 ![source-01](/img/enu3.PNG){: .align-left}
 
 
-get-net user
+#### Get-Net User
 
 ![source-01](/img/enu4.PNG){: .align-left}
 
-Enumerating groups
+#### Get-NetGroupMembers
 
 ![source-01](/img/enu5.PNG){: .align-left}
