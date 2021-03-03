@@ -61,6 +61,8 @@ enumerating
 ![source-01](/img/enu9.PNG){: .align-left}
 
 ##### Enumerating Domain ACLs with built in tools  and Powerview
+##### Description:
+ACLs (Access Control Lists) are the settings that define what objects get access to other objects in Active Directory.
 
 ![source-01](/img/enu10.PNG){: .align-left}
 
