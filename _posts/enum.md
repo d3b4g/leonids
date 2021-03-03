@@ -2,6 +2,16 @@ Active Directory Red Team Domain Enumeration
 
 You just cant throw exploit here and there and expect to work. Enumeration is the key for any successful engagement, in this module i will cover how you can enumerate microsoft Active Directory with Powerview and native windows functionalities. Powerview includes many commands to enumerate and manage the active directory. I will demostrate the commands i mostly use in Active Directory assessments.
 
+In this module im going to cover the following.
+
+-    Enumerating Domain
+-    Enumerating AD Users
+-    Enumerating AD Groups
+-    Enumerating AD Computers
+-    Enumerating Domain ACLs with built in tools  and Powerview
+-    Enumerating Group Policy Objects (GPOs)
+-    Enumerating AD Trusts
+
 ##### Get-NetDomain 
 
 This command will give information about the current domain domain controller.
