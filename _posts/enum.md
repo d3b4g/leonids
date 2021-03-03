@@ -60,9 +60,9 @@ With PowerView, the **Get-NetGPO**  cmdlet allows for the easy enumeration of al
 enumerating
 ![source-01](/img/enu9.PNG){: .align-left}
 
-##### Enumerating Domain ACLs with built in tools  and Powerview
+##### Enumerating Domain ACLs 
 ##### Description:
-ACLs (Access Control Lists) are the settings that define what objects get access to other objects in Active Directory.
+ACLs (Access Control Lists) are the settings that define what objects get access to other objects in Active Directory. The main benefit of ACL configuring for an OU (provided that the configuration is correct!) is that all descendant objects will inherit this ACL. The ACL of an OU containing objects includes an Access Control Entry (ACE) that defines the identifier and respective permissions applied to the OU or descending objects. Each ACE includes a security identifier (SID) and access mask; there are four ACE types: access allowed, access denied, permitted object, and restricted object.
 
 ![source-01](/img/enu10.PNG){: .align-left}
 
