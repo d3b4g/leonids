@@ -64,6 +64,10 @@ enumerating
 
 ![source-01](/img/enu10.PNG){: .align-left}
 
+![source-01](/img/enu15.PNG){: .align-left}
+
+This cmdlt outputs the list of ACEs applied to the object. 
+
  #### Enumerating AD Trusts
  ##### Description:
 
