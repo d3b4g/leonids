@@ -55,3 +55,8 @@ cmdlet allows for the easy enumeration of all current GPOs in a given domain
 enumerating
 ![source-01](/img/enu9.PNG){: .align-left}
 
+##### Enumerating Domain ACLs with built in tools  and Powerview
+
+![source-01](/img/enu10.PNG){: .align-left}
+
+ #### Enumerating AD Trusts
