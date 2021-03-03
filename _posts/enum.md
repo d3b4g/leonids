@@ -44,4 +44,6 @@ This cmdlt allow you to enumerate group emembership from active directory, this 
 
 ![source-01](/img/enu5.PNG){: .align-left}
 
+##### Enumerating AD GPO
 
+cmdlet allows for the easy enumeration of all current GPOs in a given domain
