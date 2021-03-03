@@ -12,7 +12,8 @@ In this module im going to cover the following.
 -    Enumerating Group Policy Objects (GPOs)
 -    Enumerating AD Trusts
 
-##### Get-NetDomain 
+##### Enumerating Domain
+- Get-NetDomain 
 
 This command will give information about the current domain domain controller.
 
@@ -22,7 +23,8 @@ This command will give information about the current domain domain controller.
 
 ![source-01](/img/enu2.PNG){: .align-left}
 
-#### Get-NetUser
+###### Enumerating AD Users
+ - Get-NetUser
 
 This cmdlt enumerates the users and dump usefull informations about the user
 
@@ -40,3 +42,5 @@ The output of Get-Net User cmdlt is bit messy, so you can pipe Get-Net User cmdl
 This cmdlt allow you to enumerate group emembership from active directory, this is very usefull in an engagement.
 
 ![source-01](/img/enu5.PNG){: .align-left}
+
+
