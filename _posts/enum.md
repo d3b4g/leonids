@@ -77,3 +77,7 @@ Get-DomainPolicy #Get info about the policy
 (Get-DomainPolicy)."SystemAccess" #Password policy
 
 ![source-01](/img/enu13.PNG){: .align-left}
+
+We can also enumerate this information with .NET class "Domain.GetAllTrustRelationships"
+
+![source-01](/img/enu14.PNG){: .align-left}
