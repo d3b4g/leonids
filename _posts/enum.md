@@ -1,6 +1,6 @@
 Active Directory Red Team Domain Enumeration
 
-Enumeration is very crucial in any engagement, in this post i will cover how you can enumerate microsoft Active Directorywith Powerview. Powerview includes many commands to enumerate and manage the active directory. I will demostrate the commands i mostly use in Active Directory assessments.
+You just cant throw exploit here and there and expect to work. Enumeration is the key for any successful engagement, in this module i will cover how you can enumerate microsoft Active Directory with Powerview and native windows functionalities. Powerview includes many commands to enumerate and manage the active directory. I will demostrate the commands i mostly use in Active Directory assessments.
 
 ##### Get-NetDomain 
 
