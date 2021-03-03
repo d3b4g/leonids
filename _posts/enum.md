@@ -51,3 +51,7 @@ cmdlet allows for the easy enumeration of all current GPOs in a given domain
 
 ##### Enumerating AD Computers
 ![source-01](/img/enu8.PNG){: .align-left}
+
+enumerating
+![source-01](/img/enu9.PNG){: .align-left}
+
