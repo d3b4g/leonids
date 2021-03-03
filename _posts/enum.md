@@ -37,7 +37,8 @@ The output of Get-Net User cmdlt is bit messy, so you can pipe Get-Net User cmdl
 
 ![source-01](/img/enu4.PNG){: .align-left}
 
-#### Get-NetGroupMembers
+#####Enumerating AD Groups
+- Get-NetGroupMembers
 
 This cmdlt allow you to enumerate group emembership from active directory, this is very usefull in an engagement.
 
