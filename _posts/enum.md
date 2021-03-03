@@ -71,3 +71,9 @@ Get-NetDomainTrust #Get all domain trusts (parent, children and external)
 
 Get-NetForestDomain | Get-NetDomainTrust #Enumerate all the trusts of all the domains found
 ![source-01](/img/enu12.PNG){: .align-left}
+
+Get-DomainPolicy #Get info about the policy
+(Get-DomainPolicy)."KerberosPolicy" #Kerberos tickets info(MaxServiceAge)
+(Get-DomainPolicy)."SystemAccess" #Password policy
+
+![source-01](/img/enu13.PNG){: .align-left}
