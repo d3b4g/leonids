@@ -62,4 +62,7 @@ enumerating
  #### Enumerating AD Trusts
 
 Get-NetDomainTrust #Get all domain trusts (parent, children and external)
+![source-01](/img/enu11.PNG){: .align-left}
+
 Get-NetForestDomain | Get-NetDomainTrust #Enumerate all the trusts of all the domains found
+![source-01](/img/enu12.PNG){: .align-left}
