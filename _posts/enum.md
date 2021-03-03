@@ -38,6 +38,7 @@ The output of Get-Net User cmdlt is bit messy, so you can pipe Get-Net User cmdl
 ![source-01](/img/enu4.PNG){: .align-left}
 
 ##### Enumerating AD Groups
+##### Description
 - Get-NetGroupMembers
 
 This cmdlt allow you to enumerate group emembership from active directory, this is very usefull in an engagement.
@@ -45,10 +46,11 @@ This cmdlt allow you to enumerate group emembership from active directory, this 
 ![source-01](/img/enu5.PNG){: .align-left}
 
 #### Enumerating AD GPO
+
 ##### Description
 Group Policy Objects are Active Directory containers used to store groupings of policy settings. These objects are then linked to specific sites, domains, or most commonly specific organizational units (OUs).
 
-cmdlet allows for the easy enumeration of all current GPOs in a given domain
+With PowerView, the **Get-NetGPO**  cmdlet allows for the easy enumeration of all current GPOs in a given domain.
 
 ![source-01](/img/enu6.PNG){: .align-left}
 
