@@ -41,6 +41,10 @@ The output of Get-Net User cmdlt is bit messy, so you can pipe Get-Net User cmdl
 
 ![source-01](/img/enu4.PNG){: .align-left}
 
+Other useful properties i always look for are
+- pwdlastset
+- badpasswordcount
+
 
 ##### Enumerating AD Groups
 
@@ -85,6 +89,21 @@ This cmdlt outputs the list of ACEs applied to the object.
  #### Enumerating AD Trusts
  ##### Description:
 Active Directory domain to domain communications occur through a trust. An AD DS trust is a secured, authentication communication channel between entities, such as AD DS domains, forests. Trusts enable you to grant access to resources to users, groups and computers across entities.
+
+**Trusts Direction:**
+- Two-way trust (Bi-directional): Users from Domain A can access resources in Domain B
+and vice versa.
+- One-way trust (Unidirectional): Users in the trusted domain can access resources in the
+trusting domain but the reverse is not true
+**Trusts Transitivity:**
+- Parent-child trust: It is created automatically between the new domain and the domain
+that precedes it in the namespace hierarchy, whenever a new domain is added in a tree.
+For example, usa.fanzy.com is a child of fanzy.com). This trust is always two-way
+transitive.
+- Tree-root trust: It is created automatically between whenever a new domain tree is
+added to a forest root. This trust is always two-way transitive.
+**External Trusts:** Between two domains in different forests when forests do not have a trust
+relationship. It can be one-way or two-way and is nontransitive.
 
 - Get-NetDomainTrust 
 This cmdlt get all domain trusts including parent, childand external)
