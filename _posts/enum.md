@@ -92,7 +92,8 @@ This cmdlt get all domain trusts including parent, childand external)
 ![source-01](/img/enu11.PNG){: .align-left}
 
 - Get-NetForestDomain | Get-NetDomainTrust
-This cmdlt Enumerate all the trusts of all the domains found 
+
+Piping the result of **Get-NetforestDomain** to **Get-NetDomainTrust**  enumerate all the trusts of all the domains found 
 
 ![source-01](/img/enu12.PNG){: .align-left}
 
@@ -101,7 +102,7 @@ We can also enumerate this information with .NET class "Domain.GetAllTrustRelati
 ![source-01](/img/enu13.PNG){: .align-left}
 
 
-Get-DomainPolicy 
+#### Get-DomainPolicy 
 
 This cmdtlt get info about the policy
 
