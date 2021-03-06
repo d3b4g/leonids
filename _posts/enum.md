@@ -33,23 +33,19 @@ This command will give information about the current domain domain controller.
 A user object in AD is used to represent a real user in an organizational network environment.
 
  - Get-NetUser
-
 This cmdlt enumerates the users and dump usefull informations about the user
 
 ![source-01](/img/enu3.PNG){: .align-left}
 
-
-#### Get-Net User
-
-
-- Get-Net User
 The output of Get-Net User cmdlt is bit messy, so you can pipe Get-Net User cmdlt and select specific objects you want output.
 
 ![source-01](/img/enu4.PNG){: .align-left}
 
+
 ##### Enumerating AD Groups
 
 ##### Description
+The Active Directory groups are a collection of Active Directory objects. The group can include users, computers, other groups, and other AD objects.
 
 - Get-NetGroupMembers
 
@@ -67,6 +63,7 @@ With PowerView, the **Get-NetGPO**  cmdlet allows for the easy enumeration of al
 ![source-01](/img/enu6.PNG){: .align-left}
 
 ##### Enumerating AD Computers
+##### Description
 ![source-01](/img/enu8.PNG){: .align-left}
 
 enumerating
