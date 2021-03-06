@@ -13,6 +13,10 @@ In this module im going to cover the following.
 -    Enumerating AD Trusts
 
 ##### Enumerating Domain
+
+##### Description 
+In Active Directory terms, a domain is an area of a network organized by a single authentication database. In other words, an Active Directory domain is essentially a logical grouping of objects on a network. Domains are created so IT teams can establish administrative boundaries between different network entities. In Active Directory domains are controlled by a tool called the domain controller.
+
 - Get-NetDomain 
 
 This command will give information about the current domain domain controller.
@@ -24,6 +28,10 @@ This command will give information about the current domain domain controller.
 ![source-01](/img/enu2.PNG){: .align-left}
 
 ###### Enumerating AD Users
+
+##### Description
+A user object in AD is used to represent a real user in an organizational network environment.
+
  - Get-NetUser
 
 This cmdlt enumerates the users and dump usefull informations about the user
@@ -33,12 +41,16 @@ This cmdlt enumerates the users and dump usefull informations about the user
 
 #### Get-Net User
 
+
+- Get-Net User
 The output of Get-Net User cmdlt is bit messy, so you can pipe Get-Net User cmdlt and select specific objects you want output.
 
 ![source-01](/img/enu4.PNG){: .align-left}
 
 ##### Enumerating AD Groups
+
 ##### Description
+
 - Get-NetGroupMembers
 
 This cmdlt allow you to enumerate group emembership from active directory, this is very usefull in an engagement.
