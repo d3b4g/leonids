@@ -84,12 +84,16 @@ This cmdlt outputs the list of ACEs applied to the object.
 
  #### Enumerating AD Trusts
  ##### Description:
-Active Directory domain to domain communications occur through a trust. An AD DS trust is a secured, authentication communication channel between entities, such as AD DS domains, forests, and UNIX realms. Trusts enable you to grant access to resources to users, groups and computers across entities.
+Active Directory domain to domain communications occur through a trust. An AD DS trust is a secured, authentication communication channel between entities, such as AD DS domains, forests. Trusts enable you to grant access to resources to users, groups and computers across entities.
 
-Get-NetDomainTrust #Get all domain trusts (parent, children and external)
+- Get-NetDomainTrust 
+This cmdlt get all domain trusts including parent, childand external)
+
 ![source-01](/img/enu11.PNG){: .align-left}
 
-Get-NetForestDomain | Get-NetDomainTrust #Enumerate all the trusts of all the domains found
+- Get-NetForestDomain | Get-NetDomainTrust
+This cmdlt Enumerate all the trusts of all the domains found 
+
 ![source-01](/img/enu12.PNG){: .align-left}
 
 We can also enumerate this information with .NET class "Domain.GetAllTrustRelationships"
@@ -97,9 +101,16 @@ We can also enumerate this information with .NET class "Domain.GetAllTrustRelati
 ![source-01](/img/enu13.PNG){: .align-left}
 
 
-Get-DomainPolicy #Get info about the policy
-(Get-DomainPolicy)."KerberosPolicy" #Kerberos tickets info(MaxServiceAge)
-(Get-DomainPolicy)."SystemAccess" #Password policy
+Get-DomainPolicy 
+
+This cmdtlt get info about the policy
+
+(Get-DomainPolicy)."KerberosPolicy" 
+This cmdlt gives Kerberos tickets info(MaxServiceAge)
+
+(Get-DomainPolicy)."SystemAccess" 
+
+This cmdlt gives Password policy
 
 
 ![source-01](/img/enu14.PNG){: .align-left}
