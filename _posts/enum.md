@@ -64,9 +64,12 @@ With PowerView, the **Get-NetGPO**  cmdlet allows for the easy enumeration of al
 
 ##### Enumerating AD Computers
 ##### Description
+Computer objects are used to uniquely identify and manage Windows-based domain clients within Active Directory. They are used to specify computer names, locations, properties and access rights.
+
 ![source-01](/img/enu8.PNG){: .align-left}
 
-enumerating
+As you can see **Get-NetComputer** cmdlt gives a lot of information about the computer object. You always don't need all the information, you can always use the handy pipe and select the information you need.
+
 ![source-01](/img/enu9.PNG){: .align-left}
 
 ##### Enumerating Domain ACLs 
@@ -81,7 +84,7 @@ This cmdlt outputs the list of ACEs applied to the object.
 
  #### Enumerating AD Trusts
  ##### Description:
-
+Active Directory domain to domain communications occur through a trust. An AD DS trust is a secured, authentication communication channel between entities, such as AD DS domains, forests, and UNIX realms. Trusts enable you to grant access to resources to users, groups and computers across entities.
 
 Get-NetDomainTrust #Get all domain trusts (parent, children and external)
 ![source-01](/img/enu11.PNG){: .align-left}
