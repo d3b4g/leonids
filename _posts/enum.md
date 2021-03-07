@@ -11,6 +11,7 @@ In this module im going to cover the following.
 -    Enumerating Domain ACLs with built in tools  and Powerview
 -    Enumerating Group Policy Objects (GPOs)
 -    Enumerating AD Trusts
+-    Enumerating Local Administrators
 
 ##### Enumerating Domain
 
@@ -136,3 +137,8 @@ This cmdlt gives Password policy
 
 
 ![source-01](/img/enu14.PNG){: .align-left}
+
+####  Enumerating Local Administrators
+##### Desciption
+Get local group membership with the NetLocalGroupGetMembers Win32 API call.
+
