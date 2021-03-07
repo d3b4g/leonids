@@ -78,7 +78,9 @@ As you can see **Get-NetComputer** cmdlt gives a lot of information about the co
 
 ##### Enumerating Domain ACLs 
 ##### Description:
-ACLs (Access Control Lists) are the settings that define what objects get access to other objects in Active Directory. The main benefit of ACL configuring for an OU (provided that the configuration is correct!) is that all descendant objects will inherit this ACL. The ACL of an OU containing objects includes an Access Control Entry (ACE) that defines the identifier and respective permissions applied to the OU or descending objects. Each ACE includes a security identifier (SID) and access mask; there are four ACE types: access allowed, access denied, permitted object, and restricted object.
+ACLs (Access Control Lists) are the settings that define what objects get access to other objects in Active Directory. There are two types of ACLs:
+- Discretionary access control list (DACL): This defines the security principals which are either granted or denied access to a securable object.
+- System access control list (SACL): This grants power to administrators to log the access attempts made to secured objects.
 
 ![source-01](/img/enu10.PNG){: .align-left}
 
