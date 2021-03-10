@@ -9,6 +9,8 @@ CVE-2021-26858
 
 Exchange Servers in MV IP space:
 
+We fired up a quick internet wide scan for MV ASN and found few exchange installations. 
+
 
 
 Mitigations:
