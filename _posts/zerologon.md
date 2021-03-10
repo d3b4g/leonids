@@ -12,5 +12,5 @@ Mitigations:
 
 If you are running Exchange server on prem 
 1- Deploy updates
-2- Invetigate for IOC's: analyze exchange server logs for indicators of compromise.
+2- Invetigate for IOC's: analyze exchange server logs for indicators of compromise. Microsoft released bunch of IOC's to help defenders. https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Sample%20Data/Feeds/MSTICIoCs-ExchangeServerVulnerabilitiesDisclosedMarch2021.csv
 
