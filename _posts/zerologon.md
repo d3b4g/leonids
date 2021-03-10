@@ -10,4 +10,7 @@ Exchange Servers in MV IP space:
 
 Mitigations:
 
-If you are running Exchange server 
+If you are running Exchange server on prem 
+1- Deploy updates
+2- Invetigate for IOC's: analyze exchange server logs for indicators of compromise.
+
