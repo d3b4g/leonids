@@ -1,6 +1,6 @@
 Active Directory Red Team Domain Enumeration
 
-You just cant throw exploit here and there and expect to work. Enumeration is the key for any successful engagement, in this module i will cover how you can enumerate microsoft Active Directory with Powerview and native windows functionalities. Powerview includes many commands to enumerate and manage the active directory. I will demostrate the commands i mostly use in Active Directory assessments. 
+In a penetration testing engagement you don't want throw random exploits and make a lot of noice, you need to be stealthy. Enumeration is the key for any successful engagement, in this module i will cover how you can enumerate microsoft Active Directory with Powerview and native windows functionalities. Powerview includes many commands to enumerate and manage the active directory. I will demostrate the commands i mostly use in Active Directory assessments. 
 > If you have not read my previous post about RedTeam Lab setup, please read
 
 In this module im going to cover the following.
