@@ -122,10 +122,12 @@ Piping the result of **Get-NetforestDomain** to **Get-NetDomainTrust**  enumerat
 
 We can also enumerate this information with .NET class "Domain.GetAllTrustRelationships"
 
-![source-01](/img/enu13.PNG){: .align-left}
-
+![source-01](/img/enu14.PNG){: .align-left}
 
 #### Get-DomainPolicy 
+
+![source-01](/img/enu13.PNG){: .align-left}
+
 
 This cmdtlt get info about the policy
 
@@ -135,9 +137,6 @@ This cmdlt gives Kerberos tickets info(MaxServiceAge)
 (Get-DomainPolicy)."SystemAccess" 
 
 This cmdlt gives Password policy
-
-
-![source-01](/img/enu14.PNG){: .align-left}
 
 ####  Enumerating Local Administrators
 ##### Desciption
