@@ -19,8 +19,8 @@ Vulnerable to latest Exchange 0day exploits
 Mitigations:
 
 If you are running Exchange server on prem 
-1- Deploy updates
-2- Invetigate for IOC's: analyze exchange server logs for indicators of compromise. Microsoft released bunch of IOC's to help defenders. https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Sample%20Data/Feeds/MSTICIoCs-ExchangeServerVulnerabilitiesDisclosedMarch2021.csv
-3- If you are unable to immediately apply updates, follow Microsoft’s alternative mitigations
+- Deploy updates
+- Invetigate for IOC's: analyze exchange server logs for indicators of compromise. Microsoft released bunch of IOC's to help defenders. https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Sample%20Data/Feeds/MSTICIoCs-ExchangeServerVulnerabilitiesDisclosedMarch2021.csv
+- If you are unable to immediately apply updates, follow Microsoft’s alternative mitigations
 
 
