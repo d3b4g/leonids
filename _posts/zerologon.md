@@ -9,10 +9,12 @@ Vulnerability detail
 
 Exchange Servers in MV IP space:
 
-We fired up a quick internet wide scan for MV ASN and found few exchange installations. 
+We fired up a quick internet wide scan for MV ASN's to find exchange servers exposed to internet in Maldives. 
 
 ![source-01](/img/enu16111111.PNG){: .align-left}
 
+Vulnerable to latest Exchange 0day exploits
+![source-01](/img/enu161111112.PNG){: .align-left}
 
 Mitigations:
 
