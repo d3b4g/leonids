@@ -29,6 +29,7 @@ This command will give information about the current domain domain controller.
 
 ![source-01](/img/enu2.PNG){: .align-left}
 
+
 ###### Enumerating AD Users
 
 ##### Description
@@ -43,10 +44,6 @@ The output of Get-Net User cmdlet can be bit messy, you can PIPE Get-Net User cm
 
 ![source-01](/img/enu4.PNG){: .align-left}
 
-Other useful properties i always look for are
-- pwdlastset
-- badpasswordcount
-
 
 ##### Enumerating AD Groups
 
@@ -55,9 +52,14 @@ The Active Directory groups are a collection of Active Directory objects. The gr
 
 - Get-NetGroupMembers
 
-This cmdlt allow you to enumerate group emembership from active directory, this is very usefull in an engagement.
+This cmdlet allow you to enumerate group emembership from active directory, some of the usefull groupmemberships i enumerate are 
+- Domain Admin Group
+- Enterprise Admin Group
+- Account operators Group
+- RODC Admin Group
 
 ![source-01](/img/enu5.PNG){: .align-left}
+
 
 #### Enumerating AD GPO
 
@@ -67,6 +69,9 @@ Group Policy Objects are Active Directory containers used to store groupings of 
 With PowerView, the **Get-NetGPO**  cmdlet allows for the easy enumeration of all current GPOs in a given domain.
 
 ![source-01](/img/enu6.PNG){: .align-left}
+
+If you want check GPO's applied to a specific computer you can use the below Powerview command
+**Get-DomainGPO -ComputerIdentity  "ComputerName"**
 
 ##### Enumerating AD Computers
 ##### Description
