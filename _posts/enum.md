@@ -19,7 +19,7 @@ In this module im going to cover the following.
 ##### Description 
 In Active Directory terms, a domain is an area of a network organized by a single authentication database. It is logical grouping of objects on a network. In Active Directory domains are controlled by the domain controller.
 
-- Get-NetDomain 
+> Get-NetDomain 
 
 This command will give information about the current domain domain controller.
 
@@ -35,7 +35,7 @@ This command will give information about the current domain domain controller.
 ##### Description
 A user object in AD is used to represent a real user in an organizational network environment.
 
- - Get-NetUser
+ > Get-NetUser
 This cmdlet enumerates the users and dump usefull informations about the user.
 
 ![source-01](/img/enu3.PNG){: .align-left}
@@ -50,7 +50,7 @@ The output of Get-Net User cmdlet can be bit messy, you can PIPE Get-Net User cm
 ##### Description
 The Active Directory groups are a collection of Active Directory objects. The group can include users, computers, other groups, and other AD objects.
 
-- Get-NetGroupMembers
+> Get-NetGroupMembers
 
 This cmdlet allow you to enumerate group emembership from active directory, some of the usefull groupmemberships i enumerate are 
 - Domain Admin Group
