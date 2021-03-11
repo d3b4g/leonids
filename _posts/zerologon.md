@@ -11,6 +11,7 @@ Exchange Servers in MV IP space:
 
 We fired up a quick internet wide scan for MV ASN and found few exchange installations. 
 
+![source-01](/img/enu16111111.PNG){: .align-left}
 
 
 Mitigations:
@@ -19,4 +20,5 @@ If you are running Exchange server on prem
 1- Deploy updates
 2- Invetigate for IOC's: analyze exchange server logs for indicators of compromise. Microsoft released bunch of IOC's to help defenders. https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Sample%20Data/Feeds/MSTICIoCs-ExchangeServerVulnerabilitiesDisclosedMarch2021.csv
 3- If you are unable to immediately apply updates, follow Microsoft’s alternative mitigations
+
 
