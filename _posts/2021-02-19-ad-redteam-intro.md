@@ -25,10 +25,12 @@ In this series of posts, you will be guided through red team oriented Active Dir
 + Domain Persistence
 + Abusing Microsoft LAPS
 + Credential Attacks
-+ Kerberos Delegeation Attacks
++ Kerberos Attacks
    + Unconstrained Delegation
    + Constrained Delegation
    + Resource based Constrained Delegeation
+   + Kerberoasting
+   + ASREPRoasting
 + Attacking Active Directory Forest
 + Abusing SQL Server
 
