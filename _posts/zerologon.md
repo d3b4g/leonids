@@ -2,10 +2,10 @@ Last week, Microsoft release out of band updates to address multiple zero day vu
 
 Vulnerability detail
 
-CVE-2021-26855
-CVE-2021-26857
-CVE-2021-27065
-CVE-2021-26858
+- CVE-2021-26855
+- CVE-2021-26857
+- CVE-2021-27065
+- CVE-2021-26858
 
 Exchange Servers in MV IP space:
 
