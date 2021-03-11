@@ -17,7 +17,7 @@ In this module im going to cover the following.
 ##### Enumerating Domain
 
 ##### Description 
-In Active Directory terms, a domain is an area of a network organized by a single authentication database. In other words, an Active Directory domain is essentially a logical grouping of objects on a network. Domains are created so IT teams can establish administrative boundaries between different network entities. In Active Directory domains are controlled by a tool called the domain controller.
+In Active Directory terms, a domain is an area of a network organized by a single authentication database. It is logical grouping of objects on a network. In Active Directory domains are controlled by the domain controller.
 
 - Get-NetDomain 
 
@@ -25,7 +25,7 @@ This command will give information about the current domain domain controller.
 
 ![source-01](/img/enu1.PNG){: .align-left}
 
--Domain parameter in Get-Net-Domain cmdlt allow you to specify domain name you want enumerate
+**-Domain** parameter in Get-Net-Domain cmdlet allow you to specify domain name you want enumerate.
 
 ![source-01](/img/enu2.PNG){: .align-left}
 
@@ -35,11 +35,11 @@ This command will give information about the current domain domain controller.
 A user object in AD is used to represent a real user in an organizational network environment.
 
  - Get-NetUser
-This cmdlt enumerates the users and dump usefull informations about the user
+This cmdlet enumerates the users and dump usefull informations about the user.
 
 ![source-01](/img/enu3.PNG){: .align-left}
 
-The output of Get-Net User cmdlt is bit messy, so you can pipe Get-Net User cmdlt and select specific objects you want output.
+The output of Get-Net User cmdlet can be bit messy, you can PIPE Get-Net User cmdlet and pass to SELECT-OBJECT cmdlet and output desired results.
 
 ![source-01](/img/enu4.PNG){: .align-left}
 
