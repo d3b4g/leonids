@@ -91,6 +91,7 @@ As you can see **Get-NetComputer** cmdlet gives a lot of information you can alw
 ##### Description:
 ACLs (Access Control Lists) are the settings that define what objects get access to other objects in Active Directory. 
 There are two types of ACLs:
+
 - **Discretionary access control list (DACL):** This defines the security principals which are either granted or denied access to a securable object.
 - **System access control list (SACL):** This grants power to administrators to log the access attempts made to secured objects.
 
@@ -121,7 +122,7 @@ added to a forest root. This trust is always two-way transitive.
 **External Trusts:** Between two domains in different forests when forests do not have a trust
 relationship. It can be one-way or two-way and is nontransitive.
 
-- Get-NetDomainTrust 
+> Get-NetDomainTrust 
 This cmdlet get all domain trusts including parent, childand external)
 
 ![source-01](/img/enu11.PNG){: .align-left}
@@ -141,17 +142,15 @@ We can also enumerate this information with .NET class "Domain.GetAllTrustRelati
 
 ![source-01](/img/enu13.PNG){: .align-left}
 
+> (Get-DomainPolicy)."KerberosPolicy" 
+This cmdlt gives Kerberos tickets information, it will be very useful in kerberos attacks
 
-This cmdtlt get info about the policy
-
-(Get-DomainPolicy)."KerberosPolicy" 
-This cmdlt gives Kerberos tickets info(MaxServiceAge)
-
-(Get-DomainPolicy)."SystemAccess" 
+> (Get-DomainPolicy)."SystemAccess" 
 
 This cmdlt gives Password policy
 
 ####  Enumerating Local Administrators
+
 ##### Desciption
 Get local group membership with the NetLocalGroupGetMembers Win32 API call.
 
