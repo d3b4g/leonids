@@ -154,3 +154,7 @@ This cmdlt gives Password policy
 ##### Desciption
 Get local group membership with the NetLocalGroupGetMembers Win32 API call.
 
+
+#### Refference / Resources 
+
+- [Github](https://github.com/PowerShellMafia/PowerSploit/tree/master/Recon) - PowerSploit Repo
