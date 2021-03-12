@@ -36,6 +36,7 @@ This command will give information about the current domain domain controller.
 A user object in AD is used to represent a real user in an organizational network environment.
 
  > Get-NetUser
+ 
 This cmdlet enumerates the users and dump usefull informations about the user.
 
 ![source-01](/img/enu3.PNG){: .align-left}
