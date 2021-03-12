@@ -143,11 +143,12 @@ We can also enumerate this information with .NET class "Domain.GetAllTrustRelati
 ![source-01](/img/enu13.PNG){: .align-left}
 
 > (Get-DomainPolicy)."KerberosPolicy" 
-This cmdlt gives Kerberos tickets information, it will be very useful in kerberos attacks
+
+This cmdlet enumerate the kerberos policy, it will be very useful in kerberos attacks
 
 > (Get-DomainPolicy)."SystemAccess" 
 
-This cmdlet gives Password policy
+This cmdlet default domain policy
 
 ####  Enumerating Local Administrators
 
