@@ -45,6 +45,12 @@ The output of Get-Net User cmdlet can be bit messy, you can PIPE Get-Net User cm
 
 ![source-01](/img/enu4.PNG){: .align-left}
 
+> Get-Net User -SPN
+
+This cmdlet enumerates kerberoastable users
+
+![source-01](/img/enu18.PNG){: .align-left}
+
 
 ##### Enumerating AD Groups
 
