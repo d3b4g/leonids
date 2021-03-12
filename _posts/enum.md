@@ -147,7 +147,7 @@ This cmdlt gives Kerberos tickets information, it will be very useful in kerbero
 
 > (Get-DomainPolicy)."SystemAccess" 
 
-This cmdlt gives Password policy
+This cmdlet gives Password policy
 
 ####  Enumerating Local Administrators
 
@@ -157,7 +157,7 @@ Get local group membership with the NetLocalGroupGetMembers Win32 API call.
 
 #### Refference / Resources 
 
-- [Github](https://github.com/PowerShellMafia/PowerSploit/tree/master/Recon) - PowerSploit Repo
+- [Powersploit](https://powersploit.readthedocs.io/en/latest/Recon/Get-ForestDomain/) - PowerSploit Documentation
 - [Specterops](https://posts.specterops.io/a-red-teamers-guide-to-gpos-and-ous-f0d03976a31e) - A Red Teamer’s Guide to GPOs and OUs
 - [Microsoft](https://docs.microsoft.com/en-us/powershell/module/addsadministration/get-adtrust?view=win10-ps) - Active Directory PowerShell Documentation
 - 
