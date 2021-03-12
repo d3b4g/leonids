@@ -9,7 +9,7 @@ Vulnerability detail
 
 Exchange Servers in MV IP space:
 
-We fired up a quick internet wide scan for MV ASN's to find exchange servers exposed to internet in Maldives. 
+Quick internet wide scan of MV IP space shows few exchange servers exposed to internet in Maldives. 
 
 ![source-01](/img/enu16111111.PNG){: .align-left}
 
