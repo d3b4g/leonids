@@ -138,8 +138,13 @@ We can also enumerate this information with .NET class "Domain.GetAllTrustRelati
 
 ![source-01](/img/enu14.PNG){: .align-left}
 
+#### Enumerating Domain Policy
+##### Description
+The domain password policy allows you to specify a range of password security options, including how frequently users change their passwords
 
-#### Get-DomainPolicy 
+> Get-DomainPolicy 
+
+Returns the default domain policy or the domain controller policy for the current domain or a specified domain/domain controller.
 
 ![source-01](/img/enu13.PNG){: .align-left}
 
