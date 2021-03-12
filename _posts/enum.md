@@ -18,11 +18,11 @@ In this module im going to cover the following.
 ##### Enumerating Domain
 
 ##### Description 
-In Active Directory terms, a domain is an area of a network organized by a single authentication database. It is logical grouping of objects on a network. In Active Directory domains are controlled by the domain controller.
+In Active Directory terms, a domain is an area of a network organized by a single authentication database. It is a logical grouping of objects on a network. In Active Directory, domains are controlled by the domain controller.
 
 > Get-NetDomain 
 
-This command will give information about the current domain domain controller.
+This command will give information about the current domain controller.
 
 ![source-01](/img/enu1.PNG){: .align-left}
 
@@ -113,7 +113,7 @@ This cmdlet outputs the list of ACEs applied to the object.
  #### Enumerating AD Trusts
  
  ##### Description:
- Active Directory trust is a secured, authentication communication channel between entities, such as AD DS domains, forests. Trusts enable you to grant access to resources to users, groups and computers across entities.
+Active Directory trust is a secured, authentication communication channel between entities, such as AD DS domains, forests. Trusts enable you to grant access to resources to users, groups, and computers across entities.
 
 **Trusts Direction:**
 - **Two-way trust (Bi-directional):** Users from Domain A can access resources in Domain B
@@ -125,7 +125,7 @@ trusting domain but the reverse is not true
 that precedes it in the namespace hierarchy, whenever a new domain is added in a tree.
 For example, usa.fanzy.com is a child of fanzy.com). This trust is always two-way
 transitive.
-- **Tree-root trust:** It is created automatically between whenever a new domain tree is
+- **Tree-root trust:** It is created automatically whenever a new domain tree is
 added to a forest root. This trust is always two-way transitive.
 **External Trusts:** Between two domains in different forests when forests do not have a trust
 relationship. It can be one-way or two-way and is nontransitive.
