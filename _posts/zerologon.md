@@ -2,8 +2,8 @@ Last week, Microsoft release out of band updates to address multiple zero day vu
 
 Vulnerability detail
 
-- CVE-2021-26855: is a server-side request forgery (SSRF) vulnerability in Exchange which allowed the attacker to send arbitrary HTTP requests and authenticate as the Exchange server.
-- **CVE-2021-26857:**Insecure deserialization vulnerability in the Unified Messaging service.
+- **CVE-2021-26855:** Server-side request forgery (SSRF) vulnerability in Exchange which allowed the attacker to send arbitrary HTTP requests & authenticate as the Exchange server.
+- **CVE-2021-26857:** Insecure deserialization vulnerability in the Unified Messaging service.
 - **CVE-2021-27065:** Post-authentication arbitrary file write vulnerability in Exchange.
 - **CVE-2021-26858:** Post-authentication arbitrary file write vulnerability in Exchange. Could use this vulnerability to write a file to any path on the server.
 
