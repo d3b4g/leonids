@@ -1,3 +1,15 @@
+---
+layout: post
+title:  "Mapping Exposed Exchange Servers in MV IP space"
+date:   2021-03-14 14:07:20
+categories: [Security Advisories ]
+excerpt: "Last week, Microsoft released out-of-band updates to address multiple zero-day vulnerabilities which affect the on-premises version of the exchange server"
+
+comments: true
+---
+
+
+
 Last week, Microsoft released out-of-band updates to address multiple zero-day vulnerabilities which affect the on-premises version of the exchange server. According to research firms, adversaries started mass exploitation of this vulnerability as early as Jan 2021. Cybercriminals are already exploiting this vulnerability to install ransomware.
 
 ##### Vulnerability detail
@@ -7,7 +19,7 @@ Last week, Microsoft released out-of-band updates to address multiple zero-day v
 - **CVE-2021-27065:** Post-authentication arbitrary file write vulnerability in Exchange.
 - **CVE-2021-26858:** Post-authentication arbitrary file write vulnerability in Exchange. Could use this vulnerability to write a file to any path on the server.
 
-#### Mapping exposed Exchange Servers in MV IP space:
+#### Mapping Exposed Exchange Servers in MV IP space:
 
 Quick internet-wide scan of MV IP space shows few exchange servers exposed to the internet in the Maldives. Threat actors are performing mass-scans for the internet in search of vulnerable exchange servers. The number of exposed exchange servers in MV is very low compared to other parts of the world. If you are running exchange on-prem go patch now.
 
