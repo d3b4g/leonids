@@ -14,10 +14,12 @@ Quick internet wide scan of MV IP space shows few exchange servers exposed to in
 
 ![source-01](/img/enu16111111.PNG){: .align-left}
 
-Vulnerable to latest Exchange 0day exploits
+##### Servers Vulnerable to latest Exchange 0day exploits
+
 ![source-01](/img/enu161111112.PNG){: .align-left}
 
-
+##### Vulnerability detected by domain
+> domain name redacted for privacy / security reasons
 ![source-01](/img/screenshot1.PNG){: .align-left}
 
 #### Detection / Investigation
