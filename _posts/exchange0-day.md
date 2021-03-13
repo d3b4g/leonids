@@ -13,6 +13,11 @@ Quick internet-wide scan of MV IP space shows few exchange servers exposed to th
 
 ![source-01](/img/enu16111111.PNG){: .align-left}
 
+Majority of the systems are coming from dhiraagu IP ranges
+
+![source-01](/img/screenshot167.PNG){: .align-left}
+
+
 ##### Vulnerability detected by domain
 
 ![source-01](/img/screenshot1.PNG){: .align-left}
