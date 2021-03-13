@@ -20,8 +20,10 @@ Vulnerable to latest Exchange 0day exploits
 
 ![source-01](/img/screenshot1.PNG){: .align-left}
 
-#### Detection
+#### Detection / Investigation
+
 Even if you already installed the updates and patched your exchange on prem, it is highly encouraged to investigate the server for any IOC's.
+
 ##### Scan exchange server for IOC's
 
 - **CVE-2021-26855:** exploitation can be detected via the  Exchange HttpProxy logs
@@ -35,9 +37,16 @@ Microsoft Exchange server team released a script for checking HAFNIUM indicators
 
 
 #### Mitigations:
+Microsoft has release out of band security updates for the following versions of exchange server
 
-If you are running Exchange server on prem version 
-- Deploy updates
-- 
+- Exchange Server 2013
+- Exchange Server 2016
+- Exchange Server 2019
+
+##### Refference
+
+[IOC's detection tool](https://github.com/microsoft/CSS-Exchange/tree/main/Security)
+[Exchange Server Security Updates](https://techcommunity.microsoft.com/t5/exchange-team-blog/released-march-2021-exchange-server-security-updates/ba-p/2175901)
+
 
 
