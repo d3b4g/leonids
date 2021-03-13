@@ -9,7 +9,7 @@ Vulnerability detail
 
 #### Exchange Servers in MV IP space:
 
-Quick internet wide scan of MV IP space shows few exchange servers exposed to internet in Maldives. 
+Quick internet-wide scan of MV IP space shows few exchange servers exposed to internet in Maldives. Scan resulted in around 20 unique IPv4 address. The number of exposed exchnage servers in MV is very low. 
 
 
 ![source-01](/img/enu16111111.PNG){: .align-left}
