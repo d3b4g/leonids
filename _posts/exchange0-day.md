@@ -9,7 +9,7 @@ Last week, Microsoft released out-of-band updates to address multiple zero-day v
 
 #### Mapping exposed Exchange Servers in MV IP space:
 
-Quick internet-wide scan of MV IP space shows few exchange servers exposed to the internet in the Maldives. Threat actors are performing mass-scans for the internet in search of vulnerable exchange servers. The number of exposed exchange servers in MV is very low compared to other parts of the world. 
+Quick internet-wide scan of MV IP space shows few exchange servers exposed to the internet in the Maldives. Threat actors are performing mass-scans for the internet in search of vulnerable exchange servers. The number of exposed exchange servers in MV is very low compared to other parts of the world. If you are running exchange on-prem go patch now.
 
 ![source-01](/img/enu16111111.PNG){: .align-left}
 
@@ -19,7 +19,7 @@ Scan resulted in around 20 unique IPv4 addresses.
 
 Half of the systems are coming from **AS7642** IP ranges
 
-> This doesn't mean those systems are belong to AS7642, IP's leased by other organizations
+> This doesn't mean those systems belong to AS7642, IPs leased by other organizations
 
 
 ##### Vulnerability detected by domain
