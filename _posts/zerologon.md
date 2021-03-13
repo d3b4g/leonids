@@ -2,10 +2,10 @@ Last week, Microsoft release out of band updates to address multiple zero day vu
 
 Vulnerability detail
 
-- CVE-2021-26855
-- CVE-2021-26857
-- CVE-2021-27065
-- CVE-2021-26858
+- CVE-2021-26855: is a server-side request forgery (SSRF) vulnerability in Exchange which allowed the attacker to send arbitrary HTTP requests and authenticate as the Exchange server.
+- CVE-2021-26857:Insecure deserialization vulnerability in the Unified Messaging service.
+- CVE-2021-27065: Post-authentication arbitrary file write vulnerability in Exchange.
+- CVE-2021-26858: Post-authentication arbitrary file write vulnerability in Exchange. Could use this vulnerability to write a file to any path on the server.
 
 #### Exchange Servers in MV IP space:
 
@@ -22,6 +22,7 @@ Vulnerable to latest Exchange 0day exploits
 
 #### Detection
 Even if you already installed the updates and patched your exchange on prem, it is highly encouraged to investigate the server for any IOC's.
+##### Scan exchange server for IOC's
 
 - **CVE-2021-26855:** exploitation can be detected via the  Exchange HttpProxy logs
 - **CVE-2021-26858:** exploitation can be detected via the Exchange log files
@@ -35,9 +36,8 @@ Microsoft Exchange server team released a script for checking HAFNIUM indicators
 
 #### Mitigations:
 
-If you are running Exchange server on prem 
+If you are running Exchange server on prem version 
 - Deploy updates
-- Invetigate for IOC's: analyze exchange server logs for indicators of compromise. Microsoft released bunch of IOC's to help defenders. https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Sample%20Data/Feeds/MSTICIoCs-ExchangeServerVulnerabilitiesDisclosedMarch2021.csv
-- If you are unable to immediately apply updates, follow Microsoft’s alternative mitigations
+- 
 
 
