@@ -45,8 +45,8 @@ Microsoft has release out of band security updates for the following versions of
 
 ##### Refference
 
-[IOC's detection tool](https://github.com/microsoft/CSS-Exchange/tree/main/Security)
-[Exchange Server Security Updates](https://techcommunity.microsoft.com/t5/exchange-team-blog/released-march-2021-exchange-server-security-updates/ba-p/2175901)
+- [IOC's detection tool](https://github.com/microsoft/CSS-Exchange/tree/main/Security)
+- [Exchange Server Security Updates](https://techcommunity.microsoft.com/t5/exchange-team-blog/released-march-2021-exchange-server-security-updates/ba-p/2175901)
 
 
 
