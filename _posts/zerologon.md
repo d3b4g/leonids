@@ -17,6 +17,9 @@ Quick internet wide scan of MV IP space shows few exchange servers exposed to in
 Vulnerable to latest Exchange 0day exploits
 ![source-01](/img/enu161111112.PNG){: .align-left}
 
+
+![source-01](/img/screenshot1.PNG){: .align-left}
+
 #### Mitigations:
 
 If you are running Exchange server on prem 
