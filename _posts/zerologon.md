@@ -20,9 +20,10 @@ Quick internet-wide scan of MV IP space shows few exchange servers exposed to th
 
 ##### Vulnerability detected by domain
 
-> Full Domain name redacted for privacy/security reasons
->
 ![source-01](/img/screenshot1.PNG){: .align-left}
+
+> Full Domain name redacted for privacy/security reasons
+
 
 #### Detection / Investigation
 
