@@ -21,6 +21,7 @@ Vulnerable to latest Exchange 0day exploits
 ![source-01](/img/screenshot1.PNG){: .align-left}
 
 #### Detection
+Even if you already installed the updates and patched your exchange on prem, it is highly encouraged to investigate the server for any IOC's.
 
 - **CVE-2021-26855:** exploitation can be detected via the  Exchange HttpProxy logs
 - **CVE-2021-26858:** exploitation can be detected via the Exchange log files
