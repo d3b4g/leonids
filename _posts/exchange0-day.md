@@ -2,14 +2,14 @@ Last week, Microsoft released out-of-band updates to address multiple zero-day v
 
 ##### Vulnerability detail
 
-- **CVE-2021-26855:** Server-side request forgery (SSRF) vulnerability in Exchange which allowed the attacker to send arbitrary HTTP requests & authenticate as the Exchange server.
+- **CVE-2021-26855:** Server-side request forgery vulnerability in Exchange which allowed the attacker to send arbitrary HTTP requests & authenticate as the Exchange server.
 - **CVE-2021-26857:** Insecure deserialization vulnerability in the Unified Messaging service.
 - **CVE-2021-27065:** Post-authentication arbitrary file write vulnerability in Exchange.
 - **CVE-2021-26858:** Post-authentication arbitrary file write vulnerability in Exchange. Could use this vulnerability to write a file to any path on the server.
 
 #### Mapping exposed Exchange Servers in MV IP space:
 
-Quick internet-wide scan of MV IP space shows few exchange servers exposed to the internet in the Maldives. Threat actors are performing mass-scans for the internet in search of vulnerable exchange servers. The number of exposed exchange servers in MV is very low compared to other parts of the world.
+Quick internet-wide scan of MV IP space shows few exchange servers exposed to the internet in the Maldives. Threat actors are performing mass-scans for the internet in search of vulnerable exchange servers. The number of exposed exchange servers in MV is very low compared to other parts of the world. 
 
 ![source-01](/img/enu16111111.PNG){: .align-left}
 
@@ -18,6 +18,8 @@ Scan resulted in around 20 unique IPv4 addresses.
 ![source-01](/img/screenshot167.PNG){: .align-left}
 
 Half of the systems are coming from **AS7642** IP ranges
+
+> This doesn't mean those systems are belong to AS7642, IP's leased by other organizations
 
 
 ##### Vulnerability detected by domain
@@ -29,7 +31,7 @@ Half of the systems are coming from **AS7642** IP ranges
 
 #### Detection / Investigation
 
-Even if you already installed the updates and patched your exchange on-prem, it is highly encouraged to investigate the server for any IOCs.
+Even if you already installed the updates and patched your exchange on-prem, it is highly recommended to investigate the server for any IOCs.
 
 ##### Scan exchange server for IOC's
 
