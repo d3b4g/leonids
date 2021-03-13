@@ -1,4 +1,4 @@
-Last week, Microsoft released out-of-band updates to address multiple zero-day vulnerabilities which affect the on-premises version of the exchange server. According to research firms, adversaries started mass exploitation of this vulnerability as early as Jan 2021. Most of these are APT groups interested in cyber espionage, according to the latest reports, cybercriminals are exploiting this vulnerability to install ransomware dubbed "DearCry"
+Last week, Microsoft released out-of-band updates to address multiple zero-day vulnerabilities which affect the on-premises version of the exchange server. According to research firms, adversaries started mass exploitation of this vulnerability as early as Jan 2021. Cybercriminals are already exploiting this vulnerability to install ransomware.
 
 ##### Vulnerability detail
 
@@ -17,7 +17,7 @@ Scan resulted in around 20 unique IPv4 addresses.
 
 ![source-01](/img/screenshot167.PNG){: .align-left}
 
-Majority of the systems are coming from AS7642 IP ranges
+Half of the systems are coming from **AS7642** IP ranges
 
 
 ##### Vulnerability detected by domain
