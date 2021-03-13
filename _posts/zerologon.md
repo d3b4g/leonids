@@ -9,14 +9,9 @@ Last week, Microsoft released out-of-band updates to address multiple zero-day v
 
 #### Exchange Servers in MV IP space:
 
-Quick internet-wide scan of MV IP space shows few exchange servers exposed to the internet in the Maldives. Scan resulted in around 20 unique IPv4 addresses. The number of exposed exchange servers in MV is very low compared to other parts of the world.
-
+Quick internet-wide scan of MV IP space shows few exchange servers exposed to the internet in the Maldives. Scan resulted in around 20 unique IPv4 addresses. The number of exposed exchange servers in MV is very low compared to other parts of the world. Threat actors are performing mass-scans for the internet in search of vulnerable exchange servers.
 
 ![source-01](/img/enu16111111.PNG){: .align-left}
-
-##### Servers Vulnerable to latest Exchange 0day exploits
-
-![source-01](/img/enu161111112.PNG){: .align-left}
 
 ##### Vulnerability detected by domain
 
