@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Microsoft Exchange zero-day attacks"
+title:  "Microsoft Exchange zero-day attacks - Exposed Exchange Servers in MV IP space"
 date:   2021-03-12 14:07:20
 categories: [Security Advisories ]
 excerpt: "Last week, Microsoft released out-of-band updates to address multiple zero-day vulnerabilities which affect the on-premises version of the exchange server"
