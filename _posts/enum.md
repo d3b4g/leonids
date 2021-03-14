@@ -163,10 +163,6 @@ This cmdlet enumerate the kerberos policy, it will be very useful in kerberos at
 
 This cmdlet default domain policy
 
-####  Enumerating Local Administrators
-
-##### Desciption
-Get local group membership with the NetLocalGroupGetMembers Win32 API call.
 
 
 #### Refference / Resources 
