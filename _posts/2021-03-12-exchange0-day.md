@@ -30,7 +30,7 @@ Scan resulted in around 20 unique IPv4 addresses.
 
 ![source-01](/img/screenshot167.PNG){: .align-left}
 
-Half of the systems are coming from **AS7642** IP ranges
+Majority of the systems are coming from **AS7642** IP ranges
 
 > IPs leased by companies/organizations from AS7642
 
