@@ -35,8 +35,6 @@ Majority of the systems are coming from **AS7642** IP ranges
 > IPs leased by companies/organizations from AS7642
 
 
-##### Vulnerability detected by domain
-
 ![source-01](/img/screenshot1.PNG){: .align-left}
 
 > Full Domain name redacted for privacy/security reasons
