@@ -26,13 +26,13 @@ Quick internet-wide scan of MV IP space shows few exchange servers exposed to th
 
 ![source-01](/img/enu16111111.PNG){: .align-right}
 
-- Scan resulted in around 20 unique IPv4 addresses. 
+Scan resulted in around 20 unique IPv4 addresses. 
 
 ![source-01](/img/screenshot167.PNG){: .align-left}
 
-- Half of the systems are coming from **AS7642** IP ranges
+Half of the systems are coming from **AS7642** IP ranges
 
-> This doesn't mean those systems belong to AS7642, IPs leased by other organizations
+> IPs leased by companies/organizations from AS7642
 
 
 ##### Vulnerability detected by domain
