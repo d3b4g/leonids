@@ -48,7 +48,7 @@ The output of the Get-Net User cmdlet can be a bit messy, you can PIPE Get-Net U
 
 > Get-Net User -SPN
 
-This cmdlet enumerates kerberoastable users. Kerberoasting abuses traits of the Kerberos protocol to harvest password hashes for Active Directory user accounts with servicePrincipalName. This is usualy an entry point for pentesters.
+This cmdlet enumerates kerberoastable users. **Kerberoasting** abuses traits of the Kerberos protocol to harvest password hashes for Active Directory user accounts with servicePrincipalName. This is usualy an entry point for pentesters.
 
 ![source-01](/img/enu18.PNG){: .align-left}
 
@@ -60,10 +60,12 @@ The Active Directory groups are a collection of Active Directory objects. The gr
 
 > Get-NetGroupMembers
 
-This cmdlet allow you to enumerate group emembership from active directory, some of the usefull groupmemberships i enumerate are 
+This cmdlet allow you to enumerate group emembership from active directory, some of the usefull groupmemberships to enumerate are 
+
 - Domain Admin Group
 - Enterprise Admin Group
-- Account operators Group
+- Account operator Group
+- Server Operator Group
 
 
 ![source-01](/img/enu5.PNG){: .align-left}
@@ -72,9 +74,10 @@ This cmdlet allow you to enumerate group emembership from active directory, some
 #### Enumerating AD GPO
 
 ##### Description
-Group Policy Objects are Active Directory containers used to store groupings of policy settings. These objects are then linked to specific sites, domains, or m organizational units (OUs).
+Group Policy Objects are Active Directory containers used to store groupings of policy settings. These objects are then linked to specific sites, domains, or organizational units (OUs).
 
-With PowerView, the **Get-NetGPO**  cmdlet allows for the easy enumeration of all current GPOs in a given domain.
+> **Get-NetGPO** 
+cmdlet allows for the easy enumeration of all current GPOs in a given domain.
 
 ![source-01](/img/enu6.PNG){: .align-left}
 
