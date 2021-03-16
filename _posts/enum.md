@@ -26,7 +26,7 @@ This command will give information about the current domain controller.
 
 ![source-01](/img/enu1.PNG){: .align-left}
 
-**-Domain** parameter in Get-Net-Domain cmdlet allow you to specify domain name you want enumerate.
+**-Domain** parameter in **Get-Net-Domain** cmdlet allow you to specify domain name you want enumerate.
 
 ![source-01](/img/enu2.PNG){: .align-left}
 
@@ -42,13 +42,13 @@ This cmdlet enumerates the users and dump usefull informations about the user.
 
 ![source-01](/img/enu3.PNG){: .align-left}
 
-The output of Get-Net User cmdlet can be bit messy, you can PIPE Get-Net User cmdlet and pass to SELECT-OBJECT cmdlet and output desired results.
+The output of the Get-Net User cmdlet can be a bit messy, you can PIPE Get-Net User cmdlet and pass to **SELECT-OBJECT** cmdlet and output desired results.
 
 ![source-01](/img/enu4.PNG){: .align-left}
 
 > Get-Net User -SPN
 
-This cmdlet enumerates kerberoastable users
+This cmdlet enumerates kerberoastable users. Kerberoasting abuses traits of the Kerberos protocol to harvest password hashes for Active Directory user accounts with servicePrincipalName. This is usualy an entry point for pentesters.
 
 ![source-01](/img/enu18.PNG){: .align-left}
 
