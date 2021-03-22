@@ -166,7 +166,8 @@ This cmdlet enumerate the kerberos policy, it will be very useful in kerberos at
 
 This cmdlet default domain policy
 
-
+#### Conclusion
+In this post i covered the techniques i use when enumerating Active Directory environment, there are many tools and techniques you can use
 
 #### Refference / Resources 
 
