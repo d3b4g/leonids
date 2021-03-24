@@ -31,7 +31,7 @@ This command will give information about the current domain controller.
 ![source-01](/img/enu2.PNG){: .align-left}
 
 
-###### Enumerating AD Users
+##### Enumerating AD Users
 
 ##### Description
 A user object in AD is used to represent a real user in an organizational network environment.
