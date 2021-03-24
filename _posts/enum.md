@@ -60,7 +60,7 @@ The Active Directory groups are a collection of Active Directory objects. The gr
 
 > Get-NetGroupMembers
 
-This cmdlet allow you to enumerate group emembership from active directory, some of the usefull groupmemberships to enumerate are 
+This cmdlet allow you to enumerate group membership from active directory, some of the usefull groupmemberships to enumerate are 
 
 - Domain Admin Group
 - Enterprise Admin Group
@@ -77,7 +77,8 @@ This cmdlet allow you to enumerate group emembership from active directory, some
 Group Policy Objects are Active Directory containers used to store groupings of policy settings. These objects are then linked to specific sites, domains, or organizational units (OUs).
 
 > **Get-NetGPO** 
-cmdlet allows for the easy enumeration of all current GPOs in a given domain.
+> 
+This cmdlet enumerate of all current GPOs in a given domain.
 
 ![source-01](/img/enu6.PNG){: .align-left}
 
