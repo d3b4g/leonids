@@ -38,7 +38,7 @@ A user object in AD is used to represent a real user in an organizational networ
 
  > Get-NetUser
  
-This cmdlet enumerates the users and dump usefull informations about the user.
+This command enumerates the users and dump usefull informations about the user.
 
 ![source-01](/img/enu3.PNG){: .align-left}
 
@@ -48,7 +48,7 @@ The output of the Get-Net User cmdlet can be a bit messy, you can PIPE Get-Net U
 
 > Get-Net User -SPN
 
-This cmdlet enumerates kerberoastable users. **Kerberoasting** abuses traits of the Kerberos protocol to harvest password hashes for Active Directory user accounts with servicePrincipalName. This is usualy an entry point for pentesters.
+This command enumerates kerberoastable users. **Kerberoasting** abuses traits of the Kerberos protocol to harvest password hashes for Active Directory user accounts with servicePrincipalName. This is usualy an entry point for pentesters.
 
 ![source-01](/img/enu18.PNG){: .align-left}
 
@@ -60,7 +60,7 @@ The Active Directory groups are a collection of Active Directory objects. The gr
 
 > Get-NetGroupMembers
 
-This cmdlet allow you to enumerate group membership from active directory, some of the usefull groupmemberships to enumerate are 
+This command allow you to enumerate group membership from active directory, some of the usefull groupmemberships to enumerate are 
 
 - Domain Admin Group
 - Enterprise Admin Group
@@ -90,6 +90,8 @@ If you want check GPO's applied to a specific computer you can use the below Pow
 
 ##### Description
 Computer objects are used to uniquely identify and manage Windows-based domain clients within Active Directory. They are used to specify computer names, locations, properties and access rights.
+> Get-NetComputer
+This command enumerate Active Directory computer objects, display bunch of useful informations.
 
 ![source-01](/img/enu8.PNG){: .align-left}
 
