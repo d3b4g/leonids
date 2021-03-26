@@ -67,32 +67,16 @@ This command allow you to enumerate group membership from active directory, some
 - Account operator Group
 - Server Operator Group
 
-
 ![source-01](/img/enu5.PNG){: .align-left}
-
-
-#### Enumerating Group Policy Objects (GPOs)
-
-##### Description
-Group Policy Objects are Active Directory containers used to store groupings of policy settings. These objects are then linked to specific sites, domains, or organizational units (OUs).
-
-> **Get-NetGPO** 
-> 
-This command enumerate of all current GPOs in a given domain.
-
-![source-01](/img/enu6.PNG){: .align-left}
-
-If you want check GPO's applied to a specific computer you can use the below Powerview command
-
->**Get-DomainGPO -ComputerIdentity  "ComputerName"**
-
 
 #### Enumerating AD Computers
 
 ##### Description
+
 Computer objects are used to uniquely identify and manage Windows-based domain clients within Active Directory. They are used to specify computer names, locations, properties and access rights.
+
 > Get-NetComputer
-> 
+
 This command enumerate Active Directory computer objects, display bunch of useful informations.
 
 ![source-01](/img/enu8.PNG){: .align-left}
@@ -120,6 +104,22 @@ This cmdlet outputs the list of ACEs applied to the object.
 ![source-01](/img/enu15.PNG){: .align-left}
 
 
+#### Enumerating Group Policy Objects (GPOs)
+
+##### Description
+Group Policy Objects are Active Directory containers used to store groupings of policy settings. These objects are then linked to specific sites, domains, or organizational units (OUs).
+
+> **Get-NetGPO** 
+
+This command enumerate of all current GPOs in a given domain.
+
+![source-01](/img/enu6.PNG){: .align-left}
+
+If you want check GPO's applied to a specific computer you can use the below Powerview command
+
+>**Get-DomainGPO -ComputerIdentity  "ComputerName"**
+
+
  #### Enumerating AD Trusts
  
  ##### Description:
@@ -134,10 +134,9 @@ and vice versa.
 trusting domain but the reverse is not true
 
 **Trusts Transitivity:**
+
 - **Parent-child trust:** It is created automatically between the new domain and the domain
 that precedes it in the namespace hierarchy, whenever a new domain is added in a tree.
-For example, usa.fanzy.com is a child of fanzy.com). This trust is always two-way
-transitive.
 
 - **Tree-root trust:** It is created automatically whenever a new domain tree is
 added to a forest root. This trust is always two-way transitive.
