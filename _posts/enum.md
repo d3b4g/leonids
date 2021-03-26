@@ -71,19 +71,20 @@ This command allow you to enumerate group membership from active directory, some
 ![source-01](/img/enu5.PNG){: .align-left}
 
 
-#### Enumerating AD GPO
+#### Enumerating Group Policy Objects (GPOs)
 
 ##### Description
 Group Policy Objects are Active Directory containers used to store groupings of policy settings. These objects are then linked to specific sites, domains, or organizational units (OUs).
 
 > **Get-NetGPO** 
 > 
-This cmdlet enumerate of all current GPOs in a given domain.
+This command enumerate of all current GPOs in a given domain.
 
 ![source-01](/img/enu6.PNG){: .align-left}
 
 If you want check GPO's applied to a specific computer you can use the below Powerview command
-**Get-DomainGPO -ComputerIdentity  "ComputerName"**
+
+>**Get-DomainGPO -ComputerIdentity  "ComputerName"**
 
 
 #### Enumerating AD Computers
@@ -91,11 +92,12 @@ If you want check GPO's applied to a specific computer you can use the below Pow
 ##### Description
 Computer objects are used to uniquely identify and manage Windows-based domain clients within Active Directory. They are used to specify computer names, locations, properties and access rights.
 > Get-NetComputer
+> 
 This command enumerate Active Directory computer objects, display bunch of useful informations.
 
 ![source-01](/img/enu8.PNG){: .align-left}
 
-As you can see **Get-NetComputer** cmdlet gives a lot of information you can always use the handy pipe in powershell to get desired results.
+As you can see **Get-NetComputer** cmdlet gives a lot of information you can always use the  pipe cmdlet in powershell to get desired results.
 
 ![source-01](/img/enu9.PNG){: .align-left}
 
@@ -103,10 +105,12 @@ As you can see **Get-NetComputer** cmdlet gives a lot of information you can alw
 #### Enumerating Domain ACLs 
 
 ##### Description:
-ACLs (Access Control Lists) are the settings that define what objects get access to other objects in Active Directory. 
+
+Access Control Lists are the settings that define what objects get access to other objects in Active Directory. 
 There are two types of ACLs:
 
 - **Discretionary access control list (DACL):** This defines the security principals which are either granted or denied access to a securable object.
+
 - **System access control list (SACL):** This grants power to administrators to log the access attempts made to secured objects.
 
 ![source-01](/img/enu10.PNG){: .align-left}
@@ -119,20 +123,25 @@ This cmdlet outputs the list of ACEs applied to the object.
  #### Enumerating AD Trusts
  
  ##### Description:
+ 
 Active Directory trust is a secured, authentication communication channel between entities, such as AD DS domains, forests. Trusts enable you to grant access to resources to users, groups, and computers across entities.
 
 **Trusts Direction:**
 - **Two-way trust (Bi-directional):** Users from Domain A can access resources in Domain B
 and vice versa.
+
 - **One-way trust (Unidirectional):** Users in the trusted domain can access resources in the
 trusting domain but the reverse is not true
+
 **Trusts Transitivity:**
 - **Parent-child trust:** It is created automatically between the new domain and the domain
 that precedes it in the namespace hierarchy, whenever a new domain is added in a tree.
 For example, usa.fanzy.com is a child of fanzy.com). This trust is always two-way
 transitive.
+
 - **Tree-root trust:** It is created automatically whenever a new domain tree is
 added to a forest root. This trust is always two-way transitive.
+
 **External Trusts:** Between two domains in different forests when forests do not have a trust
 relationship. It can be one-way or two-way and is nontransitive.
 
