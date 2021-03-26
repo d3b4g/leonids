@@ -4,7 +4,7 @@ Enumeration is the key for any successful engagement, in this module I will cove
 
 > If you have not read my previous post about RedTeam Lab setup, please read [RedTeam Lab Setup]( https://ptrace.net/articles/2021-02/ad-redteam-intro)
 
-In this module im going to cover the following.
+In this post im going to cover the following.
 
 -    Enumerating Domain
 -    Enumerating AD Users
