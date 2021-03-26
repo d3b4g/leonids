@@ -15,7 +15,7 @@ In this module im going to cover the following.
 -    Enumerating AD Trusts
 -    Enumerating Local Administrators
 
-##### Enumerating Domain
+#### Enumerating Domain
 
 ##### Description 
 In Active Directory terms, a domain is an area of a network organized by a single authentication database. It is a logical grouping of objects on a network. In Active Directory, domains are controlled by the domain controller.
@@ -31,7 +31,7 @@ This command will give information about the current domain controller.
 ![source-01](/img/enu2.PNG){: .align-left}
 
 
-##### Enumerating AD Users
+#### Enumerating AD Users
 
 ##### Description
 A user object in AD is used to represent a real user in an organizational network environment.
@@ -53,7 +53,7 @@ This command enumerates kerberoastable users. **Kerberoasting** abuses traits of
 ![source-01](/img/enu18.PNG){: .align-left}
 
 
-##### Enumerating AD Groups
+#### Enumerating AD Groups
 
 ##### Description
 The Active Directory groups are a collection of Active Directory objects. The group can include users, computers, other groups, and other AD objects.
@@ -86,7 +86,7 @@ If you want check GPO's applied to a specific computer you can use the below Pow
 **Get-DomainGPO -ComputerIdentity  "ComputerName"**
 
 
-##### Enumerating AD Computers
+#### Enumerating AD Computers
 
 ##### Description
 Computer objects are used to uniquely identify and manage Windows-based domain clients within Active Directory. They are used to specify computer names, locations, properties and access rights.
@@ -100,7 +100,7 @@ As you can see **Get-NetComputer** cmdlet gives a lot of information you can alw
 ![source-01](/img/enu9.PNG){: .align-left}
 
 
-##### Enumerating Domain ACLs 
+#### Enumerating Domain ACLs 
 
 ##### Description:
 ACLs (Access Control Lists) are the settings that define what objects get access to other objects in Active Directory. 
@@ -137,11 +137,12 @@ added to a forest root. This trust is always two-way transitive.
 relationship. It can be one-way or two-way and is nontransitive.
 
 > Get-NetDomainTrust 
-This cmdlet get all domain trusts including parent, childand external)
+
+This command enumerate all domain trusts including parent, childand external
 
 ![source-01](/img/enu11.PNG){: .align-left}
 
-- Get-NetForestDomain | Get-NetDomainTrust
+> Get-NetForestDomain | Get-NetDomainTrust
 
 Piping the result of **Get-NetforestDomain** to **Get-NetDomainTrust**  enumerate all the trusts of all the domains found 
 
@@ -151,7 +152,9 @@ We can also enumerate this information with .NET class "Domain.GetAllTrustRelati
 
 ![source-01](/img/enu14.PNG){: .align-left}
 
+
 #### Enumerating Domain Policy
+
 ##### Description
 The domain password policy allows you to specify a range of password security options, including how frequently users change their passwords
 
