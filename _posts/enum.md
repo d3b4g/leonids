@@ -174,11 +174,11 @@ Returns the default domain policy or the domain controller policy for the curren
 
 > (Get-DomainPolicy)."KerberosPolicy" 
 
-This cmdlet enumerate the kerberos policy, it will be very useful in kerberos attacks
+This command enumerate the kerberos policy, it will be very useful in kerberos attacks
 
 > (Get-DomainPolicy)."SystemAccess" 
 
-This cmdlet default domain policy
+This command enumerate default SystemAccess policy
 
 #### Conclusion
 
@@ -190,4 +190,5 @@ In this post, I covered how you can collect important information about Active D
 - [Specterops](https://posts.specterops.io/a-red-teamers-guide-to-gpos-and-ous-f0d03976a31e) - A Red Teamer’s Guide to GPOs and OUs
 - [Microsoft](https://docs.microsoft.com/en-us/powershell/module/addsadministration/get-adtrust?view=win10-ps) - Active Directory PowerShell Documentation
 - [Microsoft](https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/active-directory-domain-services) - Active Directory Documentation
+- [msmvps.com](https://blogs.msmvps.com/acefekay/2016/11/02/active-directory-trusts/) - Active Directory Documentation
 
