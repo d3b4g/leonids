@@ -2,7 +2,7 @@
 layout: post
 title:  "Active Directory Red Team - Enumeration"
 date:   2021-03-26 14:07:20
-categories: [Active Directoru Red Team]
+categories: [Active Directory Red Team]
 excerpt: "In this module I will cover how you can enumerate Microsoft Active Directory with Powerview and gather critical information about the Active Directory and its components." 
 
 comments: true
