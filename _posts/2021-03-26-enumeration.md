@@ -130,10 +130,9 @@ If you want check GPO's applied to a specific computer you can use the below Pow
 
 >**Get-DomainGPO -ComputerIdentity  "ComputerName"**
 
-
- #### Enumerating AD Trusts
+#### Enumerating AD Trusts
  
- ##### Description:
+##### Description:
  
 Active Directory trust is a secured, authentication communication channel between entities, such as AD DS domains, forests. Trusts enable you to grant access to resources to users, groups, and computers across entities.
 
