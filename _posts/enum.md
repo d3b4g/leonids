@@ -181,7 +181,8 @@ This cmdlet enumerate the kerberos policy, it will be very useful in kerberos at
 This cmdlet default domain policy
 
 #### Conclusion
-In this post i covered the techniques i use when enumerating Active Directory environment, there are many tools and techniques you can use
+
+In this post, I covered how you can collect important information about Active Directory and its components using PowerView for initial compromise.
 
 #### Refference / Resources 
 
