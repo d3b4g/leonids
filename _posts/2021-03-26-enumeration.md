@@ -24,8 +24,8 @@ In this post im going to cover the following.
 -    Enumerating Domain ACLs with built in tools  and Powerview
 -    Enumerating Group Policy Objects (GPOs)
 -    Enumerating AD Trusts
--    Enumerating Local Administrators
-
+-    Enumerating Domain policy
+-    
 #### Enumerating Domain
 
 ##### Description 
