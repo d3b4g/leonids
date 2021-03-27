@@ -144,9 +144,10 @@ added to a forest root. This trust is always two-way transitive.
 **External Trusts:** Between two domains in different forests when forests do not have a trust
 relationship. It can be one-way or two-way and is nontransitive.
 
+
 > Get-NetDomainTrust 
 
-This command enumerate all domain trusts including parent, childand external
+This command enumerate all domain trusts including parent, child and external trust.
 
 ![source-01](/img/enu11.PNG){: .align-left}
 
@@ -164,6 +165,7 @@ We can also enumerate this information with .NET class "Domain.GetAllTrustRelati
 #### Enumerating Domain Policy
 
 ##### Description
+
 The domain password policy allows you to specify a range of password security options, including how frequently users change their passwords
 
 > Get-DomainPolicy 
@@ -174,11 +176,11 @@ Returns the default domain policy or the domain controller policy for the curren
 
 > (Get-DomainPolicy)."KerberosPolicy" 
 
-This command enumerate the kerberos policy, it will be very useful in kerberos attacks
+This command enumerates the Kerberos policy, this information will be very useful in Kerberos attacks.
 
 > (Get-DomainPolicy)."SystemAccess" 
 
-This command enumerate default SystemAccess policy
+This command enumerate default SystemAccess policy or password policy.
 
 #### Conclusion
 
