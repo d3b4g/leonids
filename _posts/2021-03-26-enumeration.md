@@ -161,7 +161,7 @@ This command enumerate all domain trusts including parent, child and external tr
 
 ![source-01](/img/enu11.PNG){: .align-left}
 
-> Get-NetForestDomain | Get-NetDomainTrust
+**Get-NetForestDomain | Get-NetDomainTrust**
 
 Piping the result of **Get-NetforestDomain** to **Get-NetDomainTrust**  enumerate all the trusts of all the domains found 
 
