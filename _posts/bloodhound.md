@@ -5,3 +5,7 @@ BloodHound is a tool for visualizing an Active Directory environment as a graph.
 #### BloodHound
 
 BloodHound uses graph theory to reveal the hidden and often unintended relationships within an Active Directory environment. Attackers can use BloodHound to easily identify highly complex attack paths that would otherwise be impossible to quickly identify.
+
+#### Data Collection - Python Ingester
+
+> Installation pip3 install bloodhound
