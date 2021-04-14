@@ -1,6 +1,6 @@
 #### Active Directory Enumeration - BloodHound
 
-BloodHound is a tool for visualizing an Active Directory environment as a graph. Enumerating active directory environment is not easy due to its complexity, bloodhound automate many manual works. 
+In this post i'm going to take to you through demostration of working with bloodhound to enumerate active directory. Bloodhound automates complex enumerating tasks we used to perform with powershell or anyother tool. 
 
 #### BloodHound
 
