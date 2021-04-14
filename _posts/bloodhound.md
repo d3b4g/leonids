@@ -1,6 +1,6 @@
 #### Active Directory Enumeration - BloodHound
 
-In this post i'm going to take to you through demostration of working with bloodhound to enumerate active directory. Bloodhound automates complex enumerating tasks we used to perform with powershell or anyother tool. 
+In this post i'm going to take to you through demostration of working with bloodhound to enumerate active directory. Bloodhound automates enumerating complex attack paths we used to perform with powershell or anyother tool. 
 
 #### BloodHound
 
