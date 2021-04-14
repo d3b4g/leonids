@@ -24,7 +24,9 @@ Once data is ingested, we can querry or graph the data to find attack paths
 
 #### Chypher Querries 
 
+Neo4J have its own queery language
 
 
 #### concluson
 
+BloodHound gives a graphical and easy to handle interface to visualize otherwise complex relationships in Active Directory. 
