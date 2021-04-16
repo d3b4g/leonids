@@ -25,7 +25,8 @@ In this post im going to cover the following.
 -    Enumerating Group Policy Objects (GPOs)
 -    Enumerating AD Trusts
 -    Enumerating Domain policy
--    
+
+
 #### Enumerating Domain
 
 ##### Description 
