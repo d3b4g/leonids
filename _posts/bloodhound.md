@@ -24,6 +24,8 @@ Bloodhound collect data from Active Directory by using ingestors. Ingesters quer
 - LDAP
 - SMB RPC
 
+Data collected with the SharpHound ingestor, and are saved in json format in different files. Import these files to BloodHound UI for processsing 
+
 ### Execution
 Once data is ingested, we can querry or graph the data to find attack paths
 
