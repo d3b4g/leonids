@@ -20,7 +20,9 @@ Using BloodHound is straight forward and the tool is well docummented. So i will
 
 > Installation pip3 install bloodhound
 
-Bloodhound collect data by using ingestors.
+Bloodhound collect data from Active Directory by using ingestors. Ingesters queries are performed  via:
+- LDAP
+- SMB RPC
 
 ### Execution
 Once data is ingested, we can querry or graph the data to find attack paths
