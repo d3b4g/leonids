@@ -9,6 +9,9 @@ BloodHound uses graph theory to reveal the hidden and often unintended relations
 #### Graph Theory
 BloodHounds true power lies withing the Neo4j database that it uses. Neo4j is a graph database that can easily discover relationships and calculate the shortest paths between objects using its links.
 
+![source-01](/img/2.png){: .align-left}
+
+
 #### Getting Started
 Using BloodHound is straight forward and the tool is well docummented. So i will skip whole installation and configuration part.
 
