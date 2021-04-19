@@ -31,6 +31,7 @@ Using BloodHound is straight forward and the tool is well docummented. So i will
 
 
 #### Data Collection 
+Ingesters queries the domain controllers and collect all the relationships, GPO's and objects
 
 > Installation pip3 install bloodhound
 
