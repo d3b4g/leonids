@@ -11,6 +11,20 @@ BloodHounds true power lies withing the Neo4j database that it uses. Neo4j is a 
 
 ![source-01](/img/2.png){: .align-left}
 
+The Property Graph Model
+Property graphs contain nodes, and relationships.
+
+**Nodes**
+Nodes are the main data points of interest in a property graph.
+
+**Relationships**
+Relationships are the directed connections between two nodes.
+
+**Properties**
+Properties are attributes that belong to nodes and/or edges.
+
+**Labels**
+Labels are used to group data together.
 
 #### Getting Started
 Using BloodHound is straight forward and the tool is well docummented. So i will skip whole installation and configuration part.
